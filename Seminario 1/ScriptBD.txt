@@ -6,8 +6,7 @@ CREATE TABLE Stock (
 CREATE TABLE Pedido (
     Cpedido INT PRIMARY KEY,
     Ccliente INT,
-    Fecha_pedido DATE,
-    FOREIGN KEY (Ccliente) REFERENCES Cliente(Ccliente)
+    Fecha_pedido VARCHAR(10)
 );
 
 
