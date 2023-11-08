@@ -27,13 +27,21 @@ public class Interfaz extends javax.swing.JPanel {
     private void initComponents() {
 
         menuAltaPedido = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        tituloAltaPedido = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        campoCodigoPedido = new javax.swing.JTextField();
+        campoCodigoCliente = new javax.swing.JTextField();
+        campoFechaPedido = new javax.swing.JTextField();
+        tituloDetalles = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        campoCodigoProducto = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        campoCantidadProducto = new javax.swing.JTextField();
+        botonBorrarDetalles = new javax.swing.JButton();
+        botonBorrarPedido = new javax.swing.JButton();
+        botonTerminarPedido = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
         botonCerrarSesión = new javax.swing.JButton();
         botonAnadirStock = new javax.swing.JButton();
@@ -45,7 +53,7 @@ public class Interfaz extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaStock = new javax.swing.JTable();
 
-        jLabel1.setText("Dar de alta un pedido");
+        tituloAltaPedido.setText("Dar de alta un pedido");
 
         jLabel4.setText("Código de Pedido:");
 
@@ -53,60 +61,124 @@ public class Interfaz extends javax.swing.JPanel {
 
         jLabel6.setText("Fecha del pedido:");
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        campoCodigoPedido.setText("jTextField1");
+        campoCodigoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                campoCodigoPedidoActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
+        campoCodigoCliente.setText("jTextField2");
 
-        jTextField3.setText("jTextField3");
+        campoFechaPedido.setText("jTextField3");
+
+        tituloDetalles.setText("Añadir detalles(opcional)");
+
+        jLabel8.setText("Código de Producto:");
+
+        campoCodigoProducto.setText("jTextField4");
+
+        jLabel9.setText("Cantidad: ");
+
+        campoCantidadProducto.setText("jTextField5");
+
+        botonBorrarDetalles.setText("Borrar detalles de pedido");
+        botonBorrarDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarDetallesActionPerformed(evt);
+            }
+        });
+
+        botonBorrarPedido.setText("Borrar pedido");
+
+        botonTerminarPedido.setText("Finalizar pedido");
 
         javax.swing.GroupLayout menuAltaPedidoLayout = new javax.swing.GroupLayout(menuAltaPedido);
         menuAltaPedido.setLayout(menuAltaPedidoLayout);
         menuAltaPedidoLayout.setHorizontalGroup(
             menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuAltaPedidoLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jLabel1)
+                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(tituloAltaPedido))
+                    .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(tituloDetalles)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuAltaPedidoLayout.createSequentialGroup()
                 .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(menuAltaPedidoLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
-                    .addGroup(menuAltaPedidoLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2))
-                    .addGroup(menuAltaPedidoLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34))
+                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuAltaPedidoLayout.createSequentialGroup()
+                        .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoCodigoProducto)
+                                    .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                                        .addComponent(campoCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuAltaPedidoLayout.createSequentialGroup()
+                                .addComponent(botonTerminarPedido)
+                                .addGap(66, 66, 66)))
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuAltaPedidoLayout.createSequentialGroup()
+                        .addComponent(botonBorrarDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))))
+            .addGroup(menuAltaPedidoLayout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(botonBorrarPedido)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         menuAltaPedidoLayout.setVerticalGroup(
             menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuAltaPedidoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(tituloAltaPedido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(253, Short.MAX_VALUE))
+                    .addComponent(campoFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(tituloDetalles)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(campoCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(menuAltaPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(campoCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(botonTerminarPedido)
+                .addGap(18, 18, 18)
+                .addComponent(botonBorrarDetalles)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonBorrarPedido)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         titulo.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -168,7 +240,7 @@ public class Interfaz extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(titulo)
@@ -232,29 +304,41 @@ public class Interfaz extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAltaPedidoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void campoCodigoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCodigoPedidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_campoCodigoPedidoActionPerformed
+
+    private void botonBorrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarDetallesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBorrarDetallesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAltaPedido;
     private javax.swing.JButton botonAnadirStock;
+    private javax.swing.JButton botonBorrarDetalles;
+    private javax.swing.JButton botonBorrarPedido;
     private javax.swing.JButton botonCerrarSesión;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton botonTerminarPedido;
+    private javax.swing.JTextField campoCantidadProducto;
+    private javax.swing.JTextField campoCodigoCliente;
+    private javax.swing.JTextField campoCodigoPedido;
+    private javax.swing.JTextField campoCodigoProducto;
+    private javax.swing.JTextField campoFechaPedido;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel menuAltaPedido;
     private javax.swing.JTable tablaPedidos;
     private javax.swing.JTable tablaStock;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel tituloAltaPedido;
+    private javax.swing.JLabel tituloDetalles;
     // End of variables declaration//GEN-END:variables
 }
