@@ -1,0 +1,26 @@
+CREATE TABLE Stock (
+    Cproducto INT PRIMARY KEY,
+    Cantidad INT
+);
+
+CREATE TABLE Pedido (
+    Cpedido INT PRIMARY KEY,
+    Ccliente INT,
+    Fecha_pedido DATE,
+    FOREIGN KEY (Ccliente) REFERENCES Cliente(Ccliente)
+);
+
+
+CREATE TABLE Detalle_Pedido (
+    Cpedido INT,
+    Cproducto INT,
+    Cantidad INT,
+    PRIMARY KEY (Cpedido, Cproducto),
+    FOREIGN KEY (Cpedido) REFERENCES Pedido(Cpedido),
+    FOREIGN KEY (Cproducto) REFERENCES Stock(Cproducto)
+);
+
+
+INSERT INTO Pedido (Cpedido, Ccliente, Fecha_pedido) VALUES (1, 101, '2023-11-07');
+INSERT INTO Pedido (Cpedido, Ccliente, Fecha_pedido) VALUES (2, 102, '2023-11-08');
+INSERT INTO Pedido (Cpedido, Ccliente, Fecha_pedido) VALUES (3, 103, '2023-11-09');
