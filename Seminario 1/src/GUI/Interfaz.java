@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Seminario1;
+package GUI;
+
+import Seminario1.Sistema;
 
 /**
  *
@@ -15,6 +17,8 @@ public class Interfaz extends javax.swing.JPanel {
      */
     public Interfaz() {
         initComponents();
+        repaint();
+        revalidate();
     }
 
     /**
@@ -293,7 +297,7 @@ public class Interfaz extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_botonCerrarSesiónActionPerformed
 
     private void botonAnadirStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirStockActionPerformed

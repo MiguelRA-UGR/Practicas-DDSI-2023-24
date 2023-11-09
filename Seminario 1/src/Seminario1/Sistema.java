@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
 import java.sql.ResultSet;
-
+import GUI.Interfaz;
 
 public class Sistema {
 
@@ -30,6 +30,9 @@ public class Sistema {
         } catch (SQLException e){
             System.out.println(e);
         }
+        
+        Interfaz interfaz = new Interfaz();
+
     
     }
     
