@@ -4,8 +4,17 @@
  */
 package GUI;
 
+import ConexionSQL.ConexionBD;
 import Seminario1.Sistema;
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author mikel
@@ -19,6 +28,7 @@ public class Interfaz extends javax.swing.JPanel {
         initComponents();
         repaint();
         revalidate();
+        cargarTablas();
     }
 
     /**
@@ -56,6 +66,9 @@ public class Interfaz extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaStock = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaDetalle = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         tituloAltaPedido.setText("Dar de alta un pedido");
 
@@ -65,26 +78,17 @@ public class Interfaz extends javax.swing.JPanel {
 
         jLabel6.setText("Fecha del pedido:");
 
-        campoCodigoPedido.setText("jTextField1");
         campoCodigoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCodigoPedidoActionPerformed(evt);
             }
         });
 
-        campoCodigoCliente.setText("jTextField2");
-
-        campoFechaPedido.setText("jTextField3");
-
         tituloDetalles.setText("Añadir detalles(opcional)");
 
         jLabel8.setText("Código de Producto:");
 
-        campoCodigoProducto.setText("jTextField4");
-
         jLabel9.setText("Cantidad: ");
-
-        campoCantidadProducto.setText("jTextField5");
 
         botonBorrarDetalles.setText("Borrar detalles de pedido");
         botonBorrarDetalles.addActionListener(new java.awt.event.ActionListener() {
@@ -94,8 +98,18 @@ public class Interfaz extends javax.swing.JPanel {
         });
 
         botonBorrarPedido.setText("Borrar pedido");
+        botonBorrarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarPedidoActionPerformed(evt);
+            }
+        });
 
-        botonTerminarPedido.setText("Finalizar pedido");
+        botonTerminarPedido.setText("Guardar pedido");
+        botonTerminarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTerminarPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuAltaPedidoLayout = new javax.swing.GroupLayout(menuAltaPedido);
         menuAltaPedido.setLayout(menuAltaPedidoLayout);
@@ -188,6 +202,8 @@ public class Interfaz extends javax.swing.JPanel {
         titulo.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         titulo.setText("SISTEMA DE PEDIDOS");
 
+        botonCerrarSesión.setBackground(new java.awt.Color(255, 204, 102));
+        botonCerrarSesión.setForeground(new java.awt.Color(255, 255, 255));
         botonCerrarSesión.setText("Cerrar Sesión");
         botonCerrarSesión.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +235,22 @@ public class Interfaz extends javax.swing.JPanel {
             new String [] {
                 "Código de pedido", "Cliente", "Fecha"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaPedidos);
 
         jLabel2.setText("Pedidos");
@@ -236,68 +267,119 @@ public class Interfaz extends javax.swing.JPanel {
             new String [] {
                 "Código de Producto", "Cantidad"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tablaStock);
+
+        tablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Código del pedido", "Código del producto", "Cantidad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaDetalle);
+
+        jLabel1.setText("Detalles de los pedidos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(titulo)
-                        .addGap(142, 142, 142))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonCerrarSesión)
-                        .addGap(18, 18, 18))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(253, 253, 253)
+                                .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(136, 136, 136)
+                                        .addComponent(jLabel2)))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAnadirStock, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAltaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(146, 146, 146)
+                                        .addComponent(jLabel3))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(jLabel1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonAltaPedido, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAnadirStock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))))
+                        .addGap(244, 244, 244)
+                        .addComponent(titulo)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addComponent(titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonAnadirStock)
                         .addGap(18, 18, 18)
-                        .addComponent(botonAltaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonCerrarSesión)
-                .addGap(18, 18, 18))
+                        .addComponent(botonAltaPedido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
-
+         //Añadir función para que cierre conexión con la BD
     }//GEN-LAST:event_botonCerrarSesiónActionPerformed
 
     private void botonAnadirStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirStockActionPerformed
@@ -305,7 +387,9 @@ public class Interfaz extends javax.swing.JPanel {
     }//GEN-LAST:event_botonAnadirStockActionPerformed
 
     private void botonAltaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaPedidoActionPerformed
-        // TODO add your handling code here:
+        menuAltaPedido.setVisible(true);
+
+        this.validate();
     }//GEN-LAST:event_botonAltaPedidoActionPerformed
 
     private void campoCodigoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCodigoPedidoActionPerformed
@@ -313,8 +397,115 @@ public class Interfaz extends javax.swing.JPanel {
     }//GEN-LAST:event_campoCodigoPedidoActionPerformed
 
     private void botonBorrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarDetallesActionPerformed
-        // TODO add your handling code here:
+        campoCantidadProducto.setText(" ");
+        campoCodigoProducto.setText(" ");
     }//GEN-LAST:event_botonBorrarDetallesActionPerformed
+    
+    
+    private void cargarTablas(){
+        DefaultTableModel modeloTablaPedidos = (DefaultTableModel)tablaPedidos.getModel();
+        DefaultTableModel modeloTablaStock = (DefaultTableModel)tablaStock.getModel();
+        DefaultTableModel modeloTablaDetalle = (DefaultTableModel)tablaDetalle.getModel();
+        
+        modeloTablaPedidos.setRowCount(0);
+        
+        PreparedStatement cn;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        
+        int columnas;
+        
+        try{
+            
+            ConexionBD conexion = new ConexionSQL.ConexionBD();
+            Connection con = conexion.conectar();
+            cn = con.prepareStatement("SELECT CPEDIDO,CCLIENTE,FECHA_PEDIDO FROM PEDIDO");
+            rs = cn.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int indice =0; indice < columnas; indice++){
+                    fila[indice] = rs.getObject(indice + 1);
+                }
+                modeloTablaPedidos.addRow(fila);
+            }
+            
+            cn = con.prepareStatement("SELECT CPRODUCTO,CANTIDAD FROM PEDIDO");
+            rs = cn.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int indice =0; indice < columnas; indice++){
+                    fila[indice] = rs.getObject(indice + 1);
+                }
+                modeloTablaStock.addRow(fila);
+            }
+            
+            cn = con.prepareStatement("SELECT CPEDIDO,CPRODUCTO,CANTIDAD FROM DETALLE-PEDIDO");
+            rs = cn.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int indice =0; indice < columnas; indice++){
+                    fila[indice] = rs.getObject(indice + 1);
+                }
+                modeloTablaDetalle.addRow(fila);
+            }
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e.toString()); 
+        }
+    }
+    
+    private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
+        int cpedido= Integer.parseInt(campoCodigoPedido.getText());
+        int ccliente= Integer.parseInt(campoCodigoCliente.getText());
+        String fecha = campoFechaPedido.getText();
+        
+        if(campoCantidadProducto.getText()!=null && campoCodigoProducto.getText()!=null){
+            int cproducto= Integer.parseInt(campoCodigoProducto.getText());
+            int cantidad= Integer.parseInt(campoCantidadProducto.getText());
+        }
+        
+        try{
+            ConexionBD conexion = new ConexionSQL.ConexionBD();
+            Connection con = conexion.conectar();
+            PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO,CCLIENTE,FECHA_PEDIDO) VALUES(?,?,?)");
+            
+            cn.setInt(1,cpedido);
+            cn.setInt(1,ccliente);
+            cn.setString(1,fecha);
+            
+            cn.executeUpdate();
+            
+            campoCodigoPedido.setText(" ");
+            campoCodigoCliente.setText(" ");
+            campoFechaPedido.setText(" ");
+            campoCantidadProducto.setText(" ");
+            campoCodigoProducto.setText(" ");
+            cargarTablas();
+            menuAltaPedido.setVisible(false);
+            
+        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e.toString()); 
+        }
+        
+        
+    }//GEN-LAST:event_botonTerminarPedidoActionPerformed
+
+    private void botonBorrarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarPedidoActionPerformed
+        campoCodigoPedido.setText(" ");
+        campoCodigoCliente.setText(" ");
+        campoFechaPedido.setText(" ");
+        campoCantidadProducto.setText(" ");
+        campoCodigoProducto.setText(" ");
+        menuAltaPedido.setVisible(false);
+    }//GEN-LAST:event_botonBorrarPedidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -329,6 +520,7 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JTextField campoCodigoPedido;
     private javax.swing.JTextField campoCodigoProducto;
     private javax.swing.JTextField campoFechaPedido;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -337,8 +529,10 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel menuAltaPedido;
+    private javax.swing.JTable tablaDetalle;
     private javax.swing.JTable tablaPedidos;
     private javax.swing.JTable tablaStock;
     private javax.swing.JLabel titulo;
