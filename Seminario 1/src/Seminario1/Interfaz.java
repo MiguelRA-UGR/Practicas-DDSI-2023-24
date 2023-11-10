@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package GUI;
+package Seminario1;
 
 import ConexionSQL.ConexionBD;
-import Seminario1.Sistema;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -20,17 +19,23 @@ import javax.swing.table.DefaultTableModel;
  * @author mikel
  */
 public class Interfaz extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Interfaz
-     */
-    public Interfaz() {
+    
+    public Interfaz(){
         initComponents();
         repaint();
         revalidate();
         cargarTablas();
     }
-
+    
+    public static void main(String args[]){
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            @Override
+            public void run(){
+                new Interfaz().setVisible(true);
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -432,7 +437,7 @@ public class Interfaz extends javax.swing.JPanel {
                 modeloTablaPedidos.addRow(fila);
             }
             
-            cn = con.prepareStatement("SELECT CPRODUCTO,CANTIDAD FROM PEDIDO");
+            cn = con.prepareStatement("SELECT CPRODUCTO,CANTIDAD FROM STOCK");
             rs = cn.executeQuery();
             rsmd = rs.getMetaData();
             columnas = rsmd.getColumnCount();
@@ -445,7 +450,7 @@ public class Interfaz extends javax.swing.JPanel {
                 modeloTablaStock.addRow(fila);
             }
             
-            cn = con.prepareStatement("SELECT CPEDIDO,CPRODUCTO,CANTIDAD FROM DETALLE-PEDIDO");
+            cn = con.prepareStatement("SELECT CPEDIDO,CPRODUCTO,CANTIDAD FROM DETALLE_PEDIDO");
             rs = cn.executeQuery();
             rsmd = rs.getMetaData();
             columnas = rsmd.getColumnCount();
