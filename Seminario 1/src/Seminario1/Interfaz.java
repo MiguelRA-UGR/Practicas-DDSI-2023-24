@@ -5,36 +5,29 @@
 package Seminario1;
 
 import ConexionSQL.ConexionBD;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author mikel
  */
-public class Interfaz extends javax.swing.JPanel {
+public class Interfaz extends javax.swing.JFrame {
     
     public Interfaz(){
+        menuAltaPedido = new javax.swing.JPanel();
+        menuAltaPedido.setVisible(false);
         initComponents();
         repaint();
         revalidate();
         cargarTablas();
     }
     
-    public static void main(String args[]){
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            @Override
-            public void run(){
-                new Interfaz().setVisible(true);
-            }
-        });
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
