@@ -5,7 +5,6 @@
 package Seminario1;
 
 import ConexionSQL.ConexionBD;
-import static java.lang.Math.random;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.PreparedStatement;
@@ -13,10 +12,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.lang.Math;
+
 import java.util.Random;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+
 
 /**
  *
@@ -25,14 +23,13 @@ import javax.swing.SwingUtilities;
 public class Sistema extends javax.swing.JFrame {
     
     private  ConexionBD conexion = new ConexionSQL.ConexionBD();
-    private Connection con;
+    private Connection con ;
     
     /**
      * Creates new form Sistema
      */
     public Sistema() {
         initComponents();
-        //menuAltaPedido.setVisible(false);
         initComponents();
         repaint();
         revalidate();
@@ -74,8 +71,6 @@ public class Sistema extends javax.swing.JFrame {
     DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
     DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
 
-    modeloTablaPedidos.setRowCount(0);
-
     try {
         cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", modeloTablaPedidos);
         cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", modeloTablaStock);
@@ -84,9 +79,11 @@ public class Sistema extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.toString());
         e.printStackTrace();
     }
+    
 }
 
 private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQLException {
+   
     try (PreparedStatement preparedStatement = con.prepareStatement(sql);
          ResultSet resultSet = preparedStatement.executeQuery()) {
 
@@ -142,6 +139,7 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         botonAnadirStock = new javax.swing.JButton();
         botonAltaPedido = new javax.swing.JButton();
         botonCerrarSesión = new javax.swing.JButton();
+        botonRecargar = new javax.swing.JButton();
 
         formularioPedido.setMaximumSize(new java.awt.Dimension(500, 700));
         formularioPedido.setMinimumSize(new java.awt.Dimension(500, 700));
@@ -354,6 +352,13 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
             }
         });
 
+        botonRecargar.setText("Recargar Tablas");
+        botonRecargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRecargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -387,12 +392,13 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(395, 395, 395)
+                        .addComponent(botonRecargar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(539, 539, 539))
             .addGroup(layout.createSequentialGroup()
                 .addGap(308, 308, 308)
                 .addComponent(jLabel4)
@@ -401,8 +407,13 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(botonRecargar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -449,7 +460,7 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
 
         }
 
-        
+        cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", (DefaultTableModel) tablaStock.getModel());
         /*
         pstmt.setInt(1,4829150); 
         pstmt.setInt(2, 24); 
@@ -491,17 +502,17 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         pstmt.setInt(2, 14); 
         pstmt.executeUpdate();
         */
-          cargarTablas();
         } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error al añadir filas a la tabla STOCK: " + e.toString());
     }//GEN-LAST:event_botonAnadirStockActionPerformed
     }
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
-        //borrarContenidoTablas();
+        this.dispose();
+        borrarContenidoTablas();
         conexion.desconectar();
         System.out.println("Conexión cerrada correctamente.");
         formularioPedido.dispose();
-       this.dispose();
+       
     }//GEN-LAST:event_botonCerrarSesiónActionPerformed
 
     private void botonAltaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaPedidoActionPerformed
@@ -542,8 +553,9 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
             campoFechaPedido.setText("");
             campoCantidadProducto.setText("");
             campoCodigoProducto.setText("");
-            cargarTablas();
-            formularioPedido.setVisible(false);
+            cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
+            cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", (DefaultTableModel) tablaDetalle.getModel());
+            formularioPedido.dispose();
             
         }catch(SQLException e){
            JOptionPane.showMessageDialog(null, e.toString()); 
@@ -564,6 +576,10 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
     }//GEN-LAST:event_botonBorrarDetallesActionPerformed
+
+    private void botonRecargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRecargarActionPerformed
+        cargarTablas();
+    }//GEN-LAST:event_botonRecargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -606,6 +622,7 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
     private javax.swing.JButton botonBorrarDetalles;
     private javax.swing.JButton botonBorrarPedido;
     private javax.swing.JButton botonCerrarSesión;
+    private javax.swing.JButton botonRecargar;
     private javax.swing.JButton botonTerminarPedido;
     private javax.swing.JTextField campoCantidadProducto;
     private javax.swing.JTextField campoCodigoCliente;
