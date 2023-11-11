@@ -21,27 +21,27 @@ public class ConexionBD {
     private final String USER = "x7390819";
     private final String PASWORD = "mikelddsi";
     
-    public Connection cadena;
+    public Connection conex;
 
     public ConexionBD() {
-         this.cadena = null;
+         this.conex = null;
     }
 
     public Connection conectar() {
         try {
-            this.cadena = DriverManager.getConnection(URL, USER, PASWORD);
+            this.conex = DriverManager.getConnection(URL, USER, PASWORD);
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             System.exit(0);
         }
-        return this.cadena;
+        return this.conex;
 
     }
 
     public void desconectar() {
         try {
-            this.cadena.close();
+            this.conex.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
