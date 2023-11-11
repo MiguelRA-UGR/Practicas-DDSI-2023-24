@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -36,37 +38,66 @@ public class Sistema extends javax.swing.JFrame {
         con = conexion.conectar();
         cargarTablas();
     }
-
-    private void borrarContenidoTablas() {
+    
+private void borrarContenidoTablas() throws SQLException {
+    //Metemos puntos de restauración cada vez que eliminamos una tabla
+    var savepoint = con.setSavepoint(); 
+    
     try {
         // Borrar contenido de la tabla PEDIDO
         PreparedStatement deletePedidos = con.prepareStatement("DELETE FROM PEDIDO");
         deletePedidos.executeUpdate();
-
-        // Borrar contenido de la tabla STOCK
-        PreparedStatement deleteStock = con.prepareStatement("DELETE FROM STOCK");
-        deleteStock.executeUpdate();
-
-        // Borrar contenido de la tabla DETALLE_PEDIDO
-        PreparedStatement deleteDetallePedido = con.prepareStatement("DELETE FROM DETALLE_PEDIDO");
-        deleteDetallePedido.executeUpdate();
-
+    
         // Limpiar los modelos de las tablas en la interfaz gráfica
         DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
         modeloTablaPedidos.setRowCount(0);
-
+        savepoint = con.setSavepoint();
+    } 
+    catch (SQLException e) {
+        con.rollback();
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Peidos: " + e.toString());
+    }
+    
+     try {      
+        // Borrar contenido de la tabla DETALLE_PEDIDO
+        PreparedStatement deleteDetalleStock = con.prepareStatement("DELETE FROM STOCK");
+        deleteDetalleStock.executeUpdate();
+        
         DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
         modeloTablaStock.setRowCount(0);
+        savepoint = con.setSavepoint();
 
+} 
+    catch (SQLException e) {
+        con.rollback(savepoint);
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Stock: " + e.toString());
+    }
+     try {      
+        // Borrar contenido de la tabla DETALLE_PEDIDO
+        PreparedStatement deleteDetallePedido = con.prepareStatement("DELETE FROM DETALLE_PEDIDO");
+        deleteDetallePedido.executeUpdate();
+        
         DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
         modeloTablaDetalle.setRowCount(0);
 
         JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de las tablas: " + e.toString());
+        con.commit();
+ 
+        //Liberamos los puntos de guardados
+        con.releaseSavepoint(savepoint);
+
+    } 
+    catch (SQLException e) {
+        con.rollback(savepoint);
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla detalle_pedido: " + e.toString());
     }
+     
+
+
 }
-    private void cargarTablas() {
+   
+
+/* private void cargarTablas() {
     DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
     DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
     DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
@@ -98,6 +129,36 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
             modelo.addRow(fila);
         }
     }
+}
+*/
+private void cargarTablas() {
+    cargarDatosDesdeDB("SELECT * FROM PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
+    cargarDatosDesdeDB("SELECT * FROM STOCK", (DefaultTableModel) tablaStock.getModel());
+    cargarDatosDesdeDB("SELECT * FROM DETALLE_PEDIDO",(DefaultTableModel) tablaDetalle.getModel());
+}
+
+private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) {
+    try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+         ResultSet resultSet = preparedStatement.executeQuery()) {
+
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnas = rsmd.getColumnCount();
+
+        while (resultSet.next()) {
+            Object[] fila = new Object[columnas];
+            for (int indice = 0; indice < columnas; indice++) {
+                fila[indice] = resultSet.getObject(indice + 1);
+            }
+            modelo.addRow(fila);
+        }
+    } catch (SQLException e) {
+        mostrarError("Error al cargar datos: " + e.toString());
+        e.printStackTrace();
+    }
+}
+
+private void mostrarError(String mensaje) {
+    JOptionPane.showMessageDialog(null, mensaje);
 }
 
     
@@ -141,7 +202,6 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         botonCerrarSesión = new javax.swing.JButton();
         botonRecargar = new javax.swing.JButton();
 
-        formularioPedido.setMaximumSize(new java.awt.Dimension(500, 700));
         formularioPedido.setMinimumSize(new java.awt.Dimension(500, 700));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -442,14 +502,13 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAnadirStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirStockActionPerformed
-              
+private void AnadirStock() throws SQLException{
+        var savepoint = con.setSavepoint();
         try {
         String sql = "INSERT INTO STOCK (CPRODUCTO, CANTIDAD) VALUES (?, ?)";
         PreparedStatement pstmt = con.prepareStatement(sql);
         
         Random random = new Random();
-
         for (int i = 0; i < 10; i++) {
             int codigo = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
             int cantidad = random.nextInt(91) + 10; // Genera cantidades aleatorias entre 10 y 100
@@ -457,58 +516,33 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
             pstmt.setInt(1, codigo);
             pstmt.setInt(2, cantidad);
             pstmt.executeUpdate();
-
+            savepoint = con.setSavepoint();
         }
-
+        con.commit();
+        }
+        catch(SQLException e){
+        con.rollback(savepoint);
+       JOptionPane.showMessageDialog(null, e.toString()); 
+        }
         cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", (DefaultTableModel) tablaStock.getModel());
-        /*
-        pstmt.setInt(1,4829150); 
-        pstmt.setInt(2, 24); 
-        pstmt.executeUpdate();
         
-        pstmt.setInt(1, 7693021); 
-        pstmt.setInt(2, 35); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 1348765); 
-        pstmt.setInt(2, 74); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 5982347); 
-        pstmt.setInt(2, 12); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 7124098); 
-        pstmt.setInt(2, 87); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1,3568201); 
-        pstmt.setInt(2, 34); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 8901562); 
-        pstmt.setInt(2, 79); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 2456379); 
-        pstmt.setInt(2, 12); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 6134897); 
-        pstmt.setInt(2, 5); 
-        pstmt.executeUpdate();
-        
-        pstmt.setInt(1, 9275043); 
-        pstmt.setInt(2, 14); 
-        pstmt.executeUpdate();
-        */
-        } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al añadir filas a la tabla STOCK: " + e.toString());
+}
+    
+    private void botonAnadirStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirStockActionPerformed
+        try {
+            AnadirStock();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonAnadirStockActionPerformed
-    }
+    
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
         this.dispose();
-        borrarContenidoTablas();
+        try {
+            borrarContenidoTablas();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         conexion.desconectar();
         System.out.println("Conexión cerrada correctamente.");
         formularioPedido.dispose();
@@ -523,44 +557,53 @@ private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQL
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCodigoPedidoActionPerformed
 
-    private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
-        int cpedido= Integer.parseInt(campoCodigoPedido.getText());
-        int ccliente= Integer.parseInt(campoCodigoCliente.getText());
-        String fecha = campoFechaPedido.getText();
-        
-       
-        try{
-            PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO,CCLIENTE,FECHA_PEDIDO) VALUES(?,?,?)");
-            
+private void TerminarPedido() throws SQLException{
+    int cpedido= Integer.parseInt(campoCodigoPedido.getText());
+    int ccliente= Integer.parseInt(campoCodigoCliente.getText());
+    String fecha = campoFechaPedido.getText();
+
+
+    try{
+        PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO,CCLIENTE,FECHA_PEDIDO) VALUES(?,?,?)");
+
+        cn.setInt(1,cpedido);
+        cn.setInt(2,ccliente);
+        cn.setString(3,fecha);
+        cn.executeUpdate();
+        if(!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()){
+            int cproducto= Integer.parseInt(campoCodigoProducto.getText());
+            int cantidad= Integer.parseInt(campoCantidadProducto.getText());
+
+            cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO,CPRODUCTO,CANTIDAD) VALUES(?,?,?)");
             cn.setInt(1,cpedido);
-            cn.setInt(2,ccliente);
-            cn.setString(3,fecha);
+            cn.setInt(2,cproducto);
+            cn.setInt(3,cantidad);
             cn.executeUpdate();
-            
-            if(!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()){
-                int cproducto= Integer.parseInt(campoCodigoProducto.getText());
-                int cantidad= Integer.parseInt(campoCantidadProducto.getText());
-                
-                cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO,CPRODUCTO,CANTIDAD) VALUES(?,?,?)");
-                cn.setInt(1,cpedido);
-                cn.setInt(2,cproducto);
-                cn.setInt(3,cantidad);
-                cn.executeUpdate();
-            }
-            
-            campoCodigoPedido.setText("");
-            campoCodigoCliente.setText("");
-            campoFechaPedido.setText("");
-            campoCantidadProducto.setText("");
-            campoCodigoProducto.setText("");
-            cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
-            cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", (DefaultTableModel) tablaDetalle.getModel());
-            formularioPedido.dispose();
-            
-        }catch(SQLException e){
-           JOptionPane.showMessageDialog(null, e.toString()); 
         }
-        
+
+        campoCodigoPedido.setText("");
+        campoCodigoCliente.setText("");
+        campoFechaPedido.setText("");
+        campoCantidadProducto.setText("");
+        campoCodigoProducto.setText("");
+        cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
+        cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", (DefaultTableModel) tablaDetalle.getModel());
+        formularioPedido.dispose();
+        con.commit();
+    }catch(SQLException e){
+        con.rollback();
+       JOptionPane.showMessageDialog(null, e.toString()); 
+    }
+
+}
+
+
+    private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
+        try {
+            TerminarPedido();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonTerminarPedidoActionPerformed
 
     private void botonBorrarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarPedidoActionPerformed

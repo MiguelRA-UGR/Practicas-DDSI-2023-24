@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class ConexionBD {
     private final String URL = "jdbc:oracle:thin:@//oracle0.ugr.es:1521/practbd.oracle0.ugr.es";
-    private final String USER = "x7390819";
-    private final String PASWORD = "mikelddsi";
+    private final String USER = "x4495491";
+    private final String PASWORD = "arturoddsi";
     
     public Connection conex;
 
@@ -30,7 +30,7 @@ public class ConexionBD {
     public Connection conectar() {
         try {
             this.conex = DriverManager.getConnection(URL, USER, PASWORD);
-
+            conex.setAutoCommit(false); //Se pone para que se eliminen los auto commit y se puedan ejecutar las sentencias cuando nosotros decidamos poner un commit
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             System.exit(0);
