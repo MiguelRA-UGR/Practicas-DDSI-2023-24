@@ -12,10 +12,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import java.sql.Savepoint;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 
 /**
@@ -37,131 +38,7 @@ public class Sistema extends javax.swing.JFrame {
         revalidate();
         con = conexion.conectar();
         cargarTablas();
-    }
-    
-private void borrarContenidoTablas() throws SQLException {
-    //Metemos puntos de restauración cada vez que eliminamos una tabla
-    var savepoint = con.setSavepoint(); 
-    
-    try {
-        // Borrar contenido de la tabla PEDIDO
-        PreparedStatement deletePedidos = con.prepareStatement("DELETE FROM PEDIDO");
-        deletePedidos.executeUpdate();
-    
-        // Limpiar los modelos de las tablas en la interfaz gráfica
-        DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
-        modeloTablaPedidos.setRowCount(0);
-        savepoint = con.setSavepoint();
-    } 
-    catch (SQLException e) {
-        con.rollback();
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Peidos: " + e.toString());
-    }
-    
-     try {      
-        // Borrar contenido de la tabla DETALLE_PEDIDO
-        PreparedStatement deleteDetalleStock = con.prepareStatement("DELETE FROM STOCK");
-        deleteDetalleStock.executeUpdate();
-        
-        DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
-        modeloTablaStock.setRowCount(0);
-        savepoint = con.setSavepoint();
-
-} 
-    catch (SQLException e) {
-        con.rollback(savepoint);
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Stock: " + e.toString());
-    }
-     try {      
-        // Borrar contenido de la tabla DETALLE_PEDIDO
-        PreparedStatement deleteDetallePedido = con.prepareStatement("DELETE FROM DETALLE_PEDIDO");
-        deleteDetallePedido.executeUpdate();
-        
-        DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
-        modeloTablaDetalle.setRowCount(0);
-
-        JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
-        con.commit();
- 
-        //Liberamos los puntos de guardados
-        con.releaseSavepoint(savepoint);
-
-    } 
-    catch (SQLException e) {
-        con.rollback(savepoint);
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla detalle_pedido: " + e.toString());
-    }
-     
-
-
-}
-   
-
-/* private void cargarTablas() {
-    DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
-    DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
-    DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
-
-    try {
-        cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", modeloTablaPedidos);
-        cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", modeloTablaStock);
-        cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", modeloTablaDetalle);
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.toString());
-        e.printStackTrace();
-    }
-    
-}
-
-private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQLException {
-   
-    try (PreparedStatement preparedStatement = con.prepareStatement(sql);
-         ResultSet resultSet = preparedStatement.executeQuery()) {
-
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnas = rsmd.getColumnCount();
-
-        while (resultSet.next()) {
-            Object[] fila = new Object[columnas];
-            for (int indice = 0; indice < columnas; indice++) {
-                fila[indice] = resultSet.getObject(indice + 1);
-            }
-            modelo.addRow(fila);
-        }
-    }
-}
-*/
-private void cargarTablas() {
-    cargarDatosDesdeDB("SELECT * FROM PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
-    cargarDatosDesdeDB("SELECT * FROM STOCK", (DefaultTableModel) tablaStock.getModel());
-    cargarDatosDesdeDB("SELECT * FROM DETALLE_PEDIDO",(DefaultTableModel) tablaDetalle.getModel());
-}
-
-private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) {
-    try (PreparedStatement preparedStatement = con.prepareStatement(sql);
-         ResultSet resultSet = preparedStatement.executeQuery()) {
-
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnas = rsmd.getColumnCount();
-
-        while (resultSet.next()) {
-            Object[] fila = new Object[columnas];
-            for (int indice = 0; indice < columnas; indice++) {
-                fila[indice] = resultSet.getObject(indice + 1);
-            }
-            modelo.addRow(fila);
-        }
-    } catch (SQLException e) {
-        mostrarError("Error al cargar datos: " + e.toString());
-        e.printStackTrace();
-    }
-}
-
-private void mostrarError(String mensaje) {
-    JOptionPane.showMessageDialog(null, mensaje);
-}
-
-    
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,6 +78,8 @@ private void mostrarError(String mensaje) {
         botonAltaPedido = new javax.swing.JButton();
         botonCerrarSesión = new javax.swing.JButton();
         botonRecargar = new javax.swing.JButton();
+        Borrar_Tabla = new javax.swing.JButton();
+        Comprueba_con = new javax.swing.JButton();
 
         formularioPedido.setMinimumSize(new java.awt.Dimension(500, 700));
 
@@ -419,6 +298,20 @@ private void mostrarError(String mensaje) {
             }
         });
 
+        Borrar_Tabla.setText("Borrar Tablas");
+        Borrar_Tabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Borrar_TablaActionPerformed(evt);
+            }
+        });
+
+        Comprueba_con.setText("Comprueba conexión");
+        Comprueba_con.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Comprueba_conActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -435,34 +328,36 @@ private void mostrarError(String mensaje) {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botonAnadirStock, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonAltaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(78, 78, 78))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(395, 395, 395)
-                        .addComponent(botonRecargar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonRecargar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(33, 33, 33)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(308, 308, 308)
+                                .addComponent(jLabel4)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(botonAnadirStock, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAltaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Borrar_Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Comprueba_con, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(78, 78, 78)))))
                 .addGap(24, 24, 24))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(308, 308, 308)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,17 +377,21 @@ private void mostrarError(String mensaje) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Comprueba_con)
+                        .addGap(18, 18, 18)
                         .addComponent(botonAnadirStock, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
+                        .addGap(18, 18, 18)
+                        .addComponent(Borrar_Tabla)
+                        .addGap(26, 26, 26)
                         .addComponent(botonAltaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(107, 107, 107)
                         .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -535,6 +434,37 @@ private void AnadirStock() throws SQLException{
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonAnadirStockActionPerformed
+private void borrarContenidoTablas() throws SQLException{
+    try {
+        borrarTabla("DETALLE_PEDIDO", tablaDetalle);
+        borrarTabla("STOCK", tablaStock);
+        borrarTabla("PEDIDO", tablaPedidos);
+
+        JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
+        con.commit();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de las tablas: " + e.toString());
+        con.rollback();
+    }
+}
+
+private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLException {
+    Savepoint savepoint = con.setSavepoint();
+    try {
+        // Borrar contenido de la tabla
+        String deleteQuery = "DELETE FROM " + nombreTabla;
+        PreparedStatement deleteStatement = con.prepareStatement(deleteQuery);
+        int rowsAffected = deleteStatement.executeUpdate();
+        System.out.println("Filas afectadas: " + rowsAffected);
+        // Limpiar modelo de la interfaz gráfica
+        DefaultTableModel tabla = (DefaultTableModel) tabla_a_borrar.getModel();
+        tabla.setRowCount(0);
+        
+    } catch (SQLException e) {
+        con.rollback(savepoint);
+        throw e; // Re-lanza la excepción para que sea manejada en el método principal
+    }
+}
     
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
         this.dispose();
@@ -619,10 +549,66 @@ private void TerminarPedido() throws SQLException{
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
     }//GEN-LAST:event_botonBorrarDetallesActionPerformed
+private void cargarTablas() {
+    cargarDatosDesdeDB("PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
+    cargarDatosDesdeDB("STOCK", (DefaultTableModel) tablaStock.getModel());
+    cargarDatosDesdeDB("DETALLE_PEDIDO",(DefaultTableModel) tablaDetalle.getModel());
+}
 
+private void cargarDatosDesdeDB(String nombreTabla, DefaultTableModel modelo) {
+    try{
+        String selectQuery = "SELECT * FROM " + nombreTabla;
+   
+        PreparedStatement preparedStatement = con.prepareStatement(selectQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnas = rsmd.getColumnCount();
+
+        while (resultSet.next()) {
+            Object[] fila = new Object[columnas];
+            for (int indice = 0; indice < columnas; indice++) {
+                fila[indice] = resultSet.getObject(indice + 1);
+
+            }
+            modelo.addRow(fila);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.toString());
+
+        e.printStackTrace();
+    }
+}
+
+    
     private void botonRecargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRecargarActionPerformed
         cargarTablas();
     }//GEN-LAST:event_botonRecargarActionPerformed
+
+    private void Borrar_TablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Borrar_TablaActionPerformed
+        try {
+            borrarContenidoTablas();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Borrar_TablaActionPerformed
+
+public boolean verificarConexion() {
+    try {
+        boolean conexion = con != null && !con.isClosed();
+        if(conexion)
+            JOptionPane.showMessageDialog(null, "Funciona la conexión");
+        return conexion;
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+    private void Comprueba_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprueba_conActionPerformed
+    verificarConexion();
+    }//GEN-LAST:event_Comprueba_conActionPerformed
 
     /**
      * @param args the command line arguments
@@ -660,6 +646,8 @@ private void TerminarPedido() throws SQLException{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Borrar_Tabla;
+    private javax.swing.JButton Comprueba_con;
     private javax.swing.JButton botonAltaPedido;
     private javax.swing.JButton botonAnadirStock;
     private javax.swing.JButton botonBorrarDetalles;
@@ -692,3 +680,99 @@ private void TerminarPedido() throws SQLException{
     private javax.swing.JTable tablaStock;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+  /*
+private void borrarContenidoTablas() throws SQLException {
+    //Metemos puntos de restauración cada vez que eliminamos una tabla
+    Savepoint savepoint = con.setSavepoint(); 
+    
+    try {
+        // Borrar contenido de la tabla PEDIDO
+        PreparedStatement deletePedidos = con.prepareStatement("DELETE FROM PEDIDO");
+        deletePedidos.executeUpdate();
+    
+        // Limpiar los modelos de las tablas en la interfaz gráfica
+        DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
+        modeloTablaPedidos.setRowCount(0);
+        savepoint = con.setSavepoint();
+    } 
+    catch (SQLException e) {
+        con.rollback();
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Pedidos: " + e.toString());
+    }
+    
+     try {      
+        // Borrar contenido de la tabla DETALLE_PEDIDO
+        PreparedStatement deleteDetalleStock = con.prepareStatement("DELETE FROM STOCK");
+        deleteDetalleStock.executeUpdate();
+        
+        DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
+        modeloTablaStock.setRowCount(0);
+        savepoint = con.setSavepoint();
+
+} 
+    catch (SQLException e) {
+        con.rollback(savepoint);
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Stock: " + e.toString());
+    }
+     try {      
+        // Borrar contenido de la tabla DETALLE_PEDIDO
+        PreparedStatement deleteDetallePedido = con.prepareStatement("DELETE FROM DETALLE_PEDIDO");
+        deleteDetallePedido.executeUpdate();
+        
+        DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
+        modeloTablaDetalle.setRowCount(0);
+
+        JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
+        con.commit();
+ 
+        //Liberamos los puntos de guardados
+        con.releaseSavepoint(savepoint);
+
+    } 
+    catch (SQLException e) {
+        con.rollback(savepoint);
+        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla detalle_pedido: " + e.toString());
+    }
+     
+
+
+}*/
+   
+
+/* private void cargarTablas() {
+    DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
+    DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
+    DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
+
+    try {
+        cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", modeloTablaPedidos);
+        cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", modeloTablaStock);
+        cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", modeloTablaDetalle);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.toString());
+        e.printStackTrace();
+    }
+    
+}
+
+private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQLException {
+   
+    try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+         ResultSet resultSet = preparedStatement.executeQuery()) {
+
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnas = rsmd.getColumnCount();
+
+        while (resultSet.next()) {
+            Object[] fila = new Object[columnas];
+            for (int indice = 0; indice < columnas; indice++) {
+                fila[indice] = resultSet.getObject(indice + 1);
+            }
+            modelo.addRow(fila);
+        }
+    }
+}
+*/
