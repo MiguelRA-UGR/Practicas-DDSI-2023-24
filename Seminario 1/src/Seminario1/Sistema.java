@@ -33,9 +33,6 @@ public class Sistema extends javax.swing.JFrame {
      */
     public Sistema() {
         initComponents();
-        initComponents();
-        repaint();
-        revalidate();
         con = conexion.conectar();
         cargarTablas();
     }    
@@ -435,7 +432,7 @@ private void AnadirStock() throws SQLException{
         }
     }//GEN-LAST:event_botonAnadirStockActionPerformed
 
-    private int filasTabla(String nombreTabla) throws SQLException {
+private int filasTabla(String nombreTabla) throws SQLException {
     int rowCount = 0;
 
     try (PreparedStatement countStatement = con.prepareStatement("SELECT COUNT(*) FROM " + nombreTabla);
@@ -455,11 +452,11 @@ private void AnadirStock() throws SQLException{
     
 private void borrarContenidoTablas() throws SQLException{
     try {
-        if(filasTabla("DETALLE_PEDIDO") > 1)
+        if(filasTabla("DETALLE_PEDIDO") > 0)
             borrarTabla("DETALLE_PEDIDO", tablaDetalle);
-        if(filasTabla("STOCK") > 1)
+        if(filasTabla("STOCK") > 0)
             borrarTabla("STOCK", tablaStock);
-        if(filasTabla("PEDIDO") > 1)
+        if(filasTabla("PEDIDO") > 0)
             borrarTabla("PEDIDO", tablaPedidos);
 
         JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
@@ -491,7 +488,6 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
         //Se cierra la ventana principal
         this.dispose();
-        //borrarContenidoTablas();
         //Se cierra la conexión
         conexion.desconectar();
         System.out.println("Conexión cerrada correctamente.");
@@ -536,8 +532,7 @@ private void TerminarPedido() throws SQLException{
         campoFechaPedido.setText("");
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
-        cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
-        cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", (DefaultTableModel) tablaDetalle.getModel());
+        cargarTablas();
         formularioPedido.dispose();
         con.commit();
     }catch(SQLException e){
@@ -569,6 +564,7 @@ private void TerminarPedido() throws SQLException{
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
     }//GEN-LAST:event_botonBorrarDetallesActionPerformed
+
 private void cargarTablas() {
     cargarDatosDesdeDB("PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
     cargarDatosDesdeDB("STOCK", (DefaultTableModel) tablaStock.getModel());
@@ -577,6 +573,7 @@ private void cargarTablas() {
 
 private void cargarDatosDesdeDB(String nombreTabla, DefaultTableModel modelo) {
     try{
+        modelo.setRowCount(0);
         String selectQuery = "SELECT * FROM " + nombreTabla;
    
         PreparedStatement preparedStatement = con.prepareStatement(selectQuery);
@@ -700,99 +697,3 @@ public boolean verificarConexion() {
     private javax.swing.JTable tablaStock;
     // End of variables declaration//GEN-END:variables
 }
-
-
-
-  /*
-private void borrarContenidoTablas() throws SQLException {
-    //Metemos puntos de restauración cada vez que eliminamos una tabla
-    Savepoint savepoint = con.setSavepoint(); 
-    
-    try {
-        // Borrar contenido de la tabla PEDIDO
-        PreparedStatement deletePedidos = con.prepareStatement("DELETE FROM PEDIDO");
-        deletePedidos.executeUpdate();
-    
-        // Limpiar los modelos de las tablas en la interfaz gráfica
-        DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
-        modeloTablaPedidos.setRowCount(0);
-        savepoint = con.setSavepoint();
-    } 
-    catch (SQLException e) {
-        con.rollback();
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Pedidos: " + e.toString());
-    }
-    
-     try {      
-        // Borrar contenido de la tabla DETALLE_PEDIDO
-        PreparedStatement deleteDetalleStock = con.prepareStatement("DELETE FROM STOCK");
-        deleteDetalleStock.executeUpdate();
-        
-        DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
-        modeloTablaStock.setRowCount(0);
-        savepoint = con.setSavepoint();
-
-} 
-    catch (SQLException e) {
-        con.rollback(savepoint);
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla Stock: " + e.toString());
-    }
-     try {      
-        // Borrar contenido de la tabla DETALLE_PEDIDO
-        PreparedStatement deleteDetallePedido = con.prepareStatement("DELETE FROM DETALLE_PEDIDO");
-        deleteDetallePedido.executeUpdate();
-        
-        DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
-        modeloTablaDetalle.setRowCount(0);
-
-        JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
-        con.commit();
- 
-        //Liberamos los puntos de guardados
-        con.releaseSavepoint(savepoint);
-
-    } 
-    catch (SQLException e) {
-        con.rollback(savepoint);
-        JOptionPane.showMessageDialog(null, "Error al borrar el contenido de la tabla detalle_pedido: " + e.toString());
-    }
-     
-
-
-}*/
-   
-
-/* private void cargarTablas() {
-    DefaultTableModel modeloTablaPedidos = (DefaultTableModel) tablaPedidos.getModel();
-    DefaultTableModel modeloTablaStock = (DefaultTableModel) tablaStock.getModel();
-    DefaultTableModel modeloTablaDetalle = (DefaultTableModel) tablaDetalle.getModel();
-
-    try {
-        cargarDatosDesdeDB("SELECT CPEDIDO, CCLIENTE, FECHA_PEDIDO FROM PEDIDO", modeloTablaPedidos);
-        cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", modeloTablaStock);
-        cargarDatosDesdeDB("SELECT CPEDIDO, CPRODUCTO, CANTIDAD FROM DETALLE_PEDIDO", modeloTablaDetalle);
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.toString());
-        e.printStackTrace();
-    }
-    
-}
-
-private void cargarDatosDesdeDB(String sql, DefaultTableModel modelo) throws SQLException {
-   
-    try (PreparedStatement preparedStatement = con.prepareStatement(sql);
-         ResultSet resultSet = preparedStatement.executeQuery()) {
-
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnas = rsmd.getColumnCount();
-
-        while (resultSet.next()) {
-            Object[] fila = new Object[columnas];
-            for (int indice = 0; indice < columnas; indice++) {
-                fila[indice] = resultSet.getObject(indice + 1);
-            }
-            modelo.addRow(fila);
-        }
-    }
-}
-*/

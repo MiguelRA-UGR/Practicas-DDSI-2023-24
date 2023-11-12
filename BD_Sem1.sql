@@ -17,15 +17,23 @@ INSERT INTO stock (Cproducto, Cantidad) VALUES (201, 10);
 INSERT INTO stock (Cproducto, Cantidad) VALUES (202, 10);
 INSERT INTO stock (Cproducto, Cantidad) VALUES (203, 10);
 
+
+INSERT INTO stock (Cproducto, Cantidad) VALUES (2011111, 10);
+INSERT INTO stock (Cproducto, Cantidad) VALUES (2022222, 10);
+INSERT INTO stock (Cproducto, Cantidad) VALUES (2033333, 10);
+
 INSERT INTO detalle_pedido (Cpedido, Cproducto, cantidad) VALUES (1, 201, 2);
 INSERT INTO detalle_pedido (Cpedido, Cproducto, cantidad) VALUES (2, 202, 1);
 INSERT INTO detalle_pedido (Cpedido, Cproducto, cantidad) VALUES (3, 203, 3);
 
+--IMPORTANTE: ANTES DE LANZAR LA INTERFAZ Y PROBAR COSAS HACER UN COMMIT AQUÍ, sino hará que se quede bloqueada la interfaz
 
 --Ver todo el contenido de las tablas
 select * from detalle_pedido;
 select * from pedido;
 select * from stock;
+
+--Vemos los elementos de una tabla
 SELECT COUNT(*)  FROM stock;
 --Tienen que eliminarse en este orden porque sino salta una violación por eliminar 
 --elementos que tienen claves externas, es decir, vínculos en otras tablas
