@@ -503,29 +503,38 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
     private void campoCodigoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCodigoPedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCodigoPedidoActionPerformed
-
-private void TerminarPedido() throws SQLException{
-    int cpedido= Integer.parseInt(campoCodigoPedido.getText());
-    int ccliente= Integer.parseInt(campoCodigoCliente.getText());
+/*
+    private void TerminarPedido() throws SQLException {
+    int cpedido = Integer.parseInt(campoCodigoPedido.getText());
+    int ccliente = Integer.parseInt(campoCodigoCliente.getText());
     String fecha = campoFechaPedido.getText();
 
+    try {
+        PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO, CCLIENTE, FECHA_PEDIDO) VALUES(?,?,?)");
 
-    try{
-        PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO,CCLIENTE,FECHA_PEDIDO) VALUES(?,?,?)");
-
-        cn.setInt(1,cpedido);
-        cn.setInt(2,ccliente);
-        cn.setString(3,fecha);
+        cn.setInt(1, cpedido);
+        cn.setInt(2, ccliente);
+        cn.setString(3, fecha);
         cn.executeUpdate();
-        if(!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()){
-            int cproducto= Integer.parseInt(campoCodigoProducto.getText());
-            int cantidad= Integer.parseInt(campoCantidadProducto.getText());
 
-            cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO,CPRODUCTO,CANTIDAD) VALUES(?,?,?)");
-            cn.setInt(1,cpedido);
-            cn.setInt(2,cproducto);
-            cn.setInt(3,cantidad);
-            cn.executeUpdate();
+        if (!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()) {
+            int cproducto = Integer.parseInt(campoCodigoProducto.getText());
+            int cantidad = Integer.parseInt(campoCantidadProducto.getText());
+
+            // Verificar si hay suficiente stock
+            if (haySuficienteStock(cproducto, cantidad)) {
+                // Si hay suficiente stock, realizar la inserción en DETALLE_PEDIDO
+                cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
+                cn.setInt(1, cpedido);
+                cn.setInt(2, cproducto);
+                cn.setInt(3, cantidad);
+                cn.executeUpdate();
+                
+                // Actualizar el stock restando la cantidad del pedido
+                actualizarStock(cproducto, cantidad);
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
+            }
         }
 
         campoCodigoPedido.setText("");
@@ -536,12 +545,85 @@ private void TerminarPedido() throws SQLException{
         cargarTablas();
         formularioPedido.dispose();
         con.commit();
-    }catch(SQLException e){
+    } catch (SQLException e) {
         con.rollback();
-       JOptionPane.showMessageDialog(null, e.toString()); 
+        JOptionPane.showMessageDialog(null, e.toString());
     }
-
 }
+    */
+ private void TerminarPedido() throws SQLException {
+    int cpedido = Integer.parseInt(campoCodigoPedido.getText());
+    int ccliente = Integer.parseInt(campoCodigoCliente.getText());
+    String fecha = campoFechaPedido.getText();
+
+    try {
+        PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO, CCLIENTE, FECHA_PEDIDO) VALUES(?,?,?)");
+
+        cn.setInt(1, cpedido);
+        cn.setInt(2, ccliente);
+        cn.setString(3, fecha);
+        cn.executeUpdate();
+
+        if (!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()) {
+            int cproducto = Integer.parseInt(campoCodigoProducto.getText());
+            int cantidad = Integer.parseInt(campoCantidadProducto.getText());
+
+            // Verificar si hay suficiente stock
+            if (haySuficienteStock(cproducto, cantidad)) {
+                // Si hay suficiente stock, realizar la inserción en DETALLE_PEDIDO
+                cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
+                cn.setInt(1, cpedido);
+                cn.setInt(2, cproducto);
+                cn.setInt(3, cantidad);
+                cn.executeUpdate();
+
+                // Actualizar el stock restando la cantidad del pedido
+                actualizarStock(cproducto, cantidad);
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
+            }
+        }
+
+        campoCodigoPedido.setText("");
+        campoCodigoCliente.setText("");
+        campoFechaPedido.setText("");
+        campoCantidadProducto.setText("");
+        campoCodigoProducto.setText("");
+        cargarTablas();
+        formularioPedido.dispose();
+        con.commit();
+    } catch (SQLException e) {
+        con.rollback();
+        JOptionPane.showMessageDialog(null, e.toString());
+    }
+}
+
+private void actualizarStock(int cproducto, int cantidad) throws SQLException {
+    // Restar la cantidad del pedido al stock actual
+    String sql = "UPDATE STOCK SET CANTIDAD = CANTIDAD - ? WHERE CPRODUCTO = ?";
+    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+        pstmt.setInt(1, cantidad);
+        pstmt.setInt(2, cproducto);
+        pstmt.executeUpdate();
+    }
+}
+
+
+private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
+    // Consultar la cantidad de stock disponible para el producto
+    String sql = "SELECT CANTIDAD FROM STOCK WHERE CPRODUCTO = ?";
+    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+        pstmt.setInt(1, cproducto);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                int stockDisponible = rs.getInt("CANTIDAD");
+                return stockDisponible >= cantidad;
+            }
+        }
+    }
+    return false; // Si no se encuentra el producto en el stock, retornar false
+}
+
 
 
     private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
