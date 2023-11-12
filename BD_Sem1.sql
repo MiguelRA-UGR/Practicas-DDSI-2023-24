@@ -26,7 +26,7 @@ INSERT INTO detalle_pedido (Cpedido, Cproducto, cantidad) VALUES (3, 203, 3);
 select * from detalle_pedido;
 select * from pedido;
 select * from stock;
-
+SELECT COUNT(*)  FROM stock;
 --Tienen que eliminarse en este orden porque sino salta una violación por eliminar 
 --elementos que tienen claves externas, es decir, vínculos en otras tablas
 Delete from pedido;

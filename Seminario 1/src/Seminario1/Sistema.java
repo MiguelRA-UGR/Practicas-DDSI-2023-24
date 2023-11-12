@@ -402,7 +402,7 @@ public class Sistema extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void AnadirStock() throws SQLException{
-        var savepoint = con.setSavepoint();
+        Savepoint savepoint = con.setSavepoint();
         try {
         String sql = "INSERT INTO STOCK (CPRODUCTO, CANTIDAD) VALUES (?, ?)";
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -423,7 +423,7 @@ private void AnadirStock() throws SQLException{
         con.rollback(savepoint);
        JOptionPane.showMessageDialog(null, e.toString()); 
         }
-        cargarDatosDesdeDB("SELECT CPRODUCTO, CANTIDAD FROM STOCK", (DefaultTableModel) tablaStock.getModel());
+        cargarDatosDesdeDB("STOCK", (DefaultTableModel) tablaStock.getModel());
         
 }
     
@@ -434,11 +434,33 @@ private void AnadirStock() throws SQLException{
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonAnadirStockActionPerformed
+
+    private int filasTabla(String nombreTabla) throws SQLException {
+    int rowCount = 0;
+
+    try (PreparedStatement countStatement = con.prepareStatement("SELECT COUNT(*) FROM " + nombreTabla);
+         ResultSet resultSet = countStatement.executeQuery()) {
+
+        if (resultSet.next()) {
+            rowCount = resultSet.getInt(1);
+            System.out.println("La tabla " + nombreTabla + " tiene " + rowCount + " filas.");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al obtener el número de filas de la tabla " + nombreTabla + ": " + e.getMessage());
+        throw e; // Puedes manejar la excepción según tus necesidades
+    }
+
+    return rowCount;
+}
+    
 private void borrarContenidoTablas() throws SQLException{
     try {
-        borrarTabla("DETALLE_PEDIDO", tablaDetalle);
-        borrarTabla("STOCK", tablaStock);
-        borrarTabla("PEDIDO", tablaPedidos);
+        if(filasTabla("DETALLE_PEDIDO") > 1)
+            borrarTabla("DETALLE_PEDIDO", tablaDetalle);
+        if(filasTabla("STOCK") > 1)
+            borrarTabla("STOCK", tablaStock);
+        if(filasTabla("PEDIDO") > 1)
+            borrarTabla("PEDIDO", tablaPedidos);
 
         JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
         con.commit();
