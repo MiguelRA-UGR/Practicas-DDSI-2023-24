@@ -34,7 +34,7 @@ public class Sistema extends javax.swing.JFrame {
     public Sistema() {
         initComponents();
         con = conexion.conectar();
-        cargarTablas();
+        //cargarTablas();
     }    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -468,6 +468,7 @@ private void borrarContenidoTablas() throws SQLException{
 }
 
 private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLException {
+    con.setAutoCommit(false);
     Savepoint savepoint = con.setSavepoint();
     try {
         // Borrar contenido de la tabla
