@@ -467,16 +467,14 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
 }
     
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
+        //Se cierra la ventana principal
         this.dispose();
-        try {
-            borrarContenidoTablas();
-        } catch (SQLException ex) {
-            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //borrarContenidoTablas();
+        //Se cierra la conexión
         conexion.desconectar();
         System.out.println("Conexión cerrada correctamente.");
         formularioPedido.dispose();
-       
+         
     }//GEN-LAST:event_botonCerrarSesiónActionPerformed
 
     private void botonAltaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaPedidoActionPerformed
