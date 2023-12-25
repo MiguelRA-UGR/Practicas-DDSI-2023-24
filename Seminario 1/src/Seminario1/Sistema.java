@@ -405,22 +405,22 @@ private void manejarError(String mensaje, Exception e) {
     }    
 
 private void AnadirStock() throws SQLException{
-        Savepoint savepoint = con.setSavepoint("Añadir el stock");
+        Savepoint savepoint = con.setSavepoint();
         try {
-            String sql = "INSERT INTO STOCK (CPRODUCTO, CANTIDAD) VALUES (?, ?)";
-            PreparedStatement pstmt = con.prepareStatement(sql);
+        String sql = "INSERT INTO STOCK (CPRODUCTO, CANTIDAD) VALUES (?, ?)";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            int codigo = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
+            int cantidad = random.nextInt(91) + 10; // Genera cantidades aleatorias entre 10 y 100
 
-            Random random = new Random();
-            for (int i = 0; i < 10; i++) {
-                int codigo = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
-                int cantidad = random.nextInt(91) + 10; // Genera cantidades aleatorias entre 10 y 100
-
-                pstmt.setInt(1, codigo);
-                pstmt.setInt(2, cantidad);
-                pstmt.executeUpdate();
-                savepoint = con.setSavepoint("Elemento "+ i+1 +" del stock añadido");
-            }
-            con.commit();
+            pstmt.setInt(1, codigo);
+            pstmt.setInt(2, cantidad);
+            pstmt.executeUpdate();
+            savepoint = con.setSavepoint();
+        }
+        con.commit();
         }
         catch(SQLException e){
             con.rollback(savepoint);
@@ -523,7 +523,10 @@ private void IniciarPedido() throws SQLException {
         Savepoint savepoint;
         PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO, CCLIENTE, FECHA_PEDIDO) VALUES(?,?,?)");
 
-        int cpedido = Integer.parseInt(campoCodigoPedido.getText());
+        //int cpedido = Integer.parseInt(campoCodigoPedido.getText());
+        String codigoPedidoTexto = campoCodigoPedido.getText().trim();
+        System.out.println("Valor de código de pedido: " + codigoPedidoTexto);
+        int cpedido = !codigoPedidoTexto.isEmpty() ? Integer.parseInt(codigoPedidoTexto) : 0;
         cn.setInt(1, cpedido);
 
         savepoint =  con.setSavepoint("Savepoint_pedido");
@@ -559,7 +562,7 @@ private void IniciarPedido() throws SQLException {
                 cn.executeUpdate();
 
                 // Actualizar el stock restando la cantidad del pedido
-                actualizarStock(cproducto, cantidad);
+                //actualizarStock(cproducto, cantidad);
         } else {
             JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
             con.rollback(savepoint);
@@ -588,6 +591,8 @@ private void TerminarPedido() throws SQLException {
     catch (SQLException e){
         con.rollback();        
         manejarError("Error al terminar pedido: ", e);
+    } finally {
+        con.setAutoCommit(true);
     }
 }
 
