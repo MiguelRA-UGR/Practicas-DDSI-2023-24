@@ -34,7 +34,7 @@ public class Sistema extends javax.swing.JFrame {
     public Sistema() {
         initComponents();
         con = conexion.conectar();
-        //cargarTablas();
+        cargarTablas();
     }    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -504,42 +504,27 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
 
     private void botonAltaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaPedidoActionPerformed
        formularioPedido.setVisible(true);
-        try {
-            IniciarPedido();
-        } catch (SQLException ex) {
-            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_botonAltaPedidoActionPerformed
 
     private void campoCodigoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCodigoPedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCodigoPedidoActionPerformed
 
-private void IniciarPedido() throws SQLException {
-    try{
-        con.setAutoCommit(false);
-
-        //Savepoint savepointCliente, savepointPedido, savepointFecha, savepointCantidad, savepointProducto;
-        Savepoint savepoint;
+ private void IniciarPedido() throws SQLException {
+    con.setAutoCommit(false);
+    Savepoint savepoint = con.setSavepoint();
+    try {
         PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO, CCLIENTE, FECHA_PEDIDO) VALUES(?,?,?)");
 
-        //int cpedido = Integer.parseInt(campoCodigoPedido.getText());
-        String codigoPedidoTexto = campoCodigoPedido.getText().trim();
-        System.out.println("Valor de código de pedido: " + codigoPedidoTexto);
-        int cpedido = !codigoPedidoTexto.isEmpty() ? Integer.parseInt(codigoPedidoTexto) : 0;
+        int cpedido = Integer.parseInt(campoCodigoPedido.getText());
         cn.setInt(1, cpedido);
-
-        savepoint =  con.setSavepoint("Savepoint_pedido");
-        cn.executeUpdate();
 
         int ccliente = Integer.parseInt(campoCodigoCliente.getText());
         cn.setInt(2, ccliente);
-        savepoint = con.setSavepoint("Savepoint_cliente");
-        cn.executeUpdate();
 
         String fecha = campoFechaPedido.getText();
         cn.setString(3, fecha);
-        savepoint = con.setSavepoint("Savepoint_fecha");
+        savepoint = con.setSavepoint();
         cn.executeUpdate();
 
 
@@ -548,54 +533,57 @@ private void IniciarPedido() throws SQLException {
             int cproducto = Integer.parseInt(campoCodigoProducto.getText());
             int cantidad = Integer.parseInt(campoCantidadProducto.getText());
 
+            // Verificar si hay suficiente stock
             if (haySuficienteStock(cproducto, cantidad)) {
+                // Si hay suficiente stock, realizar la inserción en DETALLE_PEDIDO
                 cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
-
                 cn.setInt(1, cpedido);
+
                 cn.setInt(2, cproducto);
-                savepoint = con.setSavepoint("Savepoint_producto");
-                cn.executeUpdate();
 
                 cn.setInt(3, cantidad);
-                savepoint = con.setSavepoint("Savepoint_cantidad");
-
                 cn.executeUpdate();
 
                 // Actualizar el stock restando la cantidad del pedido
-                //actualizarStock(cproducto, cantidad);
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
-            con.rollback(savepoint);
-        }
-    }
+                actualizarStock(cproducto, cantidad);
+                savepoint = con.setSavepoint();
 
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
+                con.rollback(savepoint);
+            }
+        }
         campoCodigoPedido.setText("");
         campoCodigoCliente.setText("");
         campoFechaPedido.setText("");
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
-        TerminarPedido();
+        
+        TerminarPedido(savepoint);
         formularioPedido.dispose();
-        cargarTablas();
-    } catch (SQLException e) {
-        manejarError("Error al iniciar pedido: ", e); 
-        con.rollback();
+        
+    } 
+    
+    catch (SQLException e) {
+        con.rollback(savepoint);
+        manejarError("Error en la función IniciarPedido", e);
     }
 }
 
-private void TerminarPedido() throws SQLException {
-    try{
-       con.commit();
-       con.setAutoCommit(true);
+ private void TerminarPedido(Savepoint savepoint) throws SQLException{
+     try{
+        con.commit();
     }
-    catch (SQLException e){
-        con.rollback();        
-        manejarError("Error al terminar pedido: ", e);
-    } finally {
-        con.setAutoCommit(true);
-    }
-}
+     catch(SQLException e)
+    {
+        con.rollback(savepoint);
+        manejarError("Error en la función TerminarPedido", e);
 
+    }
+ }
+ 
+ 
 private void actualizarStock(int cproducto, int cantidad) throws SQLException {
     // Restar la cantidad del pedido al stock actual
     String sql = "UPDATE STOCK SET CANTIDAD = CANTIDAD - ? WHERE CPRODUCTO = ?";
@@ -630,7 +618,8 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
 
     private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
         try {
-            TerminarPedido();
+            IniciarPedido();
+            cargarTablas();
         } catch (SQLException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
         }
