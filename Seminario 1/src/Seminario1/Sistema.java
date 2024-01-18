@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -18,8 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import java.util.ArrayList;
-
-
 
 /**
  *
@@ -85,7 +83,10 @@ public class Sistema extends javax.swing.JFrame {
         botonTerminarPedido = new javax.swing.JButton();
         botonBorrarDetalles = new javax.swing.JButton();
         botonBorrarPedido = new javax.swing.JButton();
-        botonGuardarDetalles = new javax.swing.JButton();
+        botonAgregarDetalles = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TextAreaDetalles = new javax.swing.JTextArea();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -103,7 +104,8 @@ public class Sistema extends javax.swing.JFrame {
         Borrar_Tabla = new javax.swing.JButton();
         Comprueba_con = new javax.swing.JButton();
 
-        formularioPedido.setMinimumSize(new java.awt.Dimension(500, 700));
+        formularioPedido.setMinimumSize(new java.awt.Dimension(800, 700));
+        formularioPedido.setPreferredSize(new java.awt.Dimension(9, 557));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setText("Dar de Alta un pedido");
@@ -133,7 +135,7 @@ public class Sistema extends javax.swing.JFrame {
         });
 
         botonTerminarPedido.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        botonTerminarPedido.setText("Guardar pedido");
+        botonTerminarPedido.setText("Finalizar pedido");
         botonTerminarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonTerminarPedidoActionPerformed(evt);
@@ -141,7 +143,7 @@ public class Sistema extends javax.swing.JFrame {
         });
 
         botonBorrarDetalles.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        botonBorrarDetalles.setText("Borrar detalles de pedido");
+        botonBorrarDetalles.setText("Borrar detalles del pedido");
         botonBorrarDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarDetallesActionPerformed(evt);
@@ -149,20 +151,28 @@ public class Sistema extends javax.swing.JFrame {
         });
 
         botonBorrarPedido.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        botonBorrarPedido.setText("Borrar pedido");
+        botonBorrarPedido.setText("Cancelar pedido");
         botonBorrarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarPedidoActionPerformed(evt);
             }
         });
 
-        botonGuardarDetalles.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        botonGuardarDetalles.setText("Guardar Detalles");
-        botonGuardarDetalles.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregarDetalles.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        botonAgregarDetalles.setText("Añadir detalles al pedido");
+        botonAgregarDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarDetallesActionPerformed(evt);
+                botonAgregarDetallesActionPerformed(evt);
             }
         });
+
+        TextAreaDetalles.setColumns(20);
+        TextAreaDetalles.setRows(5);
+        jScrollPane4.setViewportView(TextAreaDetalles);
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Detalles del pedido:");
 
         javax.swing.GroupLayout formularioPedidoLayout = new javax.swing.GroupLayout(formularioPedido.getContentPane());
         formularioPedido.getContentPane().setLayout(formularioPedidoLayout);
@@ -176,11 +186,6 @@ public class Sistema extends javax.swing.JFrame {
                     .addGroup(formularioPedidoLayout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(botonTerminarPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonBorrarDetalles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonBorrarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonGuardarDetalles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -198,12 +203,24 @@ public class Sistema extends javax.swing.JFrame {
                                             .addComponent(campoCodigoProducto)
                                             .addComponent(campoCantidadProducto)
                                             .addComponent(campoCodigoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(campoCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(167, Short.MAX_VALUE))
+                                    .addComponent(campoCodigoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAgregarDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonBorrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(botonTerminarPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonBorrarDetalles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addGap(18, 18, 18)
+                .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(formularioPedidoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(formularioPedidoLayout.createSequentialGroup()
                     .addGap(94, 94, 94)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                     .addGap(309, 309, 309)))
         );
         formularioPedidoLayout.setVerticalGroup(
@@ -222,29 +239,34 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(campoFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
+                .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel15))
                 .addGap(24, 24, 24)
-                .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(campoCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(campoCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(botonTerminarPedido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonGuardarDetalles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formularioPedidoLayout.createSequentialGroup()
+                        .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(campoCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(campoCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(botonAgregarDetalles))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(botonBorrarDetalles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(botonBorrarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonTerminarPedido)
+                .addContainerGap(7, Short.MAX_VALUE))
             .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(formularioPedidoLayout.createSequentialGroup()
                     .addGap(97, 97, 97)
                     .addComponent(jLabel10)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(441, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -331,6 +353,7 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        Borrar_Tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Borrar_Tabla.setText("Borrar Tablas");
         Borrar_Tabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +361,7 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        Comprueba_con.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Comprueba_con.setText("Comprueba conexión");
         Comprueba_con.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -546,70 +570,10 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCodigoPedidoActionPerformed
 
-    
-     /*private void guardarDetalle() throws SQLException {
-    try {
-        if (!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()) {
-            int cpedido = Integer.parseInt(campoCodigoPedido.getText());
-            int cproducto = Integer.parseInt(campoCodigoProducto.getText());
-            int cantidad = Integer.parseInt(campoCantidadProducto.getText());
-
-            // Verificar si hay suficiente stock
-            if (haySuficienteStock(cproducto, cantidad)) {
-                // Si hay suficiente stock, realizar la inserción en DETALLE_PEDIDO
-                PreparedStatement cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
-                cn.setInt(1, cpedido);
-                cn.setInt(2, cproducto);
-                cn.setInt(3, cantidad);
-                cn.executeUpdate();
-
-                // Actualizar el stock restando la cantidad del pedido
-                actualizarStock(cproducto, cantidad);
-
-                // Vaciar los campos del formulario de detalles
-                campoCodigoProducto.setText("");
-                campoCantidadProducto.setText("");
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
-            }
-        }
-    } catch (SQLException e) {
-        manejarError("Error al guardar detalle", e);
-    }
-}*/
-    
-private void guardarDetalle() {
-    try {
-        // Obtener los valores del formulario
-        int cproducto = Integer.parseInt(campoCodigoProducto.getText());
-        int cantidad = Integer.parseInt(campoCantidadProducto.getText());
-
-        // Verificar si hay suficiente stock
-        if (haySuficienteStock(cproducto, cantidad)) {
-            // Agregar el detalle a la lista
-            detallesPedido.add(new DetallePedido(cproducto, cantidad));
-
-            // Actualizar el stock restando la cantidad del pedido
-            actualizarStock(cproducto, cantidad);
-
-            // Limpiar campos del detalle
-            campoCodigoProducto.setText("");
-            campoCantidadProducto.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
-        }
-    } catch (SQLException e) {
-        // Manejar la excepción de SQL si es necesario
-        e.printStackTrace(); // Reemplaza esto con tu mecanismo de manejo de errores deseado
-    }
-}
-
-
-
-    
  private void IniciarPedido() throws SQLException {
-    con.setAutoCommit(false);
-    Savepoint savepoint = con.setSavepoint();
+    con.setAutoCommit(false);   //Ahora controlamos los commits
+    Savepoint savepoint = con.setSavepoint(); //Establecemos un punto de guardado sin realizar nada en la BD
+    
     try {
         PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO, CCLIENTE, FECHA_PEDIDO) VALUES(?,?,?)");
 
@@ -621,54 +585,41 @@ private void guardarDetalle() {
 
         String fecha = campoFechaPedido.getText();
         cn.setString(3, fecha);
-        savepoint = con.setSavepoint();
+        savepoint = con.setSavepoint(); 
         cn.executeUpdate();
 
+        if(!detallesPedido.isEmpty()){
+        PreparedStatement conDetalle = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
+        
+        for (DetallePedido detalle : detallesPedido) {
+                int cproducto = detalle.getCodigoProducto();
+                int cantidad = detalle.getCantidad();
 
-
-        if (!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()) {
-            int cproducto = Integer.parseInt(campoCodigoProducto.getText());
-            int cantidad = Integer.parseInt(campoCantidadProducto.getText());
-
-            // Verificar si hay suficiente stock
-            if (haySuficienteStock(cproducto, cantidad)) {
-                // Si hay suficiente stock, realizar la inserción en DETALLE_PEDIDO
-                /*cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
-                cn.setInt(1, cpedido);
-
-                cn.setInt(2, cproducto);
-
-                cn.setInt(3, cantidad);
-                cn.executeUpdate();*/
-                // Insertar los detalles en la base de datos
-                for (DetallePedido detalle : detallesPedido) {
-                    cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
-                    cn.setInt(1, cpedido);
-                    cn.setInt(2, detalle.getCodigoProducto());
-                    cn.setInt(3, detalle.getCantidad());
-                    cn.executeUpdate();
-                }   
-
-                // Actualizar el stock restando la cantidad del pedido
-                actualizarStock(cproducto, cantidad);
-                savepoint = con.setSavepoint();
-
-            } 
-            else {
-                JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
-                con.rollback(savepoint);
-            }
+                // Verificar si hay suficiente stock
+                if (haySuficienteStock(cproducto, cantidad)) {
+                    // Insertar los detalles del producto en la base de datos
+                    conDetalle.setInt(1, cpedido);
+                    conDetalle.setInt(2, cproducto);
+                    conDetalle.setInt(3, cantidad);
+                    conDetalle.executeUpdate();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
+                    con.rollback(savepoint);
+                    return;  // Salir de la función si no hay suficiente stock
+                }
         }
         campoCodigoPedido.setText("");
         campoCodigoCliente.setText("");
         campoFechaPedido.setText("");
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
-        
-        TerminarPedido(savepoint);
+        TextAreaDetalles.setText("");
         detallesPedido.clear();
+
+        TerminarPedido(savepoint);
         formularioPedido.dispose();
-        
+        }
     } 
     
     catch (SQLException e) {
@@ -677,20 +628,24 @@ private void guardarDetalle() {
     }
 }
 
-
-
- private void TerminarPedido(Savepoint savepoint) throws SQLException{
-     try{
+private void TerminarPedido(Savepoint savepoint) {
+    try {
         con.commit();
+    } catch (SQLException commitException) {
+        try {
+            con.rollback(savepoint);
+        } catch (SQLException rollbackException) {
+            manejarError("Error al hacer rollback en TerminarPedido", rollbackException);
+        }
+        manejarError("Error al hacer commit en TerminarPedido", commitException);
+    } finally {
+        try {
+            con.setAutoCommit(true);    //volvemos al modo auto-commit como antes de inicar el pedido
+        } catch (SQLException e) {
+            manejarError("Error al restaurar el modo de auto-commit en TerminarPedido", e);
+        }
     }
-     catch(SQLException e)
-    {
-        con.rollback(savepoint);
-        manejarError("Error en la función TerminarPedido", e);
-
-    }
- }
- 
+}
  
 private void actualizarStock(int cproducto, int cantidad) throws SQLException {
     // Restar la cantidad del pedido al stock actual
@@ -745,6 +700,7 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
     private void botonBorrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarDetallesActionPerformed
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
+        detallesPedido.clear();
     }//GEN-LAST:event_botonBorrarDetallesActionPerformed
 
 private void cargarTablas() {
@@ -806,12 +762,109 @@ public boolean verificarConexion() {
     verificarConexion();
     }//GEN-LAST:event_Comprueba_conActionPerformed
 
-    private void botonGuardarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarDetallesActionPerformed
-        // TODO add your handling code here:
-        guardarDetalle();
-    }//GEN-LAST:event_botonGuardarDetallesActionPerformed
+private void mostrarDetalles() {
+    // Construimos una cadena con la información de los detalles
+    StringBuilder detallesTexto = new StringBuilder();
 
-    
+    for (DetallePedido detalle : detallesPedido) {
+        detallesTexto.append("Código Producto: ").append(detalle.getCodigoProducto())
+                     .append(", Cantidad: ").append(detalle.getCantidad())
+                     .append("\n");
+    }
+
+    // Establecemos la cadena en el TextArea
+    TextAreaDetalles.setText(detallesTexto.toString());
+}
+
+private void agregarDetalle() throws SQLException {
+    try {
+        // Obtener los valores del formulario
+        String codigoProductoText = campoCodigoProducto.getText();
+        String cantidadProductoText = campoCantidadProducto.getText();
+
+        // Verificar que los campos no estén vacíos
+        if (codigoProductoText.isEmpty() || cantidadProductoText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
+            return;
+        }
+        
+        int cproducto = Integer.parseInt(codigoProductoText);
+        int cantidad = Integer.parseInt(cantidadProductoText);
+
+        if (haySuficienteStock(cproducto, cantidad)) {
+        // Agregar el detalle a la lista
+            detallesPedido.add(new DetallePedido(cproducto, cantidad));
+           try{
+               actualizarStock(cproducto, cantidad);
+           }
+            catch (SQLException e) {
+                manejarError("Error al actualizar el stock", e);
+            }
+            campoCodigoProducto.setText("");
+            campoCantidadProducto.setText("");
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(null, "No hay suficiente stock");
+            return;
+        }
+        
+        //Muestra los detalles del pedido
+        mostrarDetalles();
+        
+    } catch (NumberFormatException e) {
+        manejarError("Error al convertir a número en agregarDetalle", e);
+    }
+}
+
+    private void botonAgregarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarDetallesActionPerformed
+        try {
+            // TODO add your handling code here:
+            agregarDetalle();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonAgregarDetallesActionPerformed
+
+    /*
+private void guardarDetalle() {
+    try {
+        // Obtener los valores del formulario
+        String codigoProductoText = campoCodigoProducto.getText();
+        String cantidadProductoText = campoCantidadProducto.getText();
+
+        // Verificar que los campos no estén vacíos
+        if (codigoProductoText.isEmpty() || cantidadProductoText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
+            return;
+        }
+        // Obtener los valores del formulario
+        int cproducto = Integer.parseInt(campoCodigoProducto.getText());
+        int cantidad = Integer.parseInt(campoCantidadProducto.getText());
+
+        // Verificar si hay suficiente stock
+        if (haySuficienteStock(cproducto, cantidad)) {
+            // Agregar el detalle a la lista
+            detallesPedido.add(new DetallePedido(cproducto, cantidad));
+
+            // Actualizar el stock restando la cantidad del pedido
+            actualizarStock(cproducto, cantidad);
+
+            // Limpiar campos del detalle
+            campoCodigoProducto.setText("");
+            campoCantidadProducto.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
+        }
+    } 
+    catch (NumberFormatException e) {
+        manejarError("Error al convertir a número en guardarDetalle", e);
+    }
+    catch (SQLException e) {
+        manejarError("Error al guardar detalle", e);
+    }
+}
+    */
     /**
      * @param args the command line arguments
      */
@@ -850,12 +903,13 @@ public boolean verificarConexion() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Borrar_Tabla;
     private javax.swing.JButton Comprueba_con;
+    private javax.swing.JTextArea TextAreaDetalles;
+    private javax.swing.JButton botonAgregarDetalles;
     private javax.swing.JButton botonAltaPedido;
     private javax.swing.JButton botonAnadirStock;
     private javax.swing.JButton botonBorrarDetalles;
     private javax.swing.JButton botonBorrarPedido;
     private javax.swing.JButton botonCerrarSesión;
-    private javax.swing.JButton botonGuardarDetalles;
     private javax.swing.JButton botonRecargar;
     private javax.swing.JButton botonTerminarPedido;
     private javax.swing.JTextField campoCantidadProducto;
@@ -867,6 +921,7 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -878,6 +933,7 @@ public boolean verificarConexion() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tablaDetalle;
     private javax.swing.JTable tablaPedidos;
     private javax.swing.JTable tablaStock;
