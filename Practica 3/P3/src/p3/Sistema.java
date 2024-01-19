@@ -5,6 +5,8 @@
 package p3;
 
 import ConexionSQL.ConexionBD;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.PreparedStatement;
@@ -13,6 +15,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Savepoint;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -173,7 +178,7 @@ public class Sistema extends javax.swing.JFrame {
         jLabel59 = new javax.swing.JLabel();
         confirmarDisponerJuego = new javax.swing.JButton();
         campoPrecioJuego = new javax.swing.JTextField();
-        formularioDisponerJuego1 = new javax.swing.JFrame();
+        formularioValoracionPresentacion = new javax.swing.JFrame();
         jLabel60 = new javax.swing.JLabel();
         campoNombreJuego1 = new javax.swing.JTextField();
         jLabel61 = new javax.swing.JLabel();
@@ -232,6 +237,11 @@ public class Sistema extends javax.swing.JFrame {
         jLabel4.setText("Juego");
 
         confirmarCrearAlquiler.setText("Crear");
+        confirmarCrearAlquiler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarCrearAlquilerActionPerformed(evt);
+            }
+        });
 
         juegosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1409,43 +1419,43 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout formularioDisponerJuego1Layout = new javax.swing.GroupLayout(formularioDisponerJuego1.getContentPane());
-        formularioDisponerJuego1.getContentPane().setLayout(formularioDisponerJuego1Layout);
-        formularioDisponerJuego1Layout.setHorizontalGroup(
-            formularioDisponerJuego1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioDisponerJuego1Layout.createSequentialGroup()
-                .addGroup(formularioDisponerJuego1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formularioDisponerJuego1Layout.createSequentialGroup()
+        javax.swing.GroupLayout formularioValoracionPresentacionLayout = new javax.swing.GroupLayout(formularioValoracionPresentacion.getContentPane());
+        formularioValoracionPresentacion.getContentPane().setLayout(formularioValoracionPresentacionLayout);
+        formularioValoracionPresentacionLayout.setHorizontalGroup(
+            formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
+                .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel62)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(campoPrecioJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formularioDisponerJuego1Layout.createSequentialGroup()
+                    .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(jLabel61)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoNombreJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioDisponerJuego1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioValoracionPresentacionLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel60)
                 .addGap(71, 71, 71))
-            .addGroup(formularioDisponerJuego1Layout.createSequentialGroup()
+            .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addComponent(confirmarValoracion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        formularioDisponerJuego1Layout.setVerticalGroup(
-            formularioDisponerJuego1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioDisponerJuego1Layout.createSequentialGroup()
+        formularioValoracionPresentacionLayout.setVerticalGroup(
+            formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel60)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formularioDisponerJuego1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNombreJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel61))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioDisponerJuego1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoPrecioJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -1799,7 +1809,7 @@ private void manejarError(String mensaje, Exception e) {
         JOptionPane.showMessageDialog(null, mensaje + ": " + e.toString());
         e.printStackTrace();
     }    
-
+/*
 private void AnadirStock() throws SQLException{
         Savepoint savepoint = con.setSavepoint();
         try {
@@ -1879,19 +1889,36 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
         throw e; // Re-lanza la excepción para que sea manejada en el método principal
     }
 }
-    
+*/   
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
         //Se cierra la ventana principal
         this.dispose();
         //Se cierra la conexión
         conexion.desconectar();
         System.out.println("Conexión cerrada correctamente.");
-        formularioPedido.dispose();
-         
+        formularioAsignarMesas.dispose();
+        formularioAsignarPremio.dispose();
+        formularioCrearAlquiler.dispose();
+        formularioCrearPartida.dispose();
+        formularioCrearPresentacion.dispose();
+        formularioDisponerJuego.dispose();
+        formularioEnviarCorreos.dispose();
+        formularioFinAlquiler.dispose();
+        formularioModificarAlquiler.dispose();
+        formularioModificarPresentacion.dispose();
+        formularioModificarReserva.dispose();
+        formularioRegistroEquipo.dispose();
+        formularioReservarJuego.dispose();
+        formularioReservarMesa.dispose();
+        formularioReservarPlaza.dispose();
+        formularioValoracionPresentacion.dispose();
+
     }//GEN-LAST:event_botonCerrarSesiónActionPerformed
 
     private void crearAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAlquilerActionPerformed
-        // TODO add your handling code here:
+        formularioCrearAlquiler.setVisible(true);
+        
+        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
     }//GEN-LAST:event_crearAlquilerActionPerformed
 
     private void modificarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarAlquilerActionPerformed
@@ -2170,6 +2197,52 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
         // TODO add your handling code here:
     }//GEN-LAST:event_campoPrecioJuego1ActionPerformed
 
+    private void confirmarCrearAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCrearAlquilerActionPerformed
+
+        String idCliente = campoClienteAlquiler.getText(); 
+        String idJuego = campoJuegoAlquiler.getText(); 
+        String emailCliente = null;
+        double multa = 5.0;
+        int duracion = 7;
+        Calendar calendar = Calendar.getInstance();
+        //Fecha de hoy más una semana
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        Date fechaDevolucion = calendar.getTime();
+   
+        try {
+               
+            PreparedStatement cn = con.prepareStatement("SELECT EMAIL FROM CLIENTE WHERE IDCLIENTE = ?");
+            ResultSet resultSet = cn.executeQuery();
+            
+            if(resultSet.getString("EMAIL") != null)
+                emailCliente = resultSet.getString("EMAIL");
+            else
+                emailCliente="";
+            
+            cn = con.prepareStatement("INSERT INTO ALQUILER (IDCLIENTE, IDJUEGO,EMAIL,FECHADEVOLUCION,MULTA,DURACION) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+            cn.setString(1, idCliente);
+            cn.setString(2, idJuego);
+            cn.setString(3, emailCliente);
+            cn.setDate(4, new java.sql.Date(fechaDevolucion.getTime()));
+            cn.setDouble(5, multa);
+            cn.setInt(6, duracion);
+
+            int filasAfectadas = cn.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Inserción exitosa");
+
+            }
+            
+            } catch (SQLException e) {
+                e.printStackTrace();
+                manejarError("Error en la función CrearAlquiler", e);
+                formularioCrearAlquiler.dispose();
+        }    
+    }//GEN-LAST:event_confirmarCrearAlquilerActionPerformed
+
+    /*
  private void IniciarPedido() throws SQLException {
     con.setAutoCommit(false);
     Savepoint savepoint = con.setSavepoint();
@@ -2275,12 +2348,37 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
     return false; // Si no se encuentra el producto en el stock, retornar false
 
 }
-
+*/
 private void cargarTablas() {
-    cargarDatosDesdeDB("PEDIDO", (DefaultTableModel) tablaPedidos.getModel());
-    cargarDatosDesdeDB("STOCK", (DefaultTableModel) tablaStock.getModel());
-    cargarDatosDesdeDB("DETALLE_PEDIDO",(DefaultTableModel) tablaDetalle.getModel());
+    cargarDatosDesdeDB("ALQUILER", (DefaultTableModel) tablaAlquileres.getModel());
+    cargarDatosDesdeDB("RESERVADEMESA", (DefaultTableModel) tablaReservasMesa2.getModel());
+    cargarDatosDesdeDB("RESERVAJUEGO",(DefaultTableModel) tablaReservasJuego.getModel());
+    cargarDatosDesdeDB("PRESENTACIONJUEGO",(DefaultTableModel) presentaciones1.getModel());
+    cargarDatosDesdeDB("JUEGO",(DefaultTableModel) juegos.getModel());
 }
+
+private void actualizarTablaJuegosDisponibles(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<String> juegos = new ArrayList<>();
+
+    String sql = "SELECT NOMBRE FROM JUEGO WHERE ESTADO = 'D'";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String nombreJuego = resultSet.getString("NOMBRE");
+            juegos.add(nombreJuego);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (String nombreJuego : juegos) {
+        modelo.addRow(new Object[]{nombreJuego});
+    }
+}
+
 
 private void cargarDatosDesdeDB(String nombreTabla, DefaultTableModel modelo) {
     try{
@@ -2420,7 +2518,6 @@ public boolean verificarConexion() {
     private javax.swing.JFrame formularioCrearPartida;
     private javax.swing.JFrame formularioCrearPresentacion;
     private javax.swing.JFrame formularioDisponerJuego;
-    private javax.swing.JFrame formularioDisponerJuego1;
     private javax.swing.JFrame formularioEnviarCorreos;
     private javax.swing.JFrame formularioFinAlquiler;
     private javax.swing.JFrame formularioModificarAlquiler;
@@ -2430,6 +2527,7 @@ public boolean verificarConexion() {
     private javax.swing.JFrame formularioReservarJuego;
     private javax.swing.JFrame formularioReservarMesa;
     private javax.swing.JFrame formularioReservarPlaza;
+    private javax.swing.JFrame formularioValoracionPresentacion;
     private javax.swing.JTable huecosMesas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
