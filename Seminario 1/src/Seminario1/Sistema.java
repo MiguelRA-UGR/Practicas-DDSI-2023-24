@@ -105,7 +105,6 @@ public class Sistema extends javax.swing.JFrame {
         Comprueba_con = new javax.swing.JButton();
 
         formularioPedido.setMinimumSize(new java.awt.Dimension(800, 700));
-        formularioPedido.setPreferredSize(new java.awt.Dimension(9, 557));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setText("Dar de Alta un pedido");
@@ -570,7 +569,7 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCodigoPedidoActionPerformed
 
- private void IniciarPedido() throws SQLException {
+private void IniciarPedido() throws SQLException {
     con.setAutoCommit(false);   //Ahora controlamos los commits
     Savepoint savepoint = con.setSavepoint(); //Establecemos un punto de guardado sin realizar nada en la BD
     
@@ -603,6 +602,8 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
                     conDetalle.setInt(3, cantidad);
                     conDetalle.executeUpdate();
                     
+                    actualizarStock(cproducto, cantidad);
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
                     con.rollback(savepoint);
@@ -627,6 +628,9 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
         manejarError("Error en la función IniciarPedido", e);
     }
 }
+  
+
+
 
 private void TerminarPedido(Savepoint savepoint) {
     try {
@@ -660,7 +664,7 @@ private void actualizarStock(int cproducto, int cantidad) throws SQLException {
     }
 }
 
-private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
+/*private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
     // Consultar la cantidad de stock disponible para el producto
     String sql = "SELECT CANTIDAD FROM STOCK WHERE CPRODUCTO = ?";
     try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -677,7 +681,35 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
     }
     return false; // Si no se encuentra el producto en el stock, retornar false
 
+}*/
+
+private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
+    String sql = "SELECT CANTIDAD FROM STOCK WHERE CPRODUCTO = ?";
+
+    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+        pstmt.setInt(1, cproducto);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                int stockDisponible = rs.getInt("CANTIDAD");
+
+                if (stockDisponible >= cantidad) {
+                    return true;
+                } else {
+                    System.out.println("No hay suficiente stock para el producto seleccionado. Stock disponible: " + stockDisponible + ", Cantidad solicitada: " + cantidad);
+                    return false;
+                }
+            }
+        }
+    } catch (SQLException e) {
+        manejarError("Error al verificar el stock: ", e);
+    }
+
+    System.out.println("No se encontró el producto en el stock.");
+    return false;
 }
+
+
 
     private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
         try {
@@ -794,12 +826,6 @@ private void agregarDetalle() throws SQLException {
         if (haySuficienteStock(cproducto, cantidad)) {
         // Agregar el detalle a la lista
             detallesPedido.add(new DetallePedido(cproducto, cantidad));
-           try{
-               actualizarStock(cproducto, cantidad);
-           }
-            catch (SQLException e) {
-                manejarError("Error al actualizar el stock", e);
-            }
             campoCodigoProducto.setText("");
             campoCantidadProducto.setText("");
         }
