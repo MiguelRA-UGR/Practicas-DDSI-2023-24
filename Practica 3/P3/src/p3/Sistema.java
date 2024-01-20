@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Savepoint;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +42,7 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         con = conexion.conectar();
         cargarTablas();
+        
     }    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -303,6 +306,8 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        formularioModificarAlquiler.setMinimumSize(new java.awt.Dimension(500, 400));
+
         jLabel5.setText("Modificar Fecha Alquiler");
 
         jLabel6.setText("Nueva fecha: ");
@@ -364,7 +369,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addGroup(formularioModificarAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(nuevaFechaAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(confirmarModificarAlquiler)
                 .addContainerGap())
         );
@@ -1810,87 +1815,7 @@ private void manejarError(String mensaje, Exception e) {
         JOptionPane.showMessageDialog(null, mensaje + ": " + e.toString());
         e.printStackTrace();
     }    
-/*
-private void AnadirStock() throws SQLException{
-        Savepoint savepoint = con.setSavepoint();
-        try {
-        String sql = "INSERT INTO STOCK (CPRODUCTO, CANTIDAD) VALUES (?, ?)";
-        PreparedStatement pstmt = con.prepareStatement(sql);
-        
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            int codigo = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
-            int cantidad = random.nextInt(91) + 10; // Genera cantidades aleatorias entre 10 y 100
 
-            pstmt.setInt(1, codigo);
-            pstmt.setInt(2, cantidad);
-            pstmt.executeUpdate();
-            savepoint = con.setSavepoint();
-        }
-        con.commit();
-        }
-        catch(SQLException e){
-            con.rollback(savepoint);
-            manejarError("Error al añadir stock: ",e); 
-        }
-        cargarDatosDesdeDB("STOCK", (DefaultTableModel) tablaStock.getModel());
-        
-}
-    
-private int filasTabla(String nombreTabla) throws SQLException {
-    int rowCount = 0;
-
-    try (PreparedStatement countStatement = con.prepareStatement("SELECT COUNT(*) FROM " + nombreTabla);
-         ResultSet resultSet = countStatement.executeQuery()) {
-
-        if (resultSet.next()) {
-            rowCount = resultSet.getInt(1);
-            System.out.println("La tabla " + nombreTabla + " tiene " + rowCount + " filas.");
-        }
-    } catch (SQLException e) {  
-        manejarError("Error al obtener el número de filas de la tabla " + nombreTabla + ": ",e);
-    
-    }
-
-    return rowCount;
-}
-    
-private void borrarContenidoTablas() throws SQLException{
-    try {
-        if(filasTabla("DETALLE_PEDIDO") > 0)
-            borrarTabla("DETALLE_PEDIDO", tablaDetalle);
-        if(filasTabla("STOCK") > 0)
-            borrarTabla("STOCK", tablaStock);
-        if(filasTabla("PEDIDO") > 0)
-            borrarTabla("PEDIDO", tablaPedidos);
-
-        JOptionPane.showMessageDialog(null, "Contenido de las tablas borrado correctamente.");
-        con.commit();
-    } catch (SQLException e) {
-        manejarError("Error al borrar contenido de las tablas ",e);
-        con.rollback();
-    }
-}
-
-private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLException {
-    con.setAutoCommit(false);
-    Savepoint savepoint = con.setSavepoint();
-    try {
-        // Borrar contenido de la tabla
-        String deleteQuery = "DELETE FROM " + nombreTabla;
-        PreparedStatement deleteStatement = con.prepareStatement(deleteQuery);
-        int rowsAffected = deleteStatement.executeUpdate();
-        System.out.println("Filas afectadas: " + rowsAffected);
-        // Limpiar modelo de la interfaz gráfica
-        DefaultTableModel tabla = (DefaultTableModel) tabla_a_borrar.getModel();
-        tabla.setRowCount(0);
-        
-    } catch (SQLException e) {
-        con.rollback(savepoint);
-        throw e; // Re-lanza la excepción para que sea manejada en el método principal
-    }
-}
-*/   
     private void botonCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesiónActionPerformed
         //Se cierra la ventana principal
         this.dispose();
@@ -1918,16 +1843,15 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
 
     private void crearAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAlquilerActionPerformed
         formularioCrearAlquiler.setVisible(true);
-        
-        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+          
     }//GEN-LAST:event_crearAlquilerActionPerformed
 
     private void modificarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarAlquilerActionPerformed
-        // TODO add your handling code here:
+        formularioModificarAlquiler.setVisible(true);
     }//GEN-LAST:event_modificarAlquilerActionPerformed
 
     private void finalizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarAlquilerActionPerformed
-        // TODO add your handling code here:
+        formularioFinAlquiler.setVisible(true);
     }//GEN-LAST:event_finalizarAlquilerActionPerformed
 
     private void reservarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarMesaActionPerformed
@@ -2003,11 +1927,35 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
     }//GEN-LAST:event_campoAlquilerFinActionPerformed
 
     private void confirmarFinalizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarFinalizarAlquilerActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_confirmarFinalizarAlquilerActionPerformed
 
     private void confirmarModificarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificarAlquilerActionPerformed
-        // TODO add your handling code here:
+         
+        String idAlquiler = campoAlquilerModificar.getText();
+        String nuevaFecha = nuevaFechaAlquiler.getText(); 
+       
+        SimpleDateFormat formatoTexto = new SimpleDateFormat("dd/MM/yyyy");
+        
+        try {  
+            Date fechadevolucion = formatoTexto.parse(nuevaFecha);
+            long diferenciaEnMilisegundos = fechadevolucion.getTime() - System.currentTimeMillis();
+            int duracion = (int) (diferenciaEnMilisegundos / (24 * 60 * 60 * 1000));
+            
+           PreparedStatement cn = con.prepareStatement("UPDATE ALQUILER SET FECHADEVOLUCION = ?, DURACION = ? WHERE IDALQUILER = ?");
+           
+            cn.setDate(1, new java.sql.Date(fechadevolucion.getTime()));
+            cn.setInt(2, duracion);
+            cn.setString(3, idAlquiler);
+           
+           cn.executeQuery();
+        }catch (SQLException e) {
+                e.printStackTrace();
+                manejarError("Error en la función ModificarAlquiler", e);
+                formularioModificarAlquiler.dispose();
+        } catch (ParseException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }//GEN-LAST:event_confirmarModificarAlquilerActionPerformed
 
     private void campoClienteMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteMesaActionPerformed
@@ -2213,27 +2161,40 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
    
         try {
                
-            
             PreparedStatement cn = con.prepareStatement("SELECT IDJUEGO, ESTADO FROM JUEGO WHERE NOMBRE = ?");
+            cn.setString(1, nombre);
             ResultSet resultSet = cn.executeQuery();
-            
-            idJuego = resultSet.getString("IDJUEGO");
-            String estado = resultSet.getString("ESTADO");
-            
-            if (!"D".equals(estado)) {
-                JOptionPane.showMessageDialog(this, "No se puede crear un alquiler con un juego no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+
+            if (resultSet.next()) { // Mover el cursor a la primera fila
+                idJuego = resultSet.getString("IDJUEGO");
+                String estado = resultSet.getString("ESTADO");
+
+                if (!"D".equals(estado)) {
+                    JOptionPane.showMessageDialog(this, "No se puede crear un alquiler con un juego no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el juego con el nombre especificado", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
             cn = con.prepareStatement("SELECT EMAIL FROM CLIENTE WHERE IDCLIENTE = ?");
+            cn.setString(1, idCliente);
             resultSet = cn.executeQuery();
             
-            if(resultSet.getString("EMAIL") != null)
+            cn = con.prepareStatement("SELECT EMAIL FROM CLIENTE WHERE IDCLIENTE = ?");
+            cn.setString(1, idCliente);
+            resultSet = cn.executeQuery();
+
+            if (resultSet.next()) { // Mover el cursor a la primera fila
                 emailCliente = resultSet.getString("EMAIL");
-            else
-                emailCliente="";
+            } else {
+                // Manejar el caso donde no se encontró el cliente
+                JOptionPane.showMessageDialog(this, "No se encontró el cliente con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
-            cn = con.prepareStatement("INSERT INTO ALQUILER (IDCLIENTE, IDJUEGO,EMAIL,FECHADEVOLUCION,MULTA,DURACION) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            cn = con.prepareStatement("INSERT INTO ALQUILER (IDCLIENTE, IDJUEGO,EMAIL,FECHADEVOLUCION,MULTA,DURACION) VALUES (?, ?, ?, ?, ?, ?)");
 
             cn.setString(1, idCliente);
             cn.setString(2, idJuego);
@@ -2256,119 +2217,51 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
         }    
     }//GEN-LAST:event_confirmarCrearAlquilerActionPerformed
 
-    /*
- private void IniciarPedido() throws SQLException {
-    con.setAutoCommit(false);
-    Savepoint savepoint = con.setSavepoint();
-    try {
-        PreparedStatement cn = con.prepareStatement("INSERT INTO PEDIDO (CPEDIDO, CCLIENTE, FECHA_PEDIDO) VALUES(?,?,?)");
-
-        int cpedido = Integer.parseInt(campoCodigoPedido.getText());
-        cn.setInt(1, cpedido);
-
-        int ccliente = Integer.parseInt(campoCodigoCliente.getText());
-        cn.setInt(2, ccliente);
-
-        String fecha = campoFechaPedido.getText();
-        cn.setString(3, fecha);
-        savepoint = con.setSavepoint();
-        cn.executeUpdate();
-
-
-
-        if (!campoCodigoProducto.getText().isEmpty() && !campoCantidadProducto.getText().isEmpty()) {
-            int cproducto = Integer.parseInt(campoCodigoProducto.getText());
-            int cantidad = Integer.parseInt(campoCantidadProducto.getText());
-
-            // Verificar si hay suficiente stock
-            if (haySuficienteStock(cproducto, cantidad)) {
-                // Si hay suficiente stock, realizar la inserción en DETALLE_PEDIDO
-                cn = con.prepareStatement("INSERT INTO DETALLE_PEDIDO (CPEDIDO, CPRODUCTO, CANTIDAD) VALUES(?,?,?)");
-                cn.setInt(1, cpedido);
-
-                cn.setInt(2, cproducto);
-
-                cn.setInt(3, cantidad);
-                cn.executeUpdate();
-
-                // Actualizar el stock restando la cantidad del pedido
-                actualizarStock(cproducto, cantidad);
-                savepoint = con.setSavepoint();
-
-            } 
-            else {
-                JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
-                con.rollback(savepoint);
-            }
-        }
-        campoCodigoPedido.setText("");
-        campoCodigoCliente.setText("");
-        campoFechaPedido.setText("");
-        campoCantidadProducto.setText("");
-        campoCodigoProducto.setText("");
-        
-        TerminarPedido(savepoint);
-        formularioPedido.dispose();
-        
-    } 
-    
-    catch (SQLException e) {
-        con.rollback(savepoint);
-        manejarError("Error en la función IniciarPedido", e);
-    }
-}
-
- private void TerminarPedido(Savepoint savepoint) throws SQLException{
-     try{
-        con.commit();
-    }
-     catch(SQLException e)
-    {
-        con.rollback(savepoint);
-        manejarError("Error en la función TerminarPedido", e);
-
-    }
- }
- 
- 
-private void actualizarStock(int cproducto, int cantidad) throws SQLException {
-    // Restar la cantidad del pedido al stock actual
-    String sql = "UPDATE STOCK SET CANTIDAD = CANTIDAD - ? WHERE CPRODUCTO = ?";
-    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-        pstmt.setInt(1, cantidad);
-        pstmt.setInt(2, cproducto);
-        pstmt.executeUpdate();
-    }
-    catch (SQLException e) {
-        manejarError("Error al actualizar el stock: ",e);
-    }
-}
-
-private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
-    // Consultar la cantidad de stock disponible para el producto
-    String sql = "SELECT CANTIDAD FROM STOCK WHERE CPRODUCTO = ?";
-    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-        pstmt.setInt(1, cproducto);
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                int stockDisponible = rs.getInt("CANTIDAD");
-                return stockDisponible >= cantidad;
-            }
-        }
-    }
-    catch (SQLException e) {
-        manejarError("Error al verificar el stock: ",e);
-    }
-    return false; // Si no se encuentra el producto en el stock, retornar false
-
-}
-*/
+   
 private void cargarTablas() {
-    cargarDatosDesdeDB("ALQUILER", (DefaultTableModel) tablaAlquileres.getModel());
     cargarDatosDesdeDB("RESERVADEMESA", (DefaultTableModel) tablaReservasMesa2.getModel());
     cargarDatosDesdeDB("RESERVAJUEGO",(DefaultTableModel) tablaReservasJuego.getModel());
     cargarDatosDesdeDB("PRESENTACIONJUEGO",(DefaultTableModel) presentaciones1.getModel());
-    cargarDatosDesdeDB("JUEGO",(DefaultTableModel) juegos.getModel());
+    actualizarTablaJuegos((DefaultTableModel) juegos.getModel());
+    actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+    actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
+}
+
+private void actualizarTablaAlquileres(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<Object[]> alquileres = new ArrayList<>();
+
+    String sql = "SELECT IDCLIENTE, IDJUEGO FROM ALQUILER";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String idCliente = resultSet.getString("IDCLIENTE");
+            String idJuego = resultSet.getString("IDJUEGO");
+            String nombreJuego = "";
+            
+            sql = "SELECT NOMBRE FROM JUEGO WHERE IDJUEGO = ?";
+            try (PreparedStatement statement2 = con.prepareStatement(sql)) {
+                statement2.setString(1, idJuego);
+                try (ResultSet resultSet2 = statement2.executeQuery()) {
+                    if (resultSet2.next()) {
+                        nombreJuego = resultSet.getString("NOMBRE");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            alquileres.add(new Object[]{idCliente, nombreJuego});
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (Object[] alquiler : alquileres) {
+        modelo.addRow(alquiler);
+    }
 }
 
 private void actualizarTablaJuegosDisponibles(DefaultTableModel modelo) {
@@ -2377,6 +2270,28 @@ private void actualizarTablaJuegosDisponibles(DefaultTableModel modelo) {
     List<String> juegos = new ArrayList<>();
 
     String sql = "SELECT NOMBRE FROM JUEGO WHERE ESTADO = 'D'";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String nombreJuego = resultSet.getString("NOMBRE");
+            juegos.add(nombreJuego);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (String nombreJuego : juegos) {
+        modelo.addRow(new Object[]{nombreJuego});
+    }
+}
+
+private void actualizarTablaJuegos(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<String> juegos = new ArrayList<>();
+
+    String sql = "SELECT NOMBRE FROM JUEGO";
     try (PreparedStatement statement = con.prepareStatement(sql);
          ResultSet resultSet = statement.executeQuery()) {
 
