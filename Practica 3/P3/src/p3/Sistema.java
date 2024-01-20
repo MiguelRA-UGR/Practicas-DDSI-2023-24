@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.Savepoint;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,6 +78,8 @@ public class Sistema extends javax.swing.JFrame {
         campoAlquilerFin = new javax.swing.JTextField();
         estadoJuego = new javax.swing.JCheckBox();
         confirmarFinalizarAlquiler = new javax.swing.JButton();
+        jLabel63 = new javax.swing.JLabel();
+        campoTrabajadorAlquilerFin = new javax.swing.JTextField();
         formularioReservarMesa = new javax.swing.JFrame();
         jLabel11 = new javax.swing.JLabel();
         campoClienteMesa = new javax.swing.JTextField();
@@ -374,6 +378,8 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        formularioFinAlquiler.setMinimumSize(new java.awt.Dimension(500, 300));
+
         jLabel8.setText("Finalizar Alquiler");
 
         jLabel9.setText("¿Está en mal estado el juego?");
@@ -393,6 +399,14 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        jLabel63.setText("ID Trabajador:");
+
+        campoTrabajadorAlquilerFin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTrabajadorAlquilerFinActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formularioFinAlquilerLayout = new javax.swing.GroupLayout(formularioFinAlquiler.getContentPane());
         formularioFinAlquiler.getContentPane().setLayout(formularioFinAlquilerLayout);
         formularioFinAlquilerLayout.setHorizontalGroup(
@@ -404,14 +418,16 @@ public class Sistema extends javax.swing.JFrame {
             .addGroup(formularioFinAlquilerLayout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(confirmarFinalizarAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(confirmarFinalizarAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoAlquilerFin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estadoJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estadoJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTrabajadorAlquilerFin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         formularioFinAlquilerLayout.setVerticalGroup(
@@ -423,13 +439,17 @@ public class Sistema extends javax.swing.JFrame {
                 .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(campoAlquilerFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoTrabajadorAlquilerFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(estadoJuego))
                 .addGap(18, 18, 18)
                 .addComponent(confirmarFinalizarAlquiler)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         jLabel11.setText("Reserva de Mesa");
@@ -1923,39 +1943,153 @@ private void manejarError(String mensaje, Exception e) {
     }//GEN-LAST:event_nuevaFechaAlquilerActionPerformed
 
     private void campoAlquilerFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAlquilerFinActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_campoAlquilerFinActionPerformed
 
-    private void confirmarFinalizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarFinalizarAlquilerActionPerformed
+    private void crearMulta(String idAlquiler,String idTrabajador,Date fechaActual, double precioMulta) throws SQLException {
         
+        String idCliente = "";
+            String sql = "SELECT IDCLIENTE FROM ALQUILER WHERE IDALQUILER = ?";
+            try (PreparedStatement statement = con.prepareStatement(sql)) {
+                statement.setString(1, idAlquiler);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idCliente = resultSet.getString("IDCLIENTE");
+                    }
+                }
+            }
+        
+        sql = "INSERT INTO AplicaMulta (IDCliente, IDTrabajador, Precio, Fecha) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            
+            statement.setString(1, idCliente);
+            statement.setString(2, idTrabajador);
+            statement.setDouble(3, precioMulta);
+            statement.setDate(4, new java.sql.Date(fechaActual.getTime()));
+            statement.executeUpdate();
+        }
+    }
+    
+    private void confirmarFinalizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarFinalizarAlquilerActionPerformed
+        String idAlquiler = campoAlquilerFin.getText();
+        String idTrabajador = campoTrabajadorAlquilerFin.getText();
+        String idJuego = "";
+        boolean malestado = estadoJuego.isSelected();
+        double cuantia;
+        double penalizacionretraso = 5.0;
+        
+        String sqlObtenerIdJuego = "SELECT IDJUEGO FROM ALQUILER WHERE IDALQUILER = ?";
+        
+        try (PreparedStatement statementObtenerIdJuego = con.prepareStatement(sqlObtenerIdJuego)) {
+        statementObtenerIdJuego.setString(1, idAlquiler);
+
+            try (ResultSet resultSet = statementObtenerIdJuego.executeQuery()) {
+                if (resultSet.next()) {
+                    idJuego = resultSet.getString("IDJUEGO");
+                } else {
+                    System.out.println("No se encontró el alquiler con el ID especificado");
+                    return; 
+                }
+            }
+        
+    }   catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            Date fechaActual = new Date();
+
+            String sql = "SELECT FECHADEVOLUCION,MULTA FROM ALQUILER WHERE IDALQUILER = ?";
+            try (PreparedStatement statement = con.prepareStatement(sql)) {
+                statement.setString(1, idAlquiler);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        Date fechaDevolucion = resultSet.getDate("FECHADEVOLUCION");
+                        cuantia = resultSet.getDouble("MULTA");
+
+                        if (malestado) {
+                            crearMulta(idAlquiler,idTrabajador, fechaActual,cuantia);
+                        }
+                        
+                        /*
+                        if (fechaActual.after(fechaDevolucion)) {
+                            crearMulta(idAlquiler,idTrabajador, fechaActual,penalizacionretraso);
+                        }
+                        
+                        if (fechaActual.after(fechaDevolucion) && malestado) {
+                            crearMulta(idAlquiler,idTrabajador, fechaActual,cuantia + penalizacionretraso);
+                        }
+                        */
+                        sql = "DELETE FROM ALQUILER WHERE IDALQUILER = ?";
+                        try (PreparedStatement statement2 = con.prepareStatement(sql)) {
+                            statement2.setString(1, idAlquiler);
+                            statement2.executeUpdate();
+                        }
+                        
+                        sql = "UPDATE Juego SET Estado = 'D' WHERE IDJuego = ?";
+                        try (PreparedStatement statement2 = con.prepareStatement(sql)) {
+                            statement2.setString(1, idJuego);
+                            statement2.executeUpdate();
+                        }
+                    
+                    } else {
+                        System.out.println("No se encontró el alquiler con el ID especificado");
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función FinalizarAlquiler", e);
+        }
+        
+        formularioFinAlquiler.setVisible(false);
+        campoAlquilerFin.setText("");
+        campoTrabajadorAlquilerFin.setText("");
+        estadoJuego.setSelected(false);
+        actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
     }//GEN-LAST:event_confirmarFinalizarAlquilerActionPerformed
 
     private void confirmarModificarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificarAlquilerActionPerformed
          
         String idAlquiler = campoAlquilerModificar.getText();
-        String nuevaFecha = nuevaFechaAlquiler.getText(); 
-       
+        String nuevaFecha = nuevaFechaAlquiler.getText();
+
         SimpleDateFormat formatoTexto = new SimpleDateFormat("dd/MM/yyyy");
-        
-        try {  
-            Date fechadevolucion = formatoTexto.parse(nuevaFecha);
-            long diferenciaEnMilisegundos = fechadevolucion.getTime() - System.currentTimeMillis();
-            int duracion = (int) (diferenciaEnMilisegundos / (24 * 60 * 60 * 1000));
+
+        try {
             
-           PreparedStatement cn = con.prepareStatement("UPDATE ALQUILER SET FECHADEVOLUCION = ?, DURACION = ? WHERE IDALQUILER = ?");
-           
-            cn.setDate(1, new java.sql.Date(fechadevolucion.getTime()));
+            Date fechaDevolucion = formatoTexto.parse(nuevaFecha);
+
+            LocalDate fechaDevolucionLocal = fechaDevolucion.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+            LocalDate fechaActual = LocalDate.now();
+
+            int duracion = (int) ChronoUnit.DAYS.between(fechaActual, fechaDevolucionLocal);
+            
+            PreparedStatement cn = con.prepareStatement("UPDATE ALQUILER SET FECHADEVOLUCION = ?, DURACION = ? WHERE IDALQUILER = ?");
+
+            cn.setDate(1, new java.sql.Date(fechaDevolucion.getTime()));
             cn.setInt(2, duracion);
             cn.setString(3, idAlquiler);
-           
-           cn.executeQuery();
-        }catch (SQLException e) {
-                e.printStackTrace();
-                manejarError("Error en la función ModificarAlquiler", e);
-                formularioModificarAlquiler.dispose();
+
+            int filasAfectadas = cn.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Modificación exitosa");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ModificarAlquiler", e);
+            formularioModificarAlquiler.dispose();
         } catch (ParseException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
+
+        formularioModificarAlquiler.setVisible(false);
+        campoAlquilerModificar.setText("");
+        nuevaFechaAlquiler.setText("");
     }//GEN-LAST:event_confirmarModificarAlquilerActionPerformed
 
     private void campoClienteMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteMesaActionPerformed
@@ -2186,10 +2320,9 @@ private void manejarError(String mensaje, Exception e) {
             cn.setString(1, idCliente);
             resultSet = cn.executeQuery();
 
-            if (resultSet.next()) { // Mover el cursor a la primera fila
+            if (resultSet.next()) {
                 emailCliente = resultSet.getString("EMAIL");
             } else {
-                // Manejar el caso donde no se encontró el cliente
                 JOptionPane.showMessageDialog(this, "No se encontró el cliente con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -2207,15 +2340,28 @@ private void manejarError(String mensaje, Exception e) {
 
             if (filasAfectadas > 0) {
                 System.out.println("Inserción exitosa");
-
+                
+                cn = con.prepareStatement("UPDATE JUEGO SET ESTADO = 'A' WHERE IDJUEGO = ?");
+                cn.setString(1, idJuego);
+                cn.executeUpdate();
+                actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
             }
             
             } catch (SQLException e) {
                 e.printStackTrace();
                 manejarError("Error en la función CrearAlquiler", e);
-                formularioCrearAlquiler.dispose();
-        }    
+        }
+        
+        formularioCrearAlquiler.setVisible(false);
+        campoClienteAlquiler.setText(""); 
+        campoJuegoAlquiler.setText("");
+        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+        actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
     }//GEN-LAST:event_confirmarCrearAlquilerActionPerformed
+
+    private void campoTrabajadorAlquilerFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTrabajadorAlquilerFinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTrabajadorAlquilerFinActionPerformed
 
    
 private void cargarTablas() {
@@ -2246,7 +2392,7 @@ private void actualizarTablaAlquileres(DefaultTableModel modelo) {
                 statement2.setString(1, idJuego);
                 try (ResultSet resultSet2 = statement2.executeQuery()) {
                     if (resultSet2.next()) {
-                        nombreJuego = resultSet.getString("NOMBRE");
+                        nombreJuego = resultSet2.getString("NOMBRE");
                     }
                 }
             } catch (SQLException e) {
@@ -2418,6 +2564,7 @@ public boolean verificarConexion() {
     private javax.swing.JTextField campoTorneoAsignacion;
     private javax.swing.JTextField campoTorneoPartida;
     private javax.swing.JTextField campoTorneoPremio;
+    private javax.swing.JTextField campoTrabajadorAlquilerFin;
     private javax.swing.JTextField campoTrabajadorPresentacion;
     private javax.swing.JTextField cantidadMesasPresentacion;
     private javax.swing.JButton confirmaReservaMesa;
@@ -2517,6 +2664,7 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
