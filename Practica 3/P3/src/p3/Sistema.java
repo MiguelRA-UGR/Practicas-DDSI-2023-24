@@ -218,6 +218,8 @@ public class Sistema extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         presentaciones1 = new javax.swing.JTable();
 
+        formularioCrearAlquiler.setMinimumSize(new java.awt.Dimension(300, 500));
+
         jLabel2.setText("Nuevo Alquiler");
 
         campoClienteAlquiler.addActionListener(new java.awt.event.ActionListener() {
@@ -275,11 +277,10 @@ public class Sistema extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
-                        .addGroup(formularioCrearAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(confirmarCrearAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(formularioCrearAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(campoClienteAlquiler)
-                                .addComponent(campoJuegoAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(formularioCrearAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoClienteAlquiler)
+                            .addComponent(campoJuegoAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmarCrearAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         formularioCrearAlquilerLayout.setVerticalGroup(
@@ -1551,7 +1552,7 @@ public class Sistema extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Mesa", "Cliente"
+                "Cliente", "Juego"
             }
         ));
         jScrollPane2.setViewportView(tablaAlquileres);
@@ -2200,8 +2201,9 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
     private void confirmarCrearAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCrearAlquilerActionPerformed
 
         String idCliente = campoClienteAlquiler.getText(); 
-        String idJuego = campoJuegoAlquiler.getText(); 
+        String nombre = campoJuegoAlquiler.getText(); 
         String emailCliente = null;
+        String idJuego = null;
         double multa = 5.0;
         int duracion = 7;
         Calendar calendar = Calendar.getInstance();
@@ -2211,8 +2213,20 @@ private void borrarTabla(String nombreTabla, JTable tabla_a_borrar) throws SQLEx
    
         try {
                
-            PreparedStatement cn = con.prepareStatement("SELECT EMAIL FROM CLIENTE WHERE IDCLIENTE = ?");
+            
+            PreparedStatement cn = con.prepareStatement("SELECT IDJUEGO, ESTADO FROM JUEGO WHERE NOMBRE = ?");
             ResultSet resultSet = cn.executeQuery();
+            
+            idJuego = resultSet.getString("IDJUEGO");
+            String estado = resultSet.getString("ESTADO");
+            
+            if (!"D".equals(estado)) {
+                JOptionPane.showMessageDialog(this, "No se puede crear un alquiler con un juego no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            cn = con.prepareStatement("SELECT EMAIL FROM CLIENTE WHERE IDCLIENTE = ?");
+            resultSet = cn.executeQuery();
             
             if(resultSet.getString("EMAIL") != null)
                 emailCliente = resultSet.getString("EMAIL");
