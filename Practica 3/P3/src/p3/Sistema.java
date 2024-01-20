@@ -417,18 +417,20 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(formularioFinAlquilerLayout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(confirmarFinalizarAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoAlquilerFin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estadoJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTrabajadorAlquilerFin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(formularioFinAlquilerLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(confirmarFinalizarAlquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         formularioFinAlquilerLayout.setVerticalGroup(
             formularioFinAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1571,13 +1573,13 @@ public class Sistema extends javax.swing.JFrame {
 
         tablaAlquileres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Cliente", "Juego"
+                "ID", "Cliente", "Juego", "Fecha Devolucion"
             }
         ));
         jScrollPane2.setViewportView(tablaAlquileres);
@@ -1702,52 +1704,60 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(modificarAlquiler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(finalizarAlquiler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(233, 233, 233)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
-                        .addGap(216, 216, 216)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(reservarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(modificarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(reservarMesa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(45, 45, 45))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
                         .addComponent(jLabel12)
-                        .addGap(207, 207, 207)
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(crearPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(registrarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mandarCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(asignarPremio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mandarCorreo2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
                         .addComponent(jLabel15))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(reservarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(modificarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(reservarMesa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(179, 179, 179)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(crearPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(registrarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mandarCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(asignarPremio, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(mandarCorreo2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                        .addGap(205, 205, 205)
+                        .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(crearPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(modificarPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(reservarPlaza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ponerJuegoDisposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(234, 234, 234))
+                .addContainerGap(234, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(527, 527, 527)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonCerrarSesión, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(190, 190, 190)))))
                 .addGap(35, 35, 35))
@@ -1763,63 +1773,71 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(crearAlquiler)
-                        .addGap(18, 18, 18)
-                        .addComponent(modificarAlquiler)
-                        .addGap(18, 18, 18)
-                        .addComponent(finalizarAlquiler))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(registrarEquipo)
-                            .addComponent(crearPresentacion))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(crearPartida)
-                            .addComponent(modificarPresentacion))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(mandarCorreo)
-                            .addComponent(reservarPlaza)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(modificarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(reservarMesa)
-                        .addGap(18, 18, 18)
-                        .addComponent(reservarMesa1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mandarCorreo2)
-                    .addComponent(ponerJuegoDisposicion))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(crearAlquiler)
+                                .addGap(18, 18, 18)
+                                .addComponent(modificarAlquiler)
+                                .addGap(18, 18, 18)
+                                .addComponent(finalizarAlquiler))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(crearPresentacion)
+                                .addGap(18, 18, 18)
+                                .addComponent(modificarPresentacion)
+                                .addGap(18, 18, 18)
+                                .addComponent(reservarPlaza)))
+                        .addGap(36, 36, 36)
+                        .addComponent(ponerJuegoDisposicion)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                                .addGap(156, 156, 156)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(44, 44, 44)
+                                .addComponent(registrarEquipo)
+                                .addGap(18, 18, 18)
+                                .addComponent(crearPartida)
+                                .addGap(18, 18, 18)
+                                .addComponent(mandarCorreo)
+                                .addGap(36, 36, 36)
+                                .addComponent(mandarCorreo2)
+                                .addGap(18, 18, 18)
+                                .addComponent(asignarPremio)
+                                .addGap(0, 345, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(84, 84, 84)
+                                        .addComponent(modificarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(reservarMesa)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(reservarMesa1)))
+                                .addGap(48, 137, Short.MAX_VALUE)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(asignarPremio)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(156, 156, 156)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(469, Short.MAX_VALUE)
@@ -1949,24 +1967,27 @@ private void manejarError(String mensaje, Exception e) {
     private void crearMulta(String idAlquiler,String idTrabajador,Date fechaActual, double precioMulta) throws SQLException {
         
         String idCliente = "";
-            String sql = "SELECT IDCLIENTE FROM ALQUILER WHERE IDALQUILER = ?";
-            try (PreparedStatement statement = con.prepareStatement(sql)) {
-                statement.setString(1, idAlquiler);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        idCliente = resultSet.getString("IDCLIENTE");
-                    }
+        String email = "";
+        String sql = "SELECT IDCLIENTE,EMAIL FROM ALQUILER WHERE IDALQUILER = ?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, idAlquiler);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    idCliente = resultSet.getString("IDCLIENTE");
+                    email = resultSet.getString("EMAIL");
                 }
             }
+        }
         
-        sql = "INSERT INTO AplicaMulta (IDCliente, IDTrabajador, Precio, Fecha) VALUES (?, ?, ?, ?)";
+        sql = "INSERT INTO AplicaMulta (IDCliente,Email,IDTrabajador, Precio, Fecha) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             
             statement.setString(1, idCliente);
-            statement.setString(2, idTrabajador);
-            statement.setDouble(3, precioMulta);
-            statement.setDate(4, new java.sql.Date(fechaActual.getTime()));
-            statement.executeUpdate();
+            statement.setString(2, email);
+            statement.setString(3, idTrabajador);
+            statement.setDouble(4, precioMulta);
+            statement.setDate(5, new java.sql.Date(fechaActual.getTime()));
+            statement.executeQuery();
         }
     }
     
@@ -2011,7 +2032,7 @@ private void manejarError(String mensaje, Exception e) {
                             crearMulta(idAlquiler,idTrabajador, fechaActual,cuantia);
                         }
                         
-                        /*
+                        
                         if (fechaActual.after(fechaDevolucion)) {
                             crearMulta(idAlquiler,idTrabajador, fechaActual,penalizacionretraso);
                         }
@@ -2019,7 +2040,7 @@ private void manejarError(String mensaje, Exception e) {
                         if (fechaActual.after(fechaDevolucion) && malestado) {
                             crearMulta(idAlquiler,idTrabajador, fechaActual,cuantia + penalizacionretraso);
                         }
-                        */
+                        
                         sql = "DELETE FROM ALQUILER WHERE IDALQUILER = ?";
                         try (PreparedStatement statement2 = con.prepareStatement(sql)) {
                             statement2.setString(1, idAlquiler);
@@ -2061,17 +2082,10 @@ private void manejarError(String mensaje, Exception e) {
             
             Date fechaDevolucion = formatoTexto.parse(nuevaFecha);
 
-            LocalDate fechaDevolucionLocal = fechaDevolucion.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-
-            LocalDate fechaActual = LocalDate.now();
-
-            int duracion = (int) ChronoUnit.DAYS.between(fechaActual, fechaDevolucionLocal);
-            
-            PreparedStatement cn = con.prepareStatement("UPDATE ALQUILER SET FECHADEVOLUCION = ?, DURACION = ? WHERE IDALQUILER = ?");
+            PreparedStatement cn = con.prepareStatement("UPDATE ALQUILER SET FECHADEVOLUCION = ? WHERE IDALQUILER = ?");
 
             cn.setDate(1, new java.sql.Date(fechaDevolucion.getTime()));
-            cn.setInt(2, duracion);
-            cn.setString(3, idAlquiler);
+            cn.setString(2, idAlquiler);
 
             int filasAfectadas = cn.executeUpdate();
 
@@ -2090,6 +2104,7 @@ private void manejarError(String mensaje, Exception e) {
         formularioModificarAlquiler.setVisible(false);
         campoAlquilerModificar.setText("");
         nuevaFechaAlquiler.setText("");
+        actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
     }//GEN-LAST:event_confirmarModificarAlquilerActionPerformed
 
     private void campoClienteMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteMesaActionPerformed
@@ -2287,7 +2302,6 @@ private void manejarError(String mensaje, Exception e) {
         String emailCliente = null;
         String idJuego = null;
         double multa = 5.0;
-        int duracion = 7;
         Calendar calendar = Calendar.getInstance();
         //Fecha de hoy más una semana
         calendar.add(Calendar.DAY_OF_MONTH, 7);
@@ -2327,14 +2341,13 @@ private void manejarError(String mensaje, Exception e) {
                 return;
             }
             
-            cn = con.prepareStatement("INSERT INTO ALQUILER (IDCLIENTE, IDJUEGO,EMAIL,FECHADEVOLUCION,MULTA,DURACION) VALUES (?, ?, ?, ?, ?, ?)");
+            cn = con.prepareStatement("INSERT INTO ALQUILER (IDCLIENTE, IDJUEGO,EMAIL,FECHADEVOLUCION,MULTA) VALUES (?, ?, ?, ?, ?)");
 
             cn.setString(1, idCliente);
             cn.setString(2, idJuego);
             cn.setString(3, emailCliente);
             cn.setDate(4, new java.sql.Date(fechaDevolucion.getTime()));
             cn.setDouble(5, multa);
-            cn.setInt(6, duracion);
 
             int filasAfectadas = cn.executeUpdate();
 
@@ -2378,14 +2391,18 @@ private void actualizarTablaAlquileres(DefaultTableModel modelo) {
 
     List<Object[]> alquileres = new ArrayList<>();
 
-    String sql = "SELECT IDCLIENTE, IDJUEGO FROM ALQUILER";
+    String sql = "SELECT IDALQUILER, IDCLIENTE, IDJUEGO,FECHADEVOLUCION FROM ALQUILER";
     try (PreparedStatement statement = con.prepareStatement(sql);
          ResultSet resultSet = statement.executeQuery()) {
 
         while (resultSet.next()) {
+            String idAlquiler = resultSet.getString("IDALQUILER");
             String idCliente = resultSet.getString("IDCLIENTE");
             String idJuego = resultSet.getString("IDJUEGO");
+            Date fechaDate = resultSet.getDate("FECHADEVOLUCION");
             String nombreJuego = "";
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String fecha = sdf.format(fechaDate);
             
             sql = "SELECT NOMBRE FROM JUEGO WHERE IDJUEGO = ?";
             try (PreparedStatement statement2 = con.prepareStatement(sql)) {
@@ -2399,7 +2416,7 @@ private void actualizarTablaAlquileres(DefaultTableModel modelo) {
                 e.printStackTrace();
             }
 
-            alquileres.add(new Object[]{idCliente, nombreJuego});
+            alquileres.add(new Object[]{idAlquiler,idCliente, nombreJuego,fecha});
         }
     } catch (SQLException e) {
         e.printStackTrace();
