@@ -105,6 +105,7 @@ public class Sistema extends javax.swing.JFrame {
         Comprueba_con = new javax.swing.JButton();
 
         formularioPedido.setMinimumSize(new java.awt.Dimension(800, 700));
+        formularioPedido.setPreferredSize(new java.awt.Dimension(9, 557));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setText("Dar de Alta un pedido");
@@ -165,6 +166,7 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        TextAreaDetalles.setEditable(false);
         TextAreaDetalles.setColumns(20);
         TextAreaDetalles.setRows(5);
         jScrollPane4.setViewportView(TextAreaDetalles);
@@ -214,12 +216,12 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(formularioPedidoLayout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 96, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(formularioPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(formularioPedidoLayout.createSequentialGroup()
                     .addGap(94, 94, 94)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                     .addGap(309, 309, 309)))
         );
         formularioPedidoLayout.setVerticalGroup(
@@ -605,7 +607,6 @@ private void IniciarPedido() throws SQLException {
                     actualizarStock(cproducto, cantidad);
                     
                 } else {
-                    JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
                     con.rollback(savepoint);
                     return;  // Salir de la función si no hay suficiente stock
                 }
@@ -629,9 +630,6 @@ private void IniciarPedido() throws SQLException {
     }
 }
   
-
-
-
 private void TerminarPedido(Savepoint savepoint) {
     try {
         con.commit();
@@ -664,25 +662,6 @@ private void actualizarStock(int cproducto, int cantidad) throws SQLException {
     }
 }
 
-/*private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
-    // Consultar la cantidad de stock disponible para el producto
-    String sql = "SELECT CANTIDAD FROM STOCK WHERE CPRODUCTO = ?";
-    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-        pstmt.setInt(1, cproducto);
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                int stockDisponible = rs.getInt("CANTIDAD");
-                return stockDisponible >= cantidad;
-            }
-        }
-    }
-    catch (SQLException e) {
-        manejarError("Error al verificar el stock: ",e);
-    }
-    return false; // Si no se encuentra el producto en el stock, retornar false
-
-}*/
-
 private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLException {
     String sql = "SELECT CANTIDAD FROM STOCK WHERE CPRODUCTO = ?";
 
@@ -696,7 +675,7 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
                 if (stockDisponible >= cantidad) {
                     return true;
                 } else {
-                    System.out.println("No hay suficiente stock para el producto seleccionado. Stock disponible: " + stockDisponible + ", Cantidad solicitada: " + cantidad);
+                    JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado. Stock disponible: " + stockDisponible + ", Cantidad solicitada: " + cantidad);
                     return false;
                 }
             }
@@ -705,11 +684,8 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
         manejarError("Error al verificar el stock: ", e);
     }
 
-    System.out.println("No se encontró el producto en el stock.");
     return false;
 }
-
-
 
     private void botonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarPedidoActionPerformed
         try {
@@ -726,12 +702,15 @@ private boolean haySuficienteStock(int cproducto, int cantidad) throws SQLExcept
         campoFechaPedido.setText("");
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
+        TextAreaDetalles.setText("");
+        detallesPedido.clear();
         formularioPedido.setVisible(false);
     }//GEN-LAST:event_botonBorrarPedidoActionPerformed
 
     private void botonBorrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarDetallesActionPerformed
         campoCantidadProducto.setText("");
         campoCodigoProducto.setText("");
+        TextAreaDetalles.setText("");
         detallesPedido.clear();
     }//GEN-LAST:event_botonBorrarDetallesActionPerformed
 
@@ -831,7 +810,6 @@ private void agregarDetalle() throws SQLException {
         }
         
         else{
-            JOptionPane.showMessageDialog(null, "No hay suficiente stock");
             return;
         }
         
@@ -852,45 +830,6 @@ private void agregarDetalle() throws SQLException {
         }
     }//GEN-LAST:event_botonAgregarDetallesActionPerformed
 
-    /*
-private void guardarDetalle() {
-    try {
-        // Obtener los valores del formulario
-        String codigoProductoText = campoCodigoProducto.getText();
-        String cantidadProductoText = campoCantidadProducto.getText();
-
-        // Verificar que los campos no estén vacíos
-        if (codigoProductoText.isEmpty() || cantidadProductoText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
-            return;
-        }
-        // Obtener los valores del formulario
-        int cproducto = Integer.parseInt(campoCodigoProducto.getText());
-        int cantidad = Integer.parseInt(campoCantidadProducto.getText());
-
-        // Verificar si hay suficiente stock
-        if (haySuficienteStock(cproducto, cantidad)) {
-            // Agregar el detalle a la lista
-            detallesPedido.add(new DetallePedido(cproducto, cantidad));
-
-            // Actualizar el stock restando la cantidad del pedido
-            actualizarStock(cproducto, cantidad);
-
-            // Limpiar campos del detalle
-            campoCodigoProducto.setText("");
-            campoCantidadProducto.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay suficiente stock para el producto seleccionado");
-        }
-    } 
-    catch (NumberFormatException e) {
-        manejarError("Error al convertir a número en guardarDetalle", e);
-    }
-    catch (SQLException e) {
-        manejarError("Error al guardar detalle", e);
-    }
-}
-    */
     /**
      * @param args the command line arguments
      */

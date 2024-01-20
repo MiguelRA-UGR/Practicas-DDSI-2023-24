@@ -16,11 +16,9 @@ INSERT INTO Pedido (Cpedido, Ccliente, Fecha_pedido) VALUES (9, 109, '2023-1-09'
 INSERT INTO stock (Cproducto, Cantidad) VALUES (201, 10);
 INSERT INTO stock (Cproducto, Cantidad) VALUES (202, 10);
 INSERT INTO stock (Cproducto, Cantidad) VALUES (203, 10);
-
-
-INSERT INTO stock (Cproducto, Cantidad) VALUES (2011111, 10);
-INSERT INTO stock (Cproducto, Cantidad) VALUES (2022222, 10);
-INSERT INTO stock (Cproducto, Cantidad) VALUES (2033333, 10);
+INSERT INTO stock (Cproducto, Cantidad) VALUES (204, 10);
+INSERT INTO stock (Cproducto, Cantidad) VALUES (205, 10);
+INSERT INTO stock (Cproducto, Cantidad) VALUES (206, 10);
 
 INSERT INTO detalle_pedido (Cpedido, Cproducto, cantidad) VALUES (1, 201, 2);
 INSERT INTO detalle_pedido (Cpedido, Cproducto, cantidad) VALUES (2, 202, 1);
