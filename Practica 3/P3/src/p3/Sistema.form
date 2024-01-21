@@ -335,6 +335,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioReservarMesa">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 400]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -552,6 +557,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioModificarReserva">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 250]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -656,6 +666,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioRegistroEquipo">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 400]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -707,8 +722,8 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                          <Component id="confirmarRegistro" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                          <Component id="confirmarRegistro" min="-2" pref="84" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="61" max="32767" attributes="0"/>
@@ -834,6 +849,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioCrearPartida">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 300]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -843,10 +863,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                           <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
-                          <Component id="confirmarCrearPartida" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -869,6 +885,10 @@
                                       <Component id="campoJuegoPartida" min="-2" pref="109" max="-2" attributes="0"/>
                                       <Component id="campoFinPartida" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                                       <Component id="campoInicioPartida" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          <Component id="confirmarCrearPartida" min="-2" pref="75" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -982,6 +1002,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioEnviarCorreos">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 250]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1260,6 +1285,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioCrearPresentacion">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 400]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1409,6 +1439,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioModificarPresentacion">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 250]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1504,6 +1539,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioReservarPlaza">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 200]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1594,6 +1634,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="formularioDisponerJuego">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[250, 300]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
