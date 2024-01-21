@@ -155,15 +155,17 @@ public class Sistema extends javax.swing.JFrame {
         campoCantidadPremio = new javax.swing.JTextField();
         formularioCrearPresentacion = new javax.swing.JFrame();
         jLabel49 = new javax.swing.JLabel();
-        campoJuegoPresentacion = new javax.swing.JTextField();
+        campoIDJuegoPresentacion = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         confirmarCrearPresentacion = new javax.swing.JButton();
-        campoTrabajadorPresentacion = new javax.swing.JTextField();
+        campoNumeroPlazasPresentacion = new javax.swing.JTextField();
         jLabel52 = new javax.swing.JLabel();
         cantidadMesasPresentacion = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         campoFechaPresentacion = new javax.swing.JTextField();
+        campoIDPresentacion = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
         formularioModificarPresentacion = new javax.swing.JFrame();
         jLabel46 = new javax.swing.JLabel();
         campoFechaNuevaPresentacion = new javax.swing.JTextField();
@@ -173,9 +175,9 @@ public class Sistema extends javax.swing.JFrame {
         confirmarModificarPresentacion = new javax.swing.JButton();
         formularioReservarPlaza = new javax.swing.JFrame();
         jLabel54 = new javax.swing.JLabel();
-        campoFechaNuevaPresentacion1 = new javax.swing.JTextField();
+        campoIDClienteReservaPlaza = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
-        campoPresentacionModificada1 = new javax.swing.JTextField();
+        campoPresentacionReserva = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
         confirmarReservaPlazaPresentacion = new javax.swing.JButton();
         formularioDisponerJuego = new javax.swing.JFrame();
@@ -184,14 +186,16 @@ public class Sistema extends javax.swing.JFrame {
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         confirmarDisponerJuego = new javax.swing.JButton();
-        campoPrecioJuego = new javax.swing.JTextField();
+        campoExtensionJuego = new javax.swing.JTextField();
         formularioValoracionPresentacion = new javax.swing.JFrame();
         jLabel60 = new javax.swing.JLabel();
-        campoNombreJuego1 = new javax.swing.JTextField();
+        campoIDJuegoValoracion = new javax.swing.JTextField();
         jLabel61 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         confirmarValoracion = new javax.swing.JButton();
-        campoPrecioJuego1 = new javax.swing.JTextField();
+        campoValoracion = new javax.swing.JTextField();
+        jLabel65 = new javax.swing.JLabel();
+        campoIDClienteValoracion = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         botonCerrarSesión = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -1122,15 +1126,15 @@ public class Sistema extends javax.swing.JFrame {
 
         jLabel49.setText("Crear Presentacion");
 
-        campoJuegoPresentacion.addActionListener(new java.awt.event.ActionListener() {
+        campoIDJuegoPresentacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoJuegoPresentacionActionPerformed(evt);
+                campoIDJuegoPresentacionActionPerformed(evt);
             }
         });
 
-        jLabel50.setText("Juego");
+        jLabel50.setText("ID Juego");
 
-        jLabel51.setText("Trabajador");
+        jLabel51.setText("Plazas");
 
         confirmarCrearPresentacion.setText("Crear");
         confirmarCrearPresentacion.addActionListener(new java.awt.event.ActionListener() {
@@ -1139,9 +1143,9 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        campoTrabajadorPresentacion.addActionListener(new java.awt.event.ActionListener() {
+        campoNumeroPlazasPresentacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTrabajadorPresentacionActionPerformed(evt);
+                campoNumeroPlazasPresentacionActionPerformed(evt);
             }
         });
 
@@ -1161,6 +1165,14 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        campoIDPresentacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoIDPresentacionActionPerformed(evt);
+            }
+        });
+
+        jLabel64.setText("ID");
+
         javax.swing.GroupLayout formularioCrearPresentacionLayout = new javax.swing.GroupLayout(formularioCrearPresentacion.getContentPane());
         formularioCrearPresentacion.getContentPane().setLayout(formularioCrearPresentacionLayout);
         formularioCrearPresentacionLayout.setHorizontalGroup(
@@ -1168,43 +1180,51 @@ public class Sistema extends javax.swing.JFrame {
             .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
                 .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoIDJuegoPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
-                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoJuegoPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
-                                .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel51)
-                                    .addComponent(jLabel52)
-                                    .addComponent(jLabel53))
-                                .addGap(18, 18, 18)
-                                .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cantidadMesasPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoTrabajadorPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoFechaPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel51)
+                            .addComponent(jLabel52)
+                            .addComponent(jLabel53))
+                        .addGap(18, 18, 18)
+                        .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cantidadMesasPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoNumeroPlazasPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoFechaPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(jLabel49))
                     .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
                         .addGap(123, 123, 123)
-                        .addComponent(confirmarCrearPresentacion)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(confirmarCrearPresentacion))
+                    .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(campoIDPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         formularioCrearPresentacionLayout.setVerticalGroup(
             formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioCrearPresentacionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel49)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoJuegoPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel64)
+                    .addComponent(campoIDPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoIDJuegoPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel50))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTrabajadorPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNumeroPlazasPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formularioCrearPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1289,17 +1309,17 @@ public class Sistema extends javax.swing.JFrame {
 
         jLabel54.setText("Reservar Plaza Presentacion");
 
-        campoFechaNuevaPresentacion1.addActionListener(new java.awt.event.ActionListener() {
+        campoIDClienteReservaPlaza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFechaNuevaPresentacion1ActionPerformed(evt);
+                campoIDClienteReservaPlazaActionPerformed(evt);
             }
         });
 
         jLabel55.setText("ID Presentacion");
 
-        campoPresentacionModificada1.addActionListener(new java.awt.event.ActionListener() {
+        campoPresentacionReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPresentacionModificada1ActionPerformed(evt);
+                campoPresentacionReservaActionPerformed(evt);
             }
         });
 
@@ -1328,8 +1348,8 @@ public class Sistema extends javax.swing.JFrame {
                             .addComponent(jLabel56))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(formularioReservarPlazaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoPresentacionModificada1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoFechaNuevaPresentacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoPresentacionReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoIDClienteReservaPlaza, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(formularioReservarPlazaLayout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(confirmarReservaPlazaPresentacion)))
@@ -1343,11 +1363,11 @@ public class Sistema extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(formularioReservarPlazaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel55)
-                    .addComponent(campoPresentacionModificada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoPresentacionReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formularioReservarPlazaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel56)
-                    .addComponent(campoFechaNuevaPresentacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoIDClienteReservaPlaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(confirmarReservaPlazaPresentacion)
                 .addGap(14, 14, 14))
@@ -1363,7 +1383,7 @@ public class Sistema extends javax.swing.JFrame {
 
         jLabel58.setText("Nombre");
 
-        jLabel59.setText("Precio");
+        jLabel59.setText("Extension");
 
         confirmarDisponerJuego.setText("Poner a Disposición");
         confirmarDisponerJuego.addActionListener(new java.awt.event.ActionListener() {
@@ -1372,9 +1392,9 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        campoPrecioJuego.addActionListener(new java.awt.event.ActionListener() {
+        campoExtensionJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPrecioJuegoActionPerformed(evt);
+                campoExtensionJuegoActionPerformed(evt);
             }
         });
 
@@ -1398,7 +1418,7 @@ public class Sistema extends javax.swing.JFrame {
                             .addGroup(formularioDisponerJuegoLayout.createSequentialGroup()
                                 .addComponent(jLabel59)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(campoPrecioJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(campoExtensionJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(formularioDisponerJuegoLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(confirmarDisponerJuego)))
@@ -1416,21 +1436,21 @@ public class Sistema extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formularioDisponerJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPrecioJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoExtensionJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(confirmarDisponerJuego)
                 .addGap(22, 22, 22))
         );
 
-        jLabel60.setText("Valoración de Presentación");
+        jLabel60.setText("Valoración de Juego");
 
-        campoNombreJuego1.addActionListener(new java.awt.event.ActionListener() {
+        campoIDJuegoValoracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNombreJuego1ActionPerformed(evt);
+                campoIDJuegoValoracionActionPerformed(evt);
             }
         });
 
-        jLabel61.setText("IDPresentacion");
+        jLabel61.setText("ID Juego");
 
         jLabel62.setText("Valoración");
 
@@ -1441,9 +1461,17 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        campoPrecioJuego1.addActionListener(new java.awt.event.ActionListener() {
+        campoValoracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPrecioJuego1ActionPerformed(evt);
+                campoValoracionActionPerformed(evt);
+            }
+        });
+
+        jLabel65.setText("IDCliente");
+
+        campoIDClienteValoracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoIDClienteValoracionActionPerformed(evt);
             }
         });
 
@@ -1456,16 +1484,23 @@ public class Sistema extends javax.swing.JFrame {
                     .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel62)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campoPrecioJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel61)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNombreJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(campoValoracion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioValoracionPresentacionLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioValoracionPresentacionLayout.createSequentialGroup()
+                                .addComponent(jLabel61)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoIDJuegoValoracion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioValoracionPresentacionLayout.createSequentialGroup()
+                                .addComponent(jLabel65)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoIDClienteValoracion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(77, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioValoracionPresentacionLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 118, Short.MAX_VALUE)
                 .addComponent(jLabel60)
                 .addGap(71, 71, 71))
             .addGroup(formularioValoracionPresentacionLayout.createSequentialGroup()
@@ -1480,13 +1515,17 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(jLabel60)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNombreJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoIDJuegoValoracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel61))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoIDClienteValoracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel65))
+                .addGap(18, 18, 18)
                 .addGroup(formularioValoracionPresentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPrecioJuego1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(campoValoracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(confirmarValoracion)
                 .addGap(22, 22, 22))
         );
@@ -1926,22 +1965,27 @@ private void manejarError(String mensaje, Exception e) {
 
     private void crearPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearPresentacionActionPerformed
         // TODO add your handling code here:
+        formularioCrearPresentacion.setVisible(true);
     }//GEN-LAST:event_crearPresentacionActionPerformed
 
     private void modificarPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarPresentacionActionPerformed
         // TODO add your handling code here:
+        formularioModificarPresentacion.setVisible(true);
     }//GEN-LAST:event_modificarPresentacionActionPerformed
 
     private void reservarPlazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarPlazaActionPerformed
         // TODO add your handling code here:
+        formularioReservarPlaza.setVisible(true);
     }//GEN-LAST:event_reservarPlazaActionPerformed
 
     private void ponerJuegoDisposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ponerJuegoDisposicionActionPerformed
         // TODO add your handling code here:
+        formularioDisponerJuego.setVisible(true);
     }//GEN-LAST:event_ponerJuegoDisposicionActionPerformed
 
     private void valorarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorarJuegoActionPerformed
         // TODO add your handling code here:
+        formularioValoracionPresentacion.setVisible(true);
     }//GEN-LAST:event_valorarJuegoActionPerformed
 
     private void campoClienteAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteAlquilerActionPerformed
@@ -2227,17 +2271,49 @@ private void manejarError(String mensaje, Exception e) {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCantidadPremioActionPerformed
 
-    private void campoJuegoPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoJuegoPresentacionActionPerformed
+    private void campoIDJuegoPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDJuegoPresentacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoJuegoPresentacionActionPerformed
+    }//GEN-LAST:event_campoIDJuegoPresentacionActionPerformed
 
     private void confirmarCrearPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCrearPresentacionActionPerformed
         // TODO add your handling code here:
+        String idPresentacion = campoIDPresentacion.getText(); 
+        String idJuego = campoIDJuegoPresentacion.getText(); 
+        int numPlazas = Integer.parseInt(campoNumeroPlazasPresentacion.getText());
+        int numMesas = Integer.parseInt(cantidadMesasPresentacion.getText());
+        String fecha = campoFechaPresentacion.getText(); 
+   
+        try {
+            
+            java.sql.Date fechaSQL = java.sql.Date.valueOf(fecha);
+            
+            PreparedStatement cn = con.prepareStatement("INSERT INTO PRESENTACIONJUEGO (IDPRESENTACION,IDJUEGO,FECHA,MAXIMOPLAZAS,MAXIMODEMESAS) VALUES (?, ?, ?, ?, ?)");
+
+            cn.setString(1, idPresentacion);
+            cn.setString(2, idJuego);
+            cn.setDate(3, fechaSQL);
+            cn.setInt(4, numPlazas);
+            cn.setInt(5, numMesas);
+
+            int filasAfectadas = cn.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Inserción exitosa");
+
+            }
+            
+            } catch (SQLException e) {
+                e.printStackTrace();
+                manejarError("Error en la función CrearAlquiler", e);
+                formularioCrearAlquiler.dispose();
+        }    
+        
+        actualizarTablaPresentaciones((DefaultTableModel) presentaciones1.getModel());
     }//GEN-LAST:event_confirmarCrearPresentacionActionPerformed
 
-    private void campoTrabajadorPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTrabajadorPresentacionActionPerformed
+    private void campoNumeroPlazasPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumeroPlazasPresentacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTrabajadorPresentacionActionPerformed
+    }//GEN-LAST:event_campoNumeroPlazasPresentacionActionPerformed
 
     private void cantidadMesasPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadMesasPresentacionActionPerformed
         // TODO add your handling code here:
@@ -2253,22 +2329,118 @@ private void manejarError(String mensaje, Exception e) {
 
     private void confirmarModificarPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificarPresentacionActionPerformed
         // TODO add your handling code here:
+        String idAlquiler = campoPresentacionModificada.getText();
+        String nuevaFecha = campoFechaNuevaPresentacion.getText();
+
+        SimpleDateFormat formatoTexto = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            
+            Date fechaDevolucion = formatoTexto.parse(nuevaFecha);
+
+            LocalDate fechaDevolucionLocal = fechaDevolucion.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+            PreparedStatement cn = con.prepareStatement("UPDATE PRESENTACIONJUEGO SET FECHA = ? WHERE IDPRESENTACION = ?");
+
+            cn.setDate(1, new java.sql.Date(fechaDevolucion.getTime()));
+            cn.setString(2, idAlquiler);
+
+            int filasAfectadas = cn.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Modificación exitosa");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ModificarAlquiler", e);
+            formularioModificarAlquiler.dispose();
+        } catch (ParseException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        formularioModificarPresentacion.setVisible(false);
+        campoPresentacionModificada.setText("");
+        campoFechaNuevaPresentacion.setText("");
     }//GEN-LAST:event_confirmarModificarPresentacionActionPerformed
 
     private void campoFechaPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaPresentacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoFechaPresentacionActionPerformed
 
-    private void campoFechaNuevaPresentacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaNuevaPresentacion1ActionPerformed
+    private void campoIDClienteReservaPlazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDClienteReservaPlazaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoFechaNuevaPresentacion1ActionPerformed
+    }//GEN-LAST:event_campoIDClienteReservaPlazaActionPerformed
 
-    private void campoPresentacionModificada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPresentacionModificada1ActionPerformed
+    private void campoPresentacionReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPresentacionReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoPresentacionModificada1ActionPerformed
+    }//GEN-LAST:event_campoPresentacionReservaActionPerformed
 
+    private String obtenerIdJuegoDesdePresentacion(String idPresentacion) throws SQLException {
+        String idJuego = null;
+        String sql = "SELECT IDJUEGO FROM PRESENTACIONJUEGO WHERE IDPRESENTACION = ?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, idPresentacion);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    idJuego = resultSet.getString("IDJUEGO");
+                }
+            }
+        }
+        return idJuego;
+    }
+    
+    private String obtenerEmailCliente(String idCliente) throws SQLException {
+        String emailCliente = null;
+        String sql = "SELECT EMAIL FROM CLIENTE WHERE IDCLIENTE = ?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, idCliente);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    emailCliente = resultSet.getString("EMAIL");
+                }
+            }
+        }
+        return emailCliente;
+    }
+    
     private void confirmarReservaPlazaPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarReservaPlazaPresentacionActionPerformed
         // TODO add your handling code here:
+        String idPresentacion = campoPresentacionReserva.getText();
+        String idCliente = campoIDClienteReservaPlaza.getText();
+
+        try {
+            // Obtener IDJUEGO y EMAIL asociados a la IDPRESENTACION y IDCLIENTE
+            String idJuego = obtenerIdJuegoDesdePresentacion(idPresentacion);
+            String emailCliente = obtenerEmailCliente(idCliente);
+
+            if (idJuego != null && emailCliente != null) {
+                // Insertar reserva con IDJUEGO y EMAIL
+                PreparedStatement cn = con.prepareStatement("INSERT INTO RESERVAPLAZA (IDPRESENTACION, IDCLIENTE, IDJUEGO, EMAIL) VALUES (?, ?, ?, ?)");
+
+                cn.setString(1, idPresentacion);
+                cn.setString(2, idCliente);
+                cn.setString(3, idJuego);
+                cn.setString(4, emailCliente);
+
+                int filasAfectadas = cn.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    System.out.println("Inserción exitosa");
+                }
+                } else {
+                    System.out.println("No se encontró el IDJUEGO o el EMAIL asociado a la presentación o cliente correspondiente");
+                }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ReservaPlaza", e);
+            formularioReservarPlaza.dispose();
+        }    
+
+        formularioReservarPlaza.setVisible(false);
+        campoPresentacionReserva.setText(""); 
+        campoIDClienteReservaPlaza.setText("");
     }//GEN-LAST:event_confirmarReservaPlazaPresentacionActionPerformed
 
     private void campoNombreJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreJuegoActionPerformed
@@ -2277,23 +2449,89 @@ private void manejarError(String mensaje, Exception e) {
 
     private void confirmarDisponerJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDisponerJuegoActionPerformed
         // TODO add your handling code here:
+        String nombreJuego = campoNombreJuego.getText();
+        String extension = campoExtensionJuego.getText();
+
+        try {
+            char estado = 'D';
+
+            if (nombreJuego != null && extension != null) {
+                // Insertar juego con NOMBRE y ESTADO
+                PreparedStatement cn = con.prepareStatement("INSERT INTO JUEGO (NOMBRE, ESTADO, EXTENSION) VALUES (?, ?, ?)");
+
+                cn.setString(1, nombreJuego);
+                cn.setString(2, String.valueOf(estado));
+                cn.setString(3, extension);
+
+                int filasAfectadas = cn.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    System.out.println("Inserción exitosa");
+                }
+            } else {
+                System.out.println("No se encontró el NOMBRE o el EXTENSION asociado al juego correspondiente");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función DisponerJuego", e);
+            formularioReservarPlaza.dispose();
+        }    
+    
+        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+
+        formularioDisponerJuego.setVisible(false);
+        campoNombreJuego.setText(""); 
+        campoExtensionJuego.setText("");
     }//GEN-LAST:event_confirmarDisponerJuegoActionPerformed
 
-    private void campoPrecioJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecioJuegoActionPerformed
+    private void campoExtensionJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoExtensionJuegoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoPrecioJuegoActionPerformed
+    }//GEN-LAST:event_campoExtensionJuegoActionPerformed
 
-    private void campoNombreJuego1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreJuego1ActionPerformed
+    private void campoIDJuegoValoracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDJuegoValoracionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoNombreJuego1ActionPerformed
+    }//GEN-LAST:event_campoIDJuegoValoracionActionPerformed
 
     private void confirmarValoracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarValoracionActionPerformed
         // TODO add your handling code here:
+        String idJuego = campoIDJuegoValoracion.getText();
+        String idCliente = campoIDClienteValoracion.getText();
+        String valoracion = campoValoracion.getText();
+
+        try {
+
+            if (idCliente != null && valoracion != null && idJuego != null) {
+                PreparedStatement cn = con.prepareStatement("INSERT INTO VALORACIONJUEGO (IDCLIENTE, IDJUEGO, EMAIL) VALUES (?, ?, ?)");
+
+                cn.setString(1, idCliente);
+                cn.setString(2, idJuego);
+                cn.setString(3, valoracion);
+
+                int filasAfectadas = cn.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    System.out.println("Inserción exitosa");
+                }
+            } else {
+                System.out.println("No se encontró el IDCliente,IDJuego o la valoracion asociados al juego o cliente correspondiente");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función confirmarValoracionActionPerformed", e);
+            formularioValoracionPresentacion.dispose();
+        }    
+
+        formularioValoracionPresentacion.setVisible(false);
+        campoIDJuegoValoracion.setText(""); 
+        campoIDClienteValoracion.setText("");
+        campoValoracion.setText("");
     }//GEN-LAST:event_confirmarValoracionActionPerformed
 
-    private void campoPrecioJuego1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecioJuego1ActionPerformed
+    private void campoValoracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValoracionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoPrecioJuego1ActionPerformed
+    }//GEN-LAST:event_campoValoracionActionPerformed
 
     private void confirmarCrearAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCrearAlquilerActionPerformed
 
@@ -2375,6 +2613,14 @@ private void manejarError(String mensaje, Exception e) {
     private void campoTrabajadorAlquilerFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTrabajadorAlquilerFinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTrabajadorAlquilerFinActionPerformed
+
+    private void campoIDPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDPresentacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoIDPresentacionActionPerformed
+
+    private void campoIDClienteValoracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDClienteValoracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoIDClienteValoracionActionPerformed
 
    
 private void cargarTablas() {
@@ -2471,6 +2717,28 @@ private void actualizarTablaJuegos(DefaultTableModel modelo) {
     }
 }
 
+private void actualizarTablaPresentaciones(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<String> presentaciones = new ArrayList<>();
+
+    String sql = "SELECT IDPRESENTACION FROM PRESENTACIONJUEGO WHERE MAXIMOPLAZAS > 0";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String idpresentacion = resultSet.getString("IDPRESENTACION");
+            presentaciones.add(idpresentacion);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (String idpresentacion : presentaciones) {
+        modelo.addRow(new Object[]{idpresentacion});
+    }
+}
+
 
 private void cargarDatosDesdeDB(String nombreTabla, DefaultTableModel modelo) {
     try{
@@ -2557,32 +2825,34 @@ public boolean verificarConexion() {
     private javax.swing.JTextField campoClienteReserva;
     private javax.swing.JTextArea campoContenidoCorreo;
     private javax.swing.JTextField campoEquipoCorreo;
+    private javax.swing.JTextField campoExtensionJuego;
     private javax.swing.JTextField campoFechaNuevaPresentacion;
-    private javax.swing.JTextField campoFechaNuevaPresentacion1;
     private javax.swing.JTextField campoFechaPresentacion;
     private javax.swing.JTextField campoFinPartida;
     private javax.swing.JTextField campoHoraModificacion;
+    private javax.swing.JTextField campoIDClienteReservaPlaza;
+    private javax.swing.JTextField campoIDClienteValoracion;
+    private javax.swing.JTextField campoIDJuegoPresentacion;
+    private javax.swing.JTextField campoIDJuegoValoracion;
+    private javax.swing.JTextField campoIDPresentacion;
     private javax.swing.JTextField campoInicioPartida;
     private javax.swing.JTextField campoJuegoAlquiler;
     private javax.swing.JTextField campoJuegoPartida;
-    private javax.swing.JTextField campoJuegoPresentacion;
     private javax.swing.JTextField campoJuegosReserva;
     private javax.swing.JTextField campoMesaPartida;
     private javax.swing.JTextField campoMesaReserva;
     private javax.swing.JTextField campoNomEquipo;
     private javax.swing.JTextField campoNombreJuego;
-    private javax.swing.JTextField campoNombreJuego1;
-    private javax.swing.JTextField campoPrecioJuego;
-    private javax.swing.JTextField campoPrecioJuego1;
+    private javax.swing.JTextField campoNumeroPlazasPresentacion;
     private javax.swing.JTextField campoPresentacionModificada;
-    private javax.swing.JTextField campoPresentacionModificada1;
+    private javax.swing.JTextField campoPresentacionReserva;
     private javax.swing.JTextField campoReservaModificacion;
     private javax.swing.JTextField campoTorneo;
     private javax.swing.JTextField campoTorneoAsignacion;
     private javax.swing.JTextField campoTorneoPartida;
     private javax.swing.JTextField campoTorneoPremio;
     private javax.swing.JTextField campoTrabajadorAlquilerFin;
-    private javax.swing.JTextField campoTrabajadorPresentacion;
+    private javax.swing.JTextField campoValoracion;
     private javax.swing.JTextField cantidadMesasPresentacion;
     private javax.swing.JButton confirmaReservaMesa;
     private javax.swing.JButton confirmarAsignarMesas;
@@ -2682,6 +2952,8 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

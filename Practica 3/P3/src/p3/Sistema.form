@@ -1267,26 +1267,23 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="jLabel50" min="-2" pref="72" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="campoIDJuegoPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel50" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="campoJuegoPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel51" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel52" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel53" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cantidadMesasPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
-                                      <Component id="campoTrabajadorPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
-                                      <Component id="campoFechaPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jLabel51" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel52" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel53" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cantidadMesasPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="campoNumeroPlazasPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="campoFechaPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -1297,8 +1294,14 @@
                           <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
                           <Component id="confirmarCrearPresentacion" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="jLabel64" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="campoIDPresentacion" min="-2" pref="109" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1307,15 +1310,20 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoJuegoPresentacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel64" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoIDPresentacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoIDJuegoPresentacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel51" min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="campoTrabajadorPresentacion" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoNumeroPlazasPresentacion" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1340,19 +1348,19 @@
             <Property name="text" type="java.lang.String" value="Crear Presentacion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoJuegoPresentacion">
+        <Component class="javax.swing.JTextField" name="campoIDJuegoPresentacion">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoJuegoPresentacionActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoIDJuegoPresentacionActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel50">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Juego"/>
+            <Property name="text" type="java.lang.String" value="ID Juego"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel51">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Trabajador"/>
+            <Property name="text" type="java.lang.String" value="Plazas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="confirmarCrearPresentacion">
@@ -1363,9 +1371,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarCrearPresentacionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTrabajadorPresentacion">
+        <Component class="javax.swing.JTextField" name="campoNumeroPlazasPresentacion">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTrabajadorPresentacionActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNumeroPlazasPresentacionActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel52">
@@ -1387,6 +1395,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoFechaPresentacionActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoIDPresentacion">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoIDPresentacionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel64">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -1504,8 +1522,8 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="campoPresentacionModificada1" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                              <Component id="campoFechaNuevaPresentacion1" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="campoPresentacionReserva" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                              <Component id="campoIDClienteReservaPlaza" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -1525,12 +1543,12 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoPresentacionModificada1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoPresentacionReserva" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel56" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoFechaNuevaPresentacion1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoIDClienteReservaPlaza" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="confirmarReservaPlazaPresentacion" min="-2" max="-2" attributes="0"/>
@@ -1545,9 +1563,9 @@
             <Property name="text" type="java.lang.String" value="Reservar Plaza Presentacion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoFechaNuevaPresentacion1">
+        <Component class="javax.swing.JTextField" name="campoIDClienteReservaPlaza">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoFechaNuevaPresentacion1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoIDClienteReservaPlazaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel55">
@@ -1555,9 +1573,9 @@
             <Property name="text" type="java.lang.String" value="ID Presentacion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoPresentacionModificada1">
+        <Component class="javax.swing.JTextField" name="campoPresentacionReserva">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoPresentacionModificada1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoPresentacionReservaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel56">
@@ -1598,7 +1616,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="campoPrecioJuego" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="campoExtensionJuego" min="-2" pref="109" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1624,7 +1642,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel59" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="campoPrecioJuego" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoExtensionJuego" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="confirmarDisponerJuego" min="-2" max="-2" attributes="0"/>
@@ -1651,7 +1669,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel59">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Precio"/>
+            <Property name="text" type="java.lang.String" value="Extension"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="confirmarDisponerJuego">
@@ -1662,9 +1680,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarDisponerJuegoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoPrecioJuego">
+        <Component class="javax.swing.JTextField" name="campoExtensionJuego">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoPrecioJuegoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoExtensionJuegoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -1676,23 +1694,33 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Component id="jLabel62" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="campoPrecioJuego1" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="campoValoracion" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campoNombreJuego1" min="-2" pref="109" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="campoIDJuegoValoracion" min="-2" pref="109" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="campoIDClienteValoracion" min="-2" pref="109" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="77" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
                   <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
@@ -1710,15 +1738,20 @@
                   <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoNombreJuego1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoIDJuegoValoracion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel61" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel62" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="campoPrecioJuego1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoIDClienteValoracion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel65" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel62" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="campoValoracion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="confirmarValoracion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
@@ -1728,17 +1761,17 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel60">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Valoraci&#xf3;n de Presentaci&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="Valoraci&#xf3;n de Juego"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoNombreJuego1">
+        <Component class="javax.swing.JTextField" name="campoIDJuegoValoracion">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNombreJuego1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoIDJuegoValoracionActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel61">
           <Properties>
-            <Property name="text" type="java.lang.String" value="IDPresentacion"/>
+            <Property name="text" type="java.lang.String" value="ID Juego"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel62">
@@ -1754,9 +1787,19 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarValoracionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoPrecioJuego1">
+        <Component class="javax.swing.JTextField" name="campoValoracion">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoPrecioJuego1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoValoracionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel65">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="IDCliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoIDClienteValoracion">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoIDClienteValoracionActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
