@@ -89,9 +89,7 @@ public class Sistema extends javax.swing.JFrame {
         confirmaReservaMesa = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         huecosMesas = new javax.swing.JTable();
-        jLabel66 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
-        campoFechaReservaMesa = new javax.swing.JTextField();
         campoHoraReservaMesa = new javax.swing.JTextField();
         formularioReservarJuego = new javax.swing.JFrame();
         jLabel18 = new javax.swing.JLabel();
@@ -212,8 +210,6 @@ public class Sistema extends javax.swing.JFrame {
         reservarMesa = new javax.swing.JButton();
         modificarReserva = new javax.swing.JButton();
         reservarJuego = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaReservasJuego = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaAlquileres = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -232,6 +228,8 @@ public class Sistema extends javax.swing.JFrame {
         juegos = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         presentaciones1 = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tablaReservasJuegos = new javax.swing.JTable();
 
         formularioCrearAlquiler.setMinimumSize(new java.awt.Dimension(300, 500));
 
@@ -462,6 +460,8 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        formularioReservarMesa.setMinimumSize(new java.awt.Dimension(300, 500));
+
         jLabel11.setText("Reserva de Mesa");
 
         campoClienteMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -500,15 +500,7 @@ public class Sistema extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(huecosMesas);
 
-        jLabel66.setText("Fecha");
-
         jLabel67.setText("Hora");
-
-        campoFechaReservaMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFechaReservaMesaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout formularioReservarMesaLayout = new javax.swing.GroupLayout(formularioReservarMesa.getContentPane());
         formularioReservarMesa.getContentPane().setLayout(formularioReservarMesaLayout);
@@ -527,18 +519,18 @@ public class Sistema extends javax.swing.JFrame {
                                 .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campoMesaReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                                    .addComponent(campoClienteMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                                    .addComponent(campoFechaReservaMesa)
-                                    .addComponent(campoHoraReservaMesa)))))
+                                .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoHoraReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(campoMesaReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                        .addComponent(campoClienteMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))
+                                .addGap(6, 6, 6))))
                     .addGroup(formularioReservarMesaLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
+                        .addGap(103, 103, 103)
                         .addComponent(confirmaReservaMesa)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         formularioReservarMesaLayout.setVerticalGroup(
             formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,18 +547,16 @@ public class Sistema extends javax.swing.JFrame {
                 .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(campoMesaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel66)
-                    .addComponent(campoFechaReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel67)
-                    .addComponent(campoHoraReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                    .addComponent(campoHoraReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel67))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(confirmaReservaMesa)
-                .addGap(69, 69, 69))
+                .addGap(21, 21, 21))
         );
+
+        formularioReservarJuego.setMinimumSize(new java.awt.Dimension(300, 250));
 
         jLabel18.setText("Reserva de Juego");
 
@@ -634,6 +624,8 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(confirmarReservaJuego)
                 .addContainerGap())
         );
+
+        formularioModificarReserva.setMinimumSize(new java.awt.Dimension(250, 300));
 
         jLabel21.setText("Modificar Reserva");
 
@@ -1624,19 +1616,6 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        tablaReservasJuego.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Juego", "Cliente"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaReservasJuego);
-
         tablaAlquileres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1652,13 +1631,13 @@ public class Sistema extends javax.swing.JFrame {
 
         tablaReservasMesa2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mesa", "Cliente"
+                "Nreserva", "Mesa", "Cliente", "Fecha", "Hora"
             }
         ));
         jScrollPane3.setViewportView(tablaReservasMesa2);
@@ -1759,40 +1738,49 @@ public class Sistema extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(presentaciones1);
 
+        tablaReservasJuegos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nreserva", "Cliente", "Juego", "Fecha"
+            }
+        ));
+        jScrollPane9.setViewportView(tablaReservasJuegos);
+        if (tablaReservasJuegos.getColumnModel().getColumnCount() > 0) {
+            tablaReservasJuegos.getColumnModel().getColumn(2).setHeaderValue("Juego");
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(crearAlquiler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modificarAlquiler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(finalizarAlquiler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(233, 233, 233)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel14)
+                        .addGap(350, 350, 350)
+                        .addComponent(jLabel16)
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(464, 464, 464)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel16))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
+                                .addGap(123, 123, 123)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(reservarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(modificarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(reservarJuego, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(45, 45, 45))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel12)
-                        .addGap(17, 17, 17))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                                    .addComponent(reservarJuego, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(103, 103, 103)))
+                        .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(crearPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(registrarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1810,73 +1798,47 @@ public class Sistema extends javax.swing.JFrame {
                             .addComponent(modificarPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(reservarPlaza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ponerJuegoDisposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(234, Short.MAX_VALUE))
+                            .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(137, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(527, 527, 527)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonCerrarSesión, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(190, 190, 190)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(121, 121, 121)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(crearAlquiler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(modificarAlquiler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(finalizarAlquiler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(1099, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(224, 224, 224)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15))
-                        .addGap(44, 44, 44)
+                        .addComponent(jLabel1)
+                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(crearAlquiler)
-                                .addGap(18, 18, 18)
-                                .addComponent(modificarAlquiler)
-                                .addGap(18, 18, 18)
-                                .addComponent(finalizarAlquiler))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(crearPresentacion)
-                                .addGap(18, 18, 18)
-                                .addComponent(modificarPresentacion)
-                                .addGap(18, 18, 18)
-                                .addComponent(reservarPlaza)))
-                        .addGap(36, 36, 36)
-                        .addComponent(ponerJuegoDisposicion)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                                .addGap(156, 156, 156)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(19, 19, 19))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel16))
                                 .addGap(44, 44, 44)
                                 .addComponent(registrarEquipo)
                                 .addGap(18, 18, 18)
@@ -1887,28 +1849,54 @@ public class Sistema extends javax.swing.JFrame {
                                 .addComponent(mandarCorreo2)
                                 .addGap(18, 18, 18)
                                 .addComponent(asignarPremio)
-                                .addGap(0, 345, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel15))
                                 .addGap(44, 44, 44)
+                                .addComponent(crearPresentacion)
+                                .addGap(18, 18, 18)
+                                .addComponent(modificarPresentacion)
+                                .addGap(18, 18, 18)
+                                .addComponent(reservarPlaza)
+                                .addGap(36, 36, 36)
+                                .addComponent(ponerJuegoDisposicion)
+                                .addGap(18, 18, 18)
+                                .addComponent(valorarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(botonCerrarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(crearAlquiler)
+                                .addGap(18, 18, 18)
+                                .addComponent(modificarAlquiler)
+                                .addGap(18, 18, 18)
+                                .addComponent(finalizarAlquiler)
+                                .addGap(178, 178, 178))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(84, 84, 84)
-                                        .addComponent(modificarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(reservarMesa)
                                         .addGap(18, 18, 18)
-                                        .addComponent(reservarJuego)))
-                                .addGap(48, 137, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(reservarJuego))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(84, 84, 84)
+                                        .addComponent(modificarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(469, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(203, 203, 203)))
         );
 
         pack();
@@ -2222,68 +2210,6 @@ private void manejarError(String mensaje, Exception e) {
         actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
     }//GEN-LAST:event_confirmarModificarAlquilerActionPerformed
 
-    private void campoClienteMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteMesaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoClienteMesaActionPerformed
-
-    private void campoMesaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMesaReservaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoMesaReservaActionPerformed
-
-    private void confirmaReservaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaReservaMesaActionPerformed
-        String idCliente = campoClienteMesa.getText(); 
-        int idmesa = Integer.parseInt(campoMesaReserva.getText()); 
-        String fecha = campoFechaReservaMesa.getText();
-        String hora = campoHoraReservaMesa.getText();
-        String nreservamesa;
-        Random random = new Random();
-        
-        int num = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
-        nreservamesa = String.valueOf(num);
-        try {
-            String sql = "SELECT ESTADO FROM MESA WHERE NUMEROMESA = ?";
-            try (PreparedStatement cn = con.prepareStatement(sql)) {
-                cn.setInt(1, idmesa);
-                try (ResultSet resultSet = cn.executeQuery()) {
-                    if (resultSet.next()) {
-                        String estado = resultSet.getString("ESTADO");
-                        if (!"D".equals(estado)) {
-                            JOptionPane.showMessageDialog(this, "No se puede crear una reserva de mesa con una mesa no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
-                    }
-                }
-            }
-            
-            sql = "INSERT INTO RESERVADEMESA (NRESERVAMESA,NUMEROMESA,FECHA,HORA,IDCLIENTE) VALUES (?, ?, ?, ?, ?)";
-            
-            try (PreparedStatement cn2 = con.prepareStatement(sql)) {
-                cn2.setString(1, nreservamesa );
-                cn2.setInt(2, idmesa);
-                cn2.setString(3, fecha);
-                cn2.setString(4, hora);
-                cn2.setString(5, idCliente);
-                int filasAfectadas = cn2.executeUpdate();
-
-                if (filasAfectadas > 0) {
-                    System.out.println("Inserción exitosa");
-
-                }
-            }
-            sql = "UPDATE MESA SET ESTADO = N WHERE NUMEROMESA = ?";
-            try (PreparedStatement cn1 = con.prepareStatement(sql)){
-                cn1.setInt(1, idmesa);
-            }
-            
-            
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            manejarError("Error en la función ReservaMesa", e);
-            formularioReservarMesa.dispose();
-        }
-    }//GEN-LAST:event_confirmaReservaMesaActionPerformed
-
     private void campoClienteReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteReservaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoClienteReservaActionPerformed
@@ -2294,9 +2220,10 @@ private void manejarError(String mensaje, Exception e) {
 
     private void confirmarReservaJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarReservaJuegoActionPerformed
         String idCliente = campoClienteReserva.getText();
-        String idJuego = campoJuegosReserva.getText();
+        String nombreJuego = campoJuegosReserva.getText();
         String confirmacion = "Reserva hecha";
         String nreservajuego;
+        
         Calendar calendar = Calendar.getInstance();
         //Fecha de hoy más una semana
         calendar.add(Calendar.DAY_OF_MONTH, 7);
@@ -2304,12 +2231,20 @@ private void manejarError(String mensaje, Exception e) {
         
         Random random = new Random();
         
-        int num = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
+        int num = 1000000 + random.nextInt(9000000);
         nreservajuego = String.valueOf(num);
+        
+        String idJuego = null;
+        try {
+            idJuego = obtenerIdJuego(nombreJuego);
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         try {
             String sql = "SELECT ESTADO FROM JUEGO WHERE IDJUEGO = ?";
             try (PreparedStatement cn = con.prepareStatement(sql)) {
+                
                 cn.setString(1, idJuego);
                 try (ResultSet resultSet = cn.executeQuery()) {
                     if (resultSet.next()) {
@@ -2322,13 +2257,18 @@ private void manejarError(String mensaje, Exception e) {
                 }
             }
             
-            sql = "INSERT INTO RESERVAJUEGO (NRESERVAJUEGO,IDCLIENTE,IDJUEGO,CONFIRMACION,DIAREGOC) VALUES (?, ?, ?, ?, ?)";
+            sql = "INSERT INTO RESERVAJUEGO (NRESERVAJUEGO,IDCLIENTE,EMAIL,IDJUEGO,CONFIRMACION,DIARECOG) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement cn2 = con.prepareStatement(sql)) {
+                
+                String email = obtenerEmailCliente(idCliente);
+                
                 cn2.setString(1, nreservajuego );
                 cn2.setString(2, idCliente);
-                cn2.setString(3, idJuego);
-                cn2.setString(4, confirmacion);
-                cn2.setDate(5, new java.sql.Date(diarecog.getTime()));
+                cn2.setString(3, email);
+                cn2.setString(4, idJuego);
+                cn2.setString(5, confirmacion);
+                cn2.setDate(6, new java.sql.Date(diarecog.getTime()));
+                
                 int filasAfectadas = cn2.executeUpdate();
 
                 if (filasAfectadas > 0) {
@@ -2347,6 +2287,9 @@ private void manejarError(String mensaje, Exception e) {
             manejarError("Error en la función ReservaMesa", e);
             formularioReservarJuego.dispose();
         }
+        
+        actualizarTablaReservasJuegos((DefaultTableModel) tablaReservasJuegos.getModel());
+        formularioReservarJuego.dispose();
     }//GEN-LAST:event_confirmarReservaJuegoActionPerformed
 
     private void campoReservaModificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoReservaModificacionActionPerformed
@@ -2906,19 +2849,83 @@ private boolean crearAlquiler(String idCliente, String idJuego, String emailClie
         // TODO add your handling code here:
     }//GEN-LAST:event_campoIDClienteValoracionActionPerformed
 
-    private void campoFechaReservaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaReservaMesaActionPerformed
+    private void confirmaReservaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaReservaMesaActionPerformed
+        String idCliente = campoClienteMesa.getText();
+        int idmesa = Integer.parseInt(campoMesaReserva.getText());
+
+        Date fecha = new Date(System.currentTimeMillis());
+        java.sql.Date fechaSQL = new java.sql.Date(fecha.getTime());
+
+
+        String hora = campoHoraReservaMesa.getText();
+        String nreservamesa;
+        Random random = new Random();
+
+        int num = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
+        nreservamesa = String.valueOf(num);
+        try {
+            String sql = "SELECT ESTADO FROM MESA WHERE NUMEROMESA = ?";
+            try (PreparedStatement cn = con.prepareStatement(sql)) {
+                cn.setInt(1, idmesa);
+                try (ResultSet resultSet = cn.executeQuery()) {
+                    if (resultSet.next()) {
+                        String estado = resultSet.getString("ESTADO");
+                        if (!"D".equals(estado)) {
+                            JOptionPane.showMessageDialog(this, "No se puede crear una reserva de mesa con una mesa no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                    }
+                }
+            }
+
+            sql = "INSERT INTO RESERVADEMESA (NRESERVAMESA,NUMEROMESA,FECHA,HORA,IDCLIENTE) VALUES (?, ?, ?, ?, ?)";
+
+            try (PreparedStatement cn2 = con.prepareStatement(sql)) {
+                cn2.setString(1, nreservamesa );
+                cn2.setInt(2, idmesa);
+                cn2.setDate(3, fechaSQL);
+                cn2.setString(4, hora);
+                cn2.setString(5, idCliente);
+                int filasAfectadas = cn2.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    System.out.println("Inserción exitosa");
+
+                }
+            }
+            sql = "UPDATE MESA SET ESTADO = N WHERE NUMEROMESA = ?";
+            try (PreparedStatement cn1 = con.prepareStatement(sql)){
+                cn1.setInt(1, idmesa);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ReservaMesa", e);
+            formularioReservarMesa.dispose();
+        }
+
+        formularioReservarMesa.dispose();
+        actualizarTablaReservasMesas((DefaultTableModel) tablaReservasMesa2.getModel());
+    }//GEN-LAST:event_confirmaReservaMesaActionPerformed
+
+    private void campoMesaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMesaReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoFechaReservaMesaActionPerformed
+    }//GEN-LAST:event_campoMesaReservaActionPerformed
+
+    private void campoClienteMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoClienteMesaActionPerformed
 
    
 private void cargarTablas() {
     cargarDatosDesdeDB("RESERVADEMESA", (DefaultTableModel) tablaReservasMesa2.getModel());
-    cargarDatosDesdeDB("RESERVAJUEGO",(DefaultTableModel) tablaReservasJuego.getModel());
     cargarDatosDesdeDB("PRESENTACIONJUEGO",(DefaultTableModel) presentaciones1.getModel());
     actualizarTablaJuegos((DefaultTableModel) juegos.getModel());
     actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
     actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
     actualizarTablaMesasDisponibles((DefaultTableModel) huecosMesas.getModel());
+    actualizarTablaReservasJuegos((DefaultTableModel) tablaReservasJuegos.getModel());
+    actualizarTablaReservasMesas((DefaultTableModel) tablaReservasMesa2.getModel());
 }
 
 private void actualizarTablaAlquileres(DefaultTableModel modelo) {
@@ -3016,7 +3023,7 @@ private void actualizarTablaMesasDisponibles(DefaultTableModel modelo) {
          ResultSet resultSet = statement.executeQuery()) {
 
         while (resultSet.next()) {
-            String idmesa = resultSet.getString("IDMESA");
+            String idmesa = resultSet.getString("NUMEROMESA");
             mesas.add(idmesa);
         }
     } catch (SQLException e) {
@@ -3047,6 +3054,76 @@ private void actualizarTablaPresentaciones(DefaultTableModel modelo) {
 
     for (String idpresentacion : presentaciones) {
         modelo.addRow(new Object[]{idpresentacion});
+    }
+}
+
+private void actualizarTablaReservasJuegos(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<Object[]> reservas = new ArrayList<>();
+
+    String sql = "SELECT NRESERVAJUEGO, IDCLIENTE, IDJUEGO,DIARECOG FROM RESERVAJUEGO";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String idReserva = resultSet.getString("NRESERVAJUEGO");
+            String idCliente = resultSet.getString("IDCLIENTE");
+            String idJuego = resultSet.getString("IDJUEGO");
+            Date fechaDate = resultSet.getDate("DIARECOG");
+            String nombreJuego = "";
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String fecha = sdf.format(fechaDate);
+            
+            sql = "SELECT NOMBRE FROM JUEGO WHERE IDJUEGO = ?";
+            try (PreparedStatement statement2 = con.prepareStatement(sql)) {
+                statement2.setString(1, idJuego);
+                try (ResultSet resultSet2 = statement2.executeQuery()) {
+                    if (resultSet2.next()) {
+                        nombreJuego = resultSet2.getString("NOMBRE");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            reservas.add(new Object[]{idReserva,idCliente,nombreJuego,fecha});
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (Object[] reserva : reservas) {
+        modelo.addRow(reserva);
+    }
+}
+
+private void actualizarTablaReservasMesas(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<Object[]> reservas = new ArrayList<>();
+
+    String sql = "SELECT NRESERVAMESA, NUMEROMESA, IDCLIENTE,FECHA, HORA FROM RESERVADEMESA";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String idReserva = resultSet.getString("NRESERVAMESA");
+            String nMesa = resultSet.getString("NUMEROMESA");
+            String idCliente = resultSet.getString("IDCLIENTE");
+            Date fechaDate = resultSet.getDate("FECHA");
+            String hora = resultSet.getString("HORA");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String fecha = sdf.format(fechaDate);
+
+            reservas.add(new Object[]{idReserva,nMesa,idCliente,fecha,hora});
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (Object[] reserva : reservas) {
+        modelo.addRow(reserva);
     }
 }
 
@@ -3139,7 +3216,6 @@ public boolean verificarConexion() {
     private javax.swing.JTextField campoExtensionJuego;
     private javax.swing.JTextField campoFechaNuevaPresentacion;
     private javax.swing.JTextField campoFechaPresentacion;
-    private javax.swing.JTextField campoFechaReservaMesa;
     private javax.swing.JTextField campoFinPartida;
     private javax.swing.JTextField campoHoraModificacion;
     private javax.swing.JTextField campoHoraReservaMesa;
@@ -3267,12 +3343,10 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3280,6 +3354,7 @@ public boolean verificarConexion() {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable juegos;
     private javax.swing.JTable juegosDisponibles;
     private javax.swing.JButton mandarCorreo;
@@ -3299,7 +3374,7 @@ public boolean verificarConexion() {
     private javax.swing.JButton reservarMesa;
     private javax.swing.JButton reservarPlaza;
     private javax.swing.JTable tablaAlquileres;
-    private javax.swing.JTable tablaReservasJuego;
+    private javax.swing.JTable tablaReservasJuegos;
     private javax.swing.JTable tablaReservasMesa2;
     private javax.swing.JButton valorarJuego;
     // End of variables declaration//GEN-END:variables
