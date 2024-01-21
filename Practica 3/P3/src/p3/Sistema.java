@@ -89,6 +89,10 @@ public class Sistema extends javax.swing.JFrame {
         confirmaReservaMesa = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         huecosMesas = new javax.swing.JTable();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        campoFechaReservaMesa = new javax.swing.JTextField();
+        campoHoraReservaMesa = new javax.swing.JTextField();
         formularioReservarJuego = new javax.swing.JFrame();
         jLabel18 = new javax.swing.JLabel();
         campoClienteReserva = new javax.swing.JTextField();
@@ -207,7 +211,7 @@ public class Sistema extends javax.swing.JFrame {
         finalizarAlquiler = new javax.swing.JButton();
         reservarMesa = new javax.swing.JButton();
         modificarReserva = new javax.swing.JButton();
-        reservarMesa1 = new javax.swing.JButton();
+        reservarJuego = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReservasJuego = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -458,8 +462,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        formularioReservarMesa.setMinimumSize(new java.awt.Dimension(300, 400));
-
         jLabel11.setText("Reserva de Mesa");
 
         campoClienteMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -498,6 +500,16 @@ public class Sistema extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(huecosMesas);
 
+        jLabel66.setText("Fecha");
+
+        jLabel67.setText("Hora");
+
+        campoFechaReservaMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoFechaReservaMesaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formularioReservarMesaLayout = new javax.swing.GroupLayout(formularioReservarMesa.getContentPane());
         formularioReservarMesa.getContentPane().setLayout(formularioReservarMesaLayout);
         formularioReservarMesaLayout.setHorizontalGroup(
@@ -512,15 +524,20 @@ public class Sistema extends javax.swing.JFrame {
                         .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(formularioReservarMesaLayout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campoClienteMesa)
-                                    .addComponent(campoMesaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(formularioReservarMesaLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(2, 2, 2)
-                                .addComponent(confirmaReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(campoMesaReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                    .addComponent(campoClienteMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                    .addComponent(campoFechaReservaMesa)
+                                    .addComponent(campoHoraReservaMesa)))))
+                    .addGroup(formularioReservarMesaLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(confirmaReservaMesa)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         formularioReservarMesaLayout.setVerticalGroup(
@@ -528,19 +545,27 @@ public class Sistema extends javax.swing.JFrame {
             .addGroup(formularioReservarMesaLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel11)
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(campoClienteMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoClienteMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel17)
+                    .addComponent(campoMesaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoMesaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addGap(31, 31, 31)
+                    .addComponent(jLabel66)
+                    .addComponent(campoFechaReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(formularioReservarMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel67)
+                    .addComponent(campoHoraReservaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addComponent(confirmaReservaMesa)
-                .addContainerGap())
+                .addGap(69, 69, 69))
         );
 
         jLabel18.setText("Reserva de Juego");
@@ -589,7 +614,7 @@ public class Sistema extends javax.swing.JFrame {
                             .addGroup(formularioReservarJuegoLayout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addGap(2, 2, 2)
-                                .addComponent(confirmarReservaJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(confirmarReservaJuego)))))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         formularioReservarJuegoLayout.setVerticalGroup(
@@ -609,8 +634,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(confirmarReservaJuego)
                 .addContainerGap())
         );
-
-        formularioModificarReserva.setMinimumSize(new java.awt.Dimension(300, 250));
 
         jLabel21.setText("Modificar Reserva");
 
@@ -689,8 +712,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(confirmarModificar)
                 .addGap(50, 50, 50))
         );
-
-        formularioRegistroEquipo.setMinimumSize(new java.awt.Dimension(300, 400));
 
         jLabel24.setText("Registrar Equipo");
 
@@ -789,8 +810,8 @@ public class Sistema extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(miembro4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(confirmarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(108, 108, 108)
+                        .addComponent(confirmarRegistro)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         formularioRegistroEquipoLayout.setVerticalGroup(
@@ -826,8 +847,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(confirmarRegistro)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        formularioCrearPartida.setMinimumSize(new java.awt.Dimension(300, 300));
 
         jLabel31.setText("Crear Partida");
 
@@ -888,6 +907,9 @@ public class Sistema extends javax.swing.JFrame {
                         .addGap(97, 97, 97)
                         .addComponent(jLabel31))
                     .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(confirmarCrearPartida))
+                    .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
@@ -905,10 +927,7 @@ public class Sistema extends javax.swing.JFrame {
                                     .addComponent(campoTorneoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoJuegoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoFinPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoInicioPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(confirmarCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(campoInicioPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
         formularioCrearPartidaLayout.setVerticalGroup(
@@ -940,8 +959,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(confirmarCrearPartida)
                 .addContainerGap())
         );
-
-        formularioEnviarCorreos.setMinimumSize(new java.awt.Dimension(300, 250));
 
         jLabel37.setText("Enviar Correo a Equipo");
 
@@ -1134,8 +1151,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        formularioCrearPresentacion.setMinimumSize(new java.awt.Dimension(300, 400));
-
         jLabel49.setText("Crear Presentacion");
 
         campoIDJuegoPresentacion.addActionListener(new java.awt.event.ActionListener() {
@@ -1250,8 +1265,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        formularioModificarPresentacion.setMinimumSize(new java.awt.Dimension(300, 250));
-
         jLabel46.setText("Modificar Presentacion");
 
         campoFechaNuevaPresentacion.addActionListener(new java.awt.event.ActionListener() {
@@ -1321,8 +1334,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        formularioReservarPlaza.setMinimumSize(new java.awt.Dimension(300, 200));
-
         jLabel54.setText("Reservar Plaza Presentacion");
 
         campoIDClienteReservaPlaza.addActionListener(new java.awt.event.ActionListener() {
@@ -1388,8 +1399,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addComponent(confirmarReservaPlazaPresentacion)
                 .addGap(14, 14, 14))
         );
-
-        formularioDisponerJuego.setMinimumSize(new java.awt.Dimension(250, 300));
 
         jLabel57.setText("Nuevo Juego");
 
@@ -1608,10 +1617,10 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
-        reservarMesa1.setText("Reservar Juego");
-        reservarMesa1.addActionListener(new java.awt.event.ActionListener() {
+        reservarJuego.setText("Reservar Juego");
+        reservarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservarMesa1ActionPerformed(evt);
+                reservarJuegoActionPerformed(evt);
             }
         });
 
@@ -1773,7 +1782,7 @@ public class Sistema extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(reservarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(modificarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(reservarMesa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(reservarJuego, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(45, 45, 45))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1889,7 +1898,7 @@ public class Sistema extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(reservarMesa)
                                         .addGap(18, 18, 18)
-                                        .addComponent(reservarMesa1)))
+                                        .addComponent(reservarJuego)))
                                 .addGap(48, 137, Short.MAX_VALUE)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -1950,16 +1959,22 @@ private void manejarError(String mensaje, Exception e) {
     }//GEN-LAST:event_finalizarAlquilerActionPerformed
 
     private void reservarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarMesaActionPerformed
-        // TODO add your handling code here:
+        formularioReservarMesa.setVisible(true);
+        
+        actualizarTablaMesasDisponibles((DefaultTableModel) huecosMesas.getModel());
     }//GEN-LAST:event_reservarMesaActionPerformed
 
     private void modificarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarReservaActionPerformed
-        // TODO add your handling code here:
+        formularioModificarReserva.setVisible(true);
+        
+        //actualizarTablaReservas((DefaultTableModel) reservamesas.getModel());
     }//GEN-LAST:event_modificarReservaActionPerformed
 
-    private void reservarMesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarMesa1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reservarMesa1ActionPerformed
+    private void reservarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarJuegoActionPerformed
+        formularioReservarJuego.setVisible(true);
+        
+        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+    }//GEN-LAST:event_reservarJuegoActionPerformed
 
     private void registrarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarEquipoActionPerformed
         // TODO add your handling code here:
@@ -2053,24 +2068,25 @@ private void manejarError(String mensaje, Exception e) {
         }
     }
     
+    
     private String obtenerIdJuegoDesdeAlquiler(String idAlquiler) throws SQLException {
-    String idJuego = "";
-    String sqlObtenerIdJuego = "SELECT IDJUEGO FROM ALQUILER WHERE IDALQUILER = ?";
+        String idJuego = "";
+        String sqlObtenerIdJuego = "SELECT IDJUEGO FROM ALQUILER WHERE IDALQUILER = ?";
 
-    try (PreparedStatement statementObtenerIdJuego = con.prepareStatement(sqlObtenerIdJuego)) {
-        statementObtenerIdJuego.setString(1, idAlquiler);
+        try (PreparedStatement statementObtenerIdJuego = con.prepareStatement(sqlObtenerIdJuego)) {
+            statementObtenerIdJuego.setString(1, idAlquiler);
 
-        try (ResultSet resultSet = statementObtenerIdJuego.executeQuery()) {
-            if (resultSet.next()) {
-                idJuego = resultSet.getString("IDJUEGO");
-            } else {
-                System.out.println("No se encontró el alquiler con el ID especificado");
+            try (ResultSet resultSet = statementObtenerIdJuego.executeQuery()) {
+                if (resultSet.next()) {
+                    idJuego = resultSet.getString("IDJUEGO");
+                } else {
+                    System.out.println("No se encontró el alquiler con el ID especificado");
+                }
             }
         }
-    }
 
-    return idJuego;
-}
+        return idJuego;
+    }
     
     private void confirmarFinalizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarFinalizarAlquilerActionPerformed
         String idAlquiler = campoAlquilerFin.getText();
@@ -2215,7 +2231,57 @@ private void manejarError(String mensaje, Exception e) {
     }//GEN-LAST:event_campoMesaReservaActionPerformed
 
     private void confirmaReservaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaReservaMesaActionPerformed
-        // TODO add your handling code here:
+        String idCliente = campoClienteMesa.getText(); 
+        int idmesa = Integer.parseInt(campoMesaReserva.getText()); 
+        String fecha = campoFechaReservaMesa.getText();
+        String hora = campoHoraReservaMesa.getText();
+        String nreservamesa;
+        Random random = new Random();
+        
+        int num = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
+        nreservamesa = String.valueOf(num);
+        try {
+            String sql = "SELECT ESTADO FROM MESA WHERE NUMEROMESA = ?";
+            try (PreparedStatement cn = con.prepareStatement(sql)) {
+                cn.setInt(1, idmesa);
+                try (ResultSet resultSet = cn.executeQuery()) {
+                    if (resultSet.next()) {
+                        String estado = resultSet.getString("ESTADO");
+                        if (!"D".equals(estado)) {
+                            JOptionPane.showMessageDialog(this, "No se puede crear una reserva de mesa con una mesa no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            sql = "INSERT INTO RESERVADEMESA (NRESERVAMESA,NUMEROMESA,FECHA,HORA,IDCLIENTE) VALUES (?, ?, ?, ?, ?)";
+            
+            try (PreparedStatement cn2 = con.prepareStatement(sql)) {
+                cn2.setString(1, nreservamesa );
+                cn2.setInt(2, idmesa);
+                cn2.setString(3, fecha);
+                cn2.setString(4, hora);
+                cn2.setString(5, idCliente);
+                int filasAfectadas = cn2.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    System.out.println("Inserción exitosa");
+
+                }
+            }
+            sql = "UPDATE MESA SET ESTADO = N WHERE NUMEROMESA = ?";
+            try (PreparedStatement cn1 = con.prepareStatement(sql)){
+                cn1.setInt(1, idmesa);
+            }
+            
+            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ReservaMesa", e);
+            formularioReservarMesa.dispose();
+        }
     }//GEN-LAST:event_confirmaReservaMesaActionPerformed
 
     private void campoClienteReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClienteReservaActionPerformed
@@ -2227,7 +2293,60 @@ private void manejarError(String mensaje, Exception e) {
     }//GEN-LAST:event_campoJuegosReservaActionPerformed
 
     private void confirmarReservaJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarReservaJuegoActionPerformed
-        // TODO add your handling code here:
+        String idCliente = campoClienteReserva.getText();
+        String idJuego = campoJuegosReserva.getText();
+        String confirmacion = "Reserva hecha";
+        String nreservajuego;
+        Calendar calendar = Calendar.getInstance();
+        //Fecha de hoy más una semana
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        Date diarecog = calendar.getTime();
+        
+        Random random = new Random();
+        
+        int num = 1000000 + random.nextInt(9000000); // Genera códigos aleatorios de 7 cifras
+        nreservajuego = String.valueOf(num);
+        
+        try {
+            String sql = "SELECT ESTADO FROM JUEGO WHERE IDJUEGO = ?";
+            try (PreparedStatement cn = con.prepareStatement(sql)) {
+                cn.setString(1, idJuego);
+                try (ResultSet resultSet = cn.executeQuery()) {
+                    if (resultSet.next()) {
+                        String estado = resultSet.getString("ESTADO");
+                        if (!"D".equals(estado)) {
+                            JOptionPane.showMessageDialog(this, "No se puede crear una reserva de mesa con una mesa no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            sql = "INSERT INTO RESERVAJUEGO (NRESERVAJUEGO,IDCLIENTE,IDJUEGO,CONFIRMACION,DIAREGOC) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement cn2 = con.prepareStatement(sql)) {
+                cn2.setString(1, nreservajuego );
+                cn2.setString(2, idCliente);
+                cn2.setString(3, idJuego);
+                cn2.setString(4, confirmacion);
+                cn2.setDate(5, new java.sql.Date(diarecog.getTime()));
+                int filasAfectadas = cn2.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    System.out.println("Inserción exitosa");
+                }
+            }
+
+            sql = "UPDATE JUEGO SET ESTADO = 'N' WHERE IDJUEGO = ?";
+            try (PreparedStatement cn1 = con.prepareStatement(sql)){
+                cn1.setString(1, idJuego);
+                cn1.executeUpdate();
+            }
+ 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ReservaMesa", e);
+            formularioReservarJuego.dispose();
+        }
     }//GEN-LAST:event_confirmarReservaJuegoActionPerformed
 
     private void campoReservaModificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoReservaModificacionActionPerformed
@@ -2239,11 +2358,71 @@ private void manejarError(String mensaje, Exception e) {
     }//GEN-LAST:event_campoHoraModificacionActionPerformed
 
     private void confirmarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificarActionPerformed
-        // TODO add your handling code here:
+        int nreserva = Integer.parseInt(campoReservaModificacion.getText());
+        String hora = campoHoraModificacion.getText();
+        
+        
+        try {
+            
+            String sql = "SELECT NRESERVAMESA FROM RESERVADEMESA WHERE NRESERVAMESA = ?";
+            try (PreparedStatement cn = con.prepareStatement(sql)) {
+                cn.setInt(1, nreserva);
+                try (ResultSet resultSet = cn.executeQuery()) {
+                    String ident = resultSet.getString("NRESERVAMESA");
+                    if(ident == null){
+                        JOptionPane.showMessageDialog(this, "No se encuentra la reserva de mesa que quiere modificar. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
+            }
+
+            sql = "UPDATE RESERVADEMESA SET HORA = ? WHERE RESERVAMESA = ?";
+            try (PreparedStatement cn1 = con.prepareStatement(sql)){
+                cn1.setString(1, hora);
+                cn1.setInt(2, nreserva);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ReservaMesa", e);
+            formularioModificarReserva.dispose();
+        }
     }//GEN-LAST:event_confirmarModificarActionPerformed
 
     private void anularReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularReservaActionPerformed
-        // TODO add your handling code here:
+        int nreserva = Integer.parseInt(campoReservaModificacion.getText());
+        String hora = campoHoraModificacion.getText();
+        
+        
+        try {
+
+            String sql = "SELECT NRESERVAMESA FROM RESERVADEMESA WHERE NRESERVAMESA = ? AND HORA = ?";
+            try (PreparedStatement cn = con.prepareStatement(sql)) {
+                cn.setInt(1, nreserva);
+                cn.setString(2, hora);
+                try (ResultSet resultSet = cn.executeQuery()) {
+                    String ident = resultSet.getString("NRESERVAMESA");
+            
+                    if(ident == null){
+                        JOptionPane.showMessageDialog(this, "No se encuentra la reserva de mesa que quiere anular. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
+            }
+            
+
+            sql = "DELETE * FROM RESERVADEMESA WHERE NRESERVAMESA = ?";
+            try (PreparedStatement cn1 = con.prepareStatement(sql)){
+                cn1.setInt(1, nreserva);
+            }
+            
+            actualizarTablaMesasDisponibles((DefaultTableModel) huecosMesas.getModel());
+          
+        } catch (SQLException e) {
+            e.printStackTrace();
+            manejarError("Error en la función ReservaMesa", e);
+            formularioModificarReserva.dispose();
+        }
     }//GEN-LAST:event_anularReservaActionPerformed
 
     private void campoNomEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomEquipoActionPerformed
@@ -2587,33 +2766,33 @@ private void manejarError(String mensaje, Exception e) {
     private void campoValoracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValoracionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoValoracionActionPerformed
-    
+
     private String obtenerIdJuego(String nombre) throws SQLException {
-    String idJuego = null;
-    String sql = "SELECT IDJUEGO, ESTADO FROM JUEGO WHERE NOMBRE = ?";
+        String idJuego = null;
+        String sql = "SELECT IDJUEGO, ESTADO FROM JUEGO WHERE NOMBRE = ?";
 
-    try (PreparedStatement statement = con.prepareStatement(sql)) {
-        statement.setString(1, nombre);
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, nombre);
 
-        try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                idJuego = resultSet.getString("IDJUEGO");
-                String estado = resultSet.getString("ESTADO");
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    idJuego = resultSet.getString("IDJUEGO");
+                    String estado = resultSet.getString("ESTADO");
 
-                if (!"D".equals(estado)) {
-                    JOptionPane.showMessageDialog(this, "No se puede crear un alquiler con un juego no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (!"D".equals(estado)) {
+                        JOptionPane.showMessageDialog(this, "No se puede crear un alquiler con un juego no disponible. Mire la lista", "Error", JOptionPane.ERROR_MESSAGE);
+                        return null;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontró el juego con el nombre especificado", "Error", JOptionPane.ERROR_MESSAGE);
                     return null;
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "No se encontró el juego con el nombre especificado", "Error", JOptionPane.ERROR_MESSAGE);
-                return null;
             }
         }
+
+        return idJuego;
     }
-
-    return idJuego;
-}
-
+    
 private boolean verificarJuegoDisponible(String idJuego) throws SQLException {
     String sql = "UPDATE JUEGO SET ESTADO = 'A' WHERE IDJUEGO = ?";
     
@@ -2628,8 +2807,8 @@ private boolean verificarJuegoDisponible(String idJuego) throws SQLException {
     }
 
     return true;
-}
-
+}  
+    
 private boolean crearAlquiler(String idCliente, String idJuego, String emailCliente) throws SQLException {
     double multa = 5.0;
     Calendar calendar = Calendar.getInstance();
@@ -2656,7 +2835,6 @@ private boolean crearAlquiler(String idCliente, String idJuego, String emailClie
         }
     }
 }
-    
     
     private void confirmarCrearAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCrearAlquilerActionPerformed
 
@@ -2728,14 +2906,19 @@ private boolean crearAlquiler(String idCliente, String idJuego, String emailClie
         // TODO add your handling code here:
     }//GEN-LAST:event_campoIDClienteValoracionActionPerformed
 
+    private void campoFechaReservaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaReservaMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoFechaReservaMesaActionPerformed
+
    
 private void cargarTablas() {
     cargarDatosDesdeDB("RESERVADEMESA", (DefaultTableModel) tablaReservasMesa2.getModel());
     cargarDatosDesdeDB("RESERVAJUEGO",(DefaultTableModel) tablaReservasJuego.getModel());
+    cargarDatosDesdeDB("PRESENTACIONJUEGO",(DefaultTableModel) presentaciones1.getModel());
     actualizarTablaJuegos((DefaultTableModel) juegos.getModel());
     actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
     actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
-    actualizarTablaPresentaciones((DefaultTableModel) presentaciones1.getModel());
+    actualizarTablaMesasDisponibles((DefaultTableModel) huecosMesas.getModel());
 }
 
 private void actualizarTablaAlquileres(DefaultTableModel modelo) {
@@ -2820,6 +3003,28 @@ private void actualizarTablaJuegos(DefaultTableModel modelo) {
 
     for (String nombreJuego : juegos) {
         modelo.addRow(new Object[]{nombreJuego});
+    }
+}
+
+private void actualizarTablaMesasDisponibles(DefaultTableModel modelo) {
+    modelo.setRowCount(0);
+
+    List<String> mesas = new ArrayList<>();
+
+    String sql = "SELECT NUMEROMESA FROM MESA WHERE ESTADO = 'D'";
+    try (PreparedStatement statement = con.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String idmesa = resultSet.getString("IDMESA");
+            mesas.add(idmesa);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    for (String idm : mesas) {
+        modelo.addRow(new Object[]{idm});
     }
 }
 
@@ -2934,8 +3139,10 @@ public boolean verificarConexion() {
     private javax.swing.JTextField campoExtensionJuego;
     private javax.swing.JTextField campoFechaNuevaPresentacion;
     private javax.swing.JTextField campoFechaPresentacion;
+    private javax.swing.JTextField campoFechaReservaMesa;
     private javax.swing.JTextField campoFinPartida;
     private javax.swing.JTextField campoHoraModificacion;
+    private javax.swing.JTextField campoHoraReservaMesa;
     private javax.swing.JTextField campoIDClienteReservaPlaza;
     private javax.swing.JTextField campoIDClienteValoracion;
     private javax.swing.JTextField campoIDJuegoPresentacion;
@@ -3060,6 +3267,8 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3086,8 +3295,8 @@ public boolean verificarConexion() {
     private javax.swing.JButton ponerJuegoDisposicion;
     private javax.swing.JTable presentaciones1;
     private javax.swing.JButton registrarEquipo;
+    private javax.swing.JButton reservarJuego;
     private javax.swing.JButton reservarMesa;
-    private javax.swing.JButton reservarMesa1;
     private javax.swing.JButton reservarPlaza;
     private javax.swing.JTable tablaAlquileres;
     private javax.swing.JTable tablaReservasJuego;
