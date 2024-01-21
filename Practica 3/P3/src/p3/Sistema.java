@@ -98,6 +98,8 @@ public class Sistema extends javax.swing.JFrame {
         campoJuegosReserva = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         confirmarReservaJuego = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        juegosDisponibles1 = new javax.swing.JTable();
         formularioModificarReserva = new javax.swing.JFrame();
         jLabel21 = new javax.swing.JLabel();
         campoReservaModificacion = new javax.swing.JTextField();
@@ -556,7 +558,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        formularioReservarJuego.setMinimumSize(new java.awt.Dimension(300, 250));
+        formularioReservarJuego.setMinimumSize(new java.awt.Dimension(300, 400));
 
         jLabel18.setText("Reserva de Juego");
 
@@ -583,6 +585,19 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
 
+        juegosDisponibles1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Juegos Disponibles"
+            }
+        ));
+        jScrollPane10.setViewportView(juegosDisponibles1);
+
         javax.swing.GroupLayout formularioReservarJuegoLayout = new javax.swing.GroupLayout(formularioReservarJuego.getContentPane());
         formularioReservarJuego.getContentPane().setLayout(formularioReservarJuegoLayout);
         formularioReservarJuegoLayout.setHorizontalGroup(
@@ -606,13 +621,19 @@ public class Sistema extends javax.swing.JFrame {
                                 .addGap(2, 2, 2)
                                 .addComponent(confirmarReservaJuego)))))
                 .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioReservarJuegoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         formularioReservarJuegoLayout.setVerticalGroup(
             formularioReservarJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioReservarJuegoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(formularioReservarJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoClienteReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
@@ -1961,7 +1982,7 @@ private void manejarError(String mensaje, Exception e) {
     private void reservarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarJuegoActionPerformed
         formularioReservarJuego.setVisible(true);
         
-        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles1.getModel());
     }//GEN-LAST:event_reservarJuegoActionPerformed
 
     private void registrarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarEquipoActionPerformed
@@ -2276,7 +2297,7 @@ private void manejarError(String mensaje, Exception e) {
                 }
             }
 
-            sql = "UPDATE JUEGO SET ESTADO = 'N' WHERE IDJUEGO = ?";
+            sql = "UPDATE JUEGO SET ESTADO = 'R' WHERE IDJUEGO = ?";
             try (PreparedStatement cn1 = con.prepareStatement(sql)){
                 cn1.setString(1, idJuego);
                 cn1.executeUpdate();
@@ -2289,6 +2310,7 @@ private void manejarError(String mensaje, Exception e) {
         }
         
         actualizarTablaReservasJuegos((DefaultTableModel) tablaReservasJuegos.getModel());
+        actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
         formularioReservarJuego.dispose();
     }//GEN-LAST:event_confirmarReservaJuegoActionPerformed
 
@@ -2737,7 +2759,7 @@ private void manejarError(String mensaje, Exception e) {
     }
     
 private boolean verificarJuegoDisponible(String idJuego) throws SQLException {
-    String sql = "UPDATE JUEGO SET ESTADO = 'A' WHERE IDJUEGO = ?";
+    String sql = "UPDATE JUEGO SET ESTADO = 'R' WHERE IDJUEGO = ?";
     
     try (PreparedStatement statement = con.prepareStatement(sql)) {
         statement.setString(1, idJuego);
@@ -2893,9 +2915,10 @@ private boolean crearAlquiler(String idCliente, String idJuego, String emailClie
 
                 }
             }
-            sql = "UPDATE MESA SET ESTADO = N WHERE NUMEROMESA = ?";
+            sql = "UPDATE MESA SET ESTADO = 'A' WHERE NUMEROMESA = ?";
             try (PreparedStatement cn1 = con.prepareStatement(sql)){
                 cn1.setInt(1, idmesa);
+                cn1.executeUpdate();
             }
 
         } catch (SQLException e) {
@@ -2905,6 +2928,8 @@ private boolean crearAlquiler(String idCliente, String idJuego, String emailClie
         }
 
         formularioReservarMesa.dispose();
+        campoMesaReserva.setText("");
+        campoClienteMesa.setText("");
         actualizarTablaReservasMesas((DefaultTableModel) tablaReservasMesa2.getModel());
     }//GEN-LAST:event_confirmaReservaMesaActionPerformed
 
@@ -3347,6 +3372,7 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3357,6 +3383,7 @@ public boolean verificarConexion() {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable juegos;
     private javax.swing.JTable juegosDisponibles;
+    private javax.swing.JTable juegosDisponibles1;
     private javax.swing.JButton mandarCorreo;
     private javax.swing.JButton mandarCorreo2;
     private javax.swing.JTextField miembro1;
