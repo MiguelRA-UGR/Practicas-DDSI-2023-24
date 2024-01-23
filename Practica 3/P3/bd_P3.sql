@@ -21,7 +21,7 @@ INSERT INTO Mesa VALUES (1, 'A', 4);
 INSERT INTO Mesa VALUES (2, 'B', 6);
 
 --select idTorneo from torneo;
-select * from mesa;
+select * from alquiler,reservaJuego;
 --select * from partida order by idpartida asc;
 
 -- Inserciones en la tabla Partida
@@ -138,10 +138,12 @@ BEGIN
 END;
 /
 
-select * from partida;
 
-delete from reservademesa where nreservamesa = '8992948';
 --Ponerle hora a las partidas
 UPDATE Partida SET HoraInicio = '12:30:00' WHERE IDPartida = 'P002';
+UPDATE Juego SET Estado = 'D' WHERE IDJuego = '4';
 
-UPDATE reservademesa SET Email = 'admin@example.com' WHERE nreservamesa = '4799585';
+select IDJuego, DIARECOG from reservajuego;
+
+select * from mis_sesiones;
+execute mata_sesion(68,56526);

@@ -108,42 +108,6 @@ public class Sistema extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         confirmarModificar = new javax.swing.JButton();
         anularReserva = new javax.swing.JButton();
-        formularioRegistroEquipo = new javax.swing.JFrame();
-        jLabel24 = new javax.swing.JLabel();
-        campoNomEquipo = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        campoTorneo = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        confirmarRegistro = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
-        miembro1 = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        miembro2 = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        miembro3 = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        miembro4 = new javax.swing.JTextField();
-        formularioCrearPartida = new javax.swing.JFrame();
-        jLabel31 = new javax.swing.JLabel();
-        campoMesaPartida = new javax.swing.JTextField();
-        jLabel32 = new javax.swing.JLabel();
-        campoTorneoPartida = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
-        confirmarCrearPartida = new javax.swing.JButton();
-        jLabel34 = new javax.swing.JLabel();
-        campoJuegoPartida = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        campoFinPartida = new javax.swing.JTextField();
-        campoInicioPartida = new javax.swing.JTextField();
-        formularioEnviarCorreos = new javax.swing.JFrame();
-        jLabel37 = new javax.swing.JLabel();
-        campoEquipoCorreo = new javax.swing.JTextField();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        confirmarEnviarCorreo = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        campoContenidoCorreo = new javax.swing.JTextArea();
         formularioAsignarMesasPartidas = new javax.swing.JFrame();
         jLabel40 = new javax.swing.JLabel();
         campoPartidaAsignacion = new javax.swing.JTextField();
@@ -153,13 +117,6 @@ public class Sistema extends javax.swing.JFrame {
         huecosMesas1 = new javax.swing.JTable();
         jLabel66 = new javax.swing.JLabel();
         campoNMesa_PartidaTorneo = new javax.swing.JTextField();
-        formularioAsignarPremio = new javax.swing.JFrame();
-        jLabel43 = new javax.swing.JLabel();
-        campoTorneoPremio = new javax.swing.JTextField();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        confirmarAsignarMesas1 = new javax.swing.JButton();
-        campoCantidadPremio = new javax.swing.JTextField();
         formularioCrearPresentacion = new javax.swing.JFrame();
         jLabel49 = new javax.swing.JLabel();
         campoIDJuegoPresentacion = new javax.swing.JTextField();
@@ -203,6 +160,15 @@ public class Sistema extends javax.swing.JFrame {
         campoValoracion = new javax.swing.JTextField();
         jLabel65 = new javax.swing.JLabel();
         campoIDClienteValoracion = new javax.swing.JTextField();
+        formularioAsignarJuegoaPartida = new javax.swing.JFrame();
+        jLabel42 = new javax.swing.JLabel();
+        campoPartidaAsignacion1 = new javax.swing.JTextField();
+        jLabel43 = new javax.swing.JLabel();
+        confirmarJuegoPartidaTorneo = new javax.swing.JButton();
+        jLabel68 = new javax.swing.JLabel();
+        campoIDJuego_PartidaTorneo = new javax.swing.JTextField();
+        jLabel69 = new javax.swing.JLabel();
+        campoFecha_PartidaTorneo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         botonCerrarSesión = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -733,317 +699,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
-        jLabel24.setText("Registrar Equipo");
-
-        campoNomEquipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomEquipoActionPerformed(evt);
-            }
-        });
-
-        jLabel25.setText("Nombre Equipo");
-
-        campoTorneo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTorneoActionPerformed(evt);
-            }
-        });
-
-        jLabel26.setText("Torneo");
-
-        confirmarRegistro.setText("Registrar");
-        confirmarRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarRegistroActionPerformed(evt);
-            }
-        });
-
-        jLabel27.setText("Miembro 1:");
-
-        miembro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miembro1ActionPerformed(evt);
-            }
-        });
-
-        jLabel28.setText("Miembro 2:");
-
-        miembro2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miembro2ActionPerformed(evt);
-            }
-        });
-
-        jLabel29.setText("Miembro 3:");
-
-        miembro3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miembro3ActionPerformed(evt);
-            }
-        });
-
-        jLabel30.setText("Miembro 4:");
-
-        miembro4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miembro4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout formularioRegistroEquipoLayout = new javax.swing.GroupLayout(formularioRegistroEquipo.getContentPane());
-        formularioRegistroEquipo.getContentPane().setLayout(formularioRegistroEquipoLayout);
-        formularioRegistroEquipoLayout.setHorizontalGroup(
-            formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel24))
-                    .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioRegistroEquipoLayout.createSequentialGroup()
-                                .addComponent(jLabel25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoNomEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioRegistroEquipoLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                                        .addComponent(jLabel27)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(miembro1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                                        .addComponent(jLabel26)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(campoTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioRegistroEquipoLayout.createSequentialGroup()
-                                        .addComponent(jLabel28)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(miembro2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioRegistroEquipoLayout.createSequentialGroup()
-                                        .addComponent(jLabel29)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(miembro3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioRegistroEquipoLayout.createSequentialGroup()
-                                        .addComponent(jLabel30)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(miembro4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(confirmarRegistro)))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
-        formularioRegistroEquipoLayout.setVerticalGroup(
-            formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioRegistroEquipoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel24)
-                .addGap(18, 18, 18)
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNomEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26))
-                .addGap(18, 18, 18)
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(miembro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(miembro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(miembro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioRegistroEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(miembro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(confirmarRegistro)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        jLabel31.setText("Crear Partida");
-
-        campoMesaPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoMesaPartidaActionPerformed(evt);
-            }
-        });
-
-        jLabel32.setText("ID Mesa");
-
-        campoTorneoPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTorneoPartidaActionPerformed(evt);
-            }
-        });
-
-        jLabel33.setText("Torneo");
-
-        confirmarCrearPartida.setText("Crear");
-        confirmarCrearPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarCrearPartidaActionPerformed(evt);
-            }
-        });
-
-        jLabel34.setText("Juego");
-
-        campoJuegoPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoJuegoPartidaActionPerformed(evt);
-            }
-        });
-
-        jLabel35.setText("Inicio");
-
-        jLabel36.setText("Fin");
-
-        campoFinPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFinPartidaActionPerformed(evt);
-            }
-        });
-
-        campoInicioPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoInicioPartidaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout formularioCrearPartidaLayout = new javax.swing.GroupLayout(formularioCrearPartida.getContentPane());
-        formularioCrearPartida.getContentPane().setLayout(formularioCrearPartidaLayout);
-        formularioCrearPartidaLayout.setHorizontalGroup(
-            formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel31))
-                    .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(confirmarCrearPartida))
-                    .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(campoMesaPartida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel34)
-                                    .addComponent(jLabel33)
-                                    .addComponent(jLabel35)
-                                    .addComponent(jLabel36))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoTorneoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoJuegoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoFinPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoInicioPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        formularioCrearPartidaLayout.setVerticalGroup(
-            formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioCrearPartidaLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoMesaPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTorneoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel34)
-                    .addComponent(campoJuegoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(campoInicioPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioCrearPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoFinPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(confirmarCrearPartida)
-                .addContainerGap())
-        );
-
-        jLabel37.setText("Enviar Correo a Equipo");
-
-        campoEquipoCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoEquipoCorreoActionPerformed(evt);
-            }
-        });
-
-        jLabel38.setText("Equipo");
-
-        jLabel39.setText("Contenido");
-
-        confirmarEnviarCorreo.setText("Enviar");
-        confirmarEnviarCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarEnviarCorreoActionPerformed(evt);
-            }
-        });
-
-        campoContenidoCorreo.setColumns(20);
-        campoContenidoCorreo.setRows(5);
-        jScrollPane8.setViewportView(campoContenidoCorreo);
-
-        javax.swing.GroupLayout formularioEnviarCorreosLayout = new javax.swing.GroupLayout(formularioEnviarCorreos.getContentPane());
-        formularioEnviarCorreos.getContentPane().setLayout(formularioEnviarCorreosLayout);
-        formularioEnviarCorreosLayout.setHorizontalGroup(
-            formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioEnviarCorreosLayout.createSequentialGroup()
-                .addGroup(formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formularioEnviarCorreosLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formularioEnviarCorreosLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel37)
-                                .addGroup(formularioEnviarCorreosLayout.createSequentialGroup()
-                                    .addComponent(jLabel39)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(confirmarEnviarCorreo)
-                                        .addComponent(campoEquipoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
-        formularioEnviarCorreosLayout.setVerticalGroup(
-            formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioEnviarCorreosLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel37)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioEnviarCorreosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoEquipoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel38))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel39)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(confirmarEnviarCorreo)
-                .addContainerGap())
-        );
-
         formularioAsignarMesasPartidas.setMinimumSize(new java.awt.Dimension(334, 317));
 
         jLabel40.setText("Asignar Mesas Partida");
@@ -1135,75 +790,6 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(confirmarMesasPartidaTorneo)
                 .addGap(21, 21, 21))
-        );
-
-        jLabel43.setText("Asignar Premio a Torneo");
-
-        campoTorneoPremio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTorneoPremioActionPerformed(evt);
-            }
-        });
-
-        jLabel44.setText("Torneo");
-
-        jLabel45.setText("Premio");
-
-        confirmarAsignarMesas1.setText("Asignar");
-        confirmarAsignarMesas1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarAsignarMesas1ActionPerformed(evt);
-            }
-        });
-
-        campoCantidadPremio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCantidadPremioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout formularioAsignarPremioLayout = new javax.swing.GroupLayout(formularioAsignarPremio.getContentPane());
-        formularioAsignarPremio.getContentPane().setLayout(formularioAsignarPremioLayout);
-        formularioAsignarPremioLayout.setHorizontalGroup(
-            formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                .addGroup(formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                            .addGap(74, 74, 74)
-                            .addComponent(jLabel43))
-                        .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addGroup(formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                                    .addComponent(jLabel45)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(campoCantidadPremio, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(campoTorneoPremio, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(confirmarAsignarMesas1)))
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-        formularioAsignarPremioLayout.setVerticalGroup(
-            formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formularioAsignarPremioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel43)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTorneoPremio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel44))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(formularioAsignarPremioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoCantidadPremio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(confirmarAsignarMesas1)
-                .addGap(14, 14, 14))
         );
 
         jLabel49.setText("Crear Presentacion");
@@ -1610,6 +1196,78 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(confirmarValoracion)
                 .addGap(22, 22, 22))
+        );
+
+        formularioAsignarJuegoaPartida.setMinimumSize(new java.awt.Dimension(365, 288));
+
+        jLabel42.setText("Asignar Juego a Partida");
+
+        jLabel43.setText("Partida");
+
+        confirmarJuegoPartidaTorneo.setText("Asignar");
+        confirmarJuegoPartidaTorneo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarJuegoPartidaTorneoActionPerformed(evt);
+            }
+        });
+
+        jLabel68.setText("IDJuego");
+
+        jLabel69.setText("Fecha");
+
+        campoFecha_PartidaTorneo.setText("(DD-MM-YY)");
+        campoFecha_PartidaTorneo.setToolTipText("");
+
+        javax.swing.GroupLayout formularioAsignarJuegoaPartidaLayout = new javax.swing.GroupLayout(formularioAsignarJuegoaPartida.getContentPane());
+        formularioAsignarJuegoaPartida.getContentPane().setLayout(formularioAsignarJuegoaPartidaLayout);
+        formularioAsignarJuegoaPartidaLayout.setHorizontalGroup(
+            formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel42))
+                    .addGroup(formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel69)
+                            .addGroup(formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                                .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel43)
+                                    .addComponent(jLabel68))
+                                .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(campoPartidaAsignacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoIDJuego_PartidaTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(confirmarJuegoPartidaTorneo)
+                                            .addComponent(campoFecha_PartidaTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+        formularioAsignarJuegoaPartidaLayout.setVerticalGroup(
+            formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioAsignarJuegoaPartidaLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel42)
+                .addGap(29, 29, 29)
+                .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(campoIDJuego_PartidaTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPartidaAsignacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel68))
+                .addGap(18, 18, 18)
+                .addGroup(formularioAsignarJuegoaPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoFecha_PartidaTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel69))
+                .addGap(38, 38, 38)
+                .addComponent(confirmarJuegoPartidaTorneo)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2054,21 +1712,18 @@ private void manejarError(String mensaje, Exception e) {
         conexion.desconectar();
         System.out.println("Conexión cerrada correctamente.");
         formularioAsignarMesasPartidas.dispose();
-        formularioAsignarPremio.dispose();
         formularioCrearAlquiler.dispose();
-        formularioCrearPartida.dispose();
         formularioCrearPresentacion.dispose();
         formularioDisponerJuego.dispose();
-        formularioEnviarCorreos.dispose();
         formularioFinAlquiler.dispose();
         formularioModificarAlquiler.dispose();
         formularioModificarPresentacion.dispose();
         formularioModificarReserva.dispose();
-        formularioRegistroEquipo.dispose();
         formularioReservarJuego.dispose();
         formularioReservarMesa.dispose();
         formularioReservarPlaza.dispose();
         formularioValoracionPresentacion.dispose();
+        formularioAsignarJuegoaPartida.dispose();
 
     }//GEN-LAST:event_botonCerrarSesiónActionPerformed
 
@@ -2137,7 +1792,7 @@ public void inscribirEquipoEnTorneo(String idEquipo, String idTorneo) {
     }//GEN-LAST:event_registrarEquipoActionPerformed
 
     private void AsignarJuegoaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AsignarJuegoaPartidaActionPerformed
-        // TODO add your handling code here:
+formularioAsignarJuegoaPartida.setVisible(true);
     }//GEN-LAST:event_AsignarJuegoaPartidaActionPerformed
 
 private void mandarCorreo(String idTorneo){
@@ -2299,6 +1954,7 @@ private double obtenerRecaudacionTorneo(String idTorneo) {
         System.out.println("Operación cancelada o ID de torneo no válido.");
     }
     }//GEN-LAST:event_asignarPremioActionPerformed
+
 public class PartidaInfo {
     private Date fecha;
     private String hora;
@@ -3431,6 +3087,184 @@ private boolean crearAlquiler(String idCliente, String idJuego, String emailClie
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNMesa_PartidaTorneoActionPerformed
 
+    
+private boolean comprobarEstadoAlquilerReserva(int idJuego, Date fecha) {
+    try {
+        String estadoJuego = obtenerEstadoJuego(idJuego);
+
+        switch (estadoJuego) {
+            case "A" -> {
+                if (!verificarEstadoAlquiler(idJuego, fecha)) {
+                    JOptionPane.showMessageDialog(this, "No se puede asignar este juego en la fecha propuesta, está alquilado", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            }
+
+            case "R" -> {
+                if (!verificarEstadoReserva(idJuego, fecha)) {
+                    JOptionPane.showMessageDialog(this, "No se puede asignar este juego en la fecha propuesta, está reservado", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            }
+
+            case "D" -> System.out.println("El juego está disponible");
+
+            default -> {
+                JOptionPane.showMessageDialog(this, "Estado de juego no válido", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } 
+        return true;
+        
+    } catch (SQLException e) {
+        manejarError("Error al comprobarEstadoAlquilerReserva", e);
+        return false;
+    }
+}
+
+private String obtenerEstadoJuego(int idJuego) throws SQLException {
+    String sql = "SELECT Estado FROM Juego WHERE IDJuego = ?";
+    
+    try (PreparedStatement statement = con.prepareStatement(sql)) {
+        statement.setInt(1, idJuego);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getString("Estado");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el juego con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
+    }
+}
+
+
+private boolean verificarEstadoReserva(int idJuego, Date fecha) throws SQLException {
+        String sql = "SELECT NReservaJuego FROM ReservaJuego WHERE IDJuego = ? AND DiaRecog = ?";
+
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setInt(1, idJuego);
+            statement.setDate(2, new java.sql.Date(fecha.getTime()));
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                //Si hay una reserva, devolvemos false
+                if(resultSet.next()) {
+                        return false; 
+                    }
+                
+            }
+        }
+        //Si no hay ninguna reserva, devolvemos true
+        return true;
+    }
+
+
+    
+private boolean verificarEstadoAlquiler(int idJuego, Date fecha) throws SQLException {
+        String sql = "SELECT IDJuego FROM Alquiler WHERE IDJuego = ? AND FechaDevolucion >= ?";
+
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setInt(1, idJuego);
+            statement.setDate(2, new java.sql.Date(fecha.getTime()));
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                //Si hay un alquiler, devolvemos false
+               if (resultSet.next()) {
+                    return false; 
+                    }   
+            }  
+        }
+
+        return true;
+}
+
+private void crearAlquilerparaPartidaTorneo(String idJuego, Date fecha) {
+    double multa = 5.0;
+    String idCliente = "15";
+    String email = "admin@example.com";
+    String sql = "INSERT INTO ALQUILER (IDCLIENTE, IDJUEGO, EMAIL, FECHADEVOLUCION, MULTA) VALUES (?, ?, ?, ?, ?)";
+
+    try (PreparedStatement statement = con.prepareStatement(sql)) {
+        statement.setString(1, idCliente);
+        statement.setString(2, idJuego);
+        statement.setString(3, email);
+        statement.setDate(4, new java.sql.Date(fecha.getTime()));
+        statement.setDouble(5, multa);
+
+        int filasAfectadas = statement.executeUpdate();
+
+        if (filasAfectadas > 0) {
+            System.out.println("Inserción exitosa");
+            actualizarTablaJuegosDisponibles((DefaultTableModel) juegosDisponibles.getModel());
+            actualizarTablaAlquileres((DefaultTableModel) tablaAlquileres.getModel());
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al crear el alquiler", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (SQLException ex) {
+        if (ex.getMessage().contains("ORA-20001")) {
+            JOptionPane.showMessageDialog(this, "No se pueden insertar o actualizar fechas iguales o anteriores a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+    
+    private void confirmarJuegoPartidaTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarJuegoPartidaTorneoActionPerformed
+// Solicitar al usuario que introduzca el IDPartida y la Fecha deseados
+        String idPartida= campoPartidaAsignacion1.getText();
+        String idJuegostr = campoIDJuego_PartidaTorneo.getText();
+        String fechaStr = campoFecha_PartidaTorneo.getText();
+        // Convertir la cadena de fecha a objeto Date
+        Date fecha = null;
+        int idJuego = Integer.parseInt(idJuegostr);
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            fecha = dateFormat.parse(fechaStr);
+        } catch (ParseException e) {
+            manejarError("Error al transformar la fecha de str a Date", e);
+        }
+        // Verificar si la fecha y el IDPartida son válidos
+        if (idJuegostr != null && fecha != null) {
+            if(comprobarEstadoAlquilerReserva(idJuego, fecha)){
+                crearAlquilerparaPartidaTorneo(idJuegostr, fecha);
+            }} else {
+            JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, introduce valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+   
+        //Actualizamos además la fecha de inicio de la partida
+        String sqlActualizar = "UPDATE Partida SET FechaInicio = ? WHERE IDPartida = ?";
+        try (PreparedStatement statement = con.prepareStatement(sqlActualizar)) {
+            statement.setDate(1, new java.sql.Date(fecha.getTime()));
+            statement.setString(3, idPartida);
+            statement.executeUpdate();
+            System.out.println("Actualización Partida hecha");
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //Y el estado del juego
+        sqlActualizar = "UPDATE Juego SET Estado = 'A' WHERE IDJuego = ?";
+        try (PreparedStatement statement = con.prepareStatement(sqlActualizar)) {
+            statement.setString(1, idJuegostr);
+            statement.executeUpdate();
+            System.out.println("Actualización Juego hecha");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        formularioAsignarJuegoaPartida.setVisible(false);
+        campoPartidaAsignacion1.setText("");
+        campoIDJuego_PartidaTorneo.setText("");
+        campoFecha_PartidaTorneo.setText("(DD-MM-YY)");
+        
+    }//GEN-LAST:event_confirmarJuegoPartidaTorneoActionPerformed
+
+    
+
    
 private void cargarTablas() {
     cargarDatosDesdeDB("RESERVADEMESA", (DefaultTableModel) tablaReservasMesa2.getModel());
@@ -3784,56 +3618,45 @@ public boolean verificarConexion() {
     private javax.swing.JButton botonCerrarSesión;
     private javax.swing.JTextField campoAlquilerFin;
     private javax.swing.JTextField campoAlquilerModificar;
-    private javax.swing.JTextField campoCantidadPremio;
     private javax.swing.JTextField campoClienteAlquiler;
     private javax.swing.JTextField campoClienteMesa;
     private javax.swing.JTextField campoClienteReserva;
-    private javax.swing.JTextArea campoContenidoCorreo;
-    private javax.swing.JTextField campoEquipoCorreo;
     private javax.swing.JTextField campoExtensionJuego;
     private javax.swing.JTextField campoFechaNuevaPresentacion;
     private javax.swing.JTextField campoFechaPresentacion;
-    private javax.swing.JTextField campoFinPartida;
+    private javax.swing.JTextField campoFecha_PartidaTorneo;
     private javax.swing.JTextField campoHoraModificacion;
     private javax.swing.JTextField campoHoraReservaMesa;
     private javax.swing.JTextField campoIDClienteReservaPlaza;
     private javax.swing.JTextField campoIDClienteValoracion;
     private javax.swing.JTextField campoIDJuegoPresentacion;
     private javax.swing.JTextField campoIDJuegoValoracion;
+    private javax.swing.JTextField campoIDJuego_PartidaTorneo;
     private javax.swing.JTextField campoIDPresentacion;
-    private javax.swing.JTextField campoInicioPartida;
     private javax.swing.JTextField campoJuegoAlquiler;
-    private javax.swing.JTextField campoJuegoPartida;
     private javax.swing.JTextField campoJuegosReserva;
-    private javax.swing.JTextField campoMesaPartida;
     private javax.swing.JTextField campoMesaReserva;
     private javax.swing.JTextField campoNMesa_PartidaTorneo;
-    private javax.swing.JTextField campoNomEquipo;
     private javax.swing.JTextField campoNombreJuego;
     private javax.swing.JTextField campoNumeroPlazasPresentacion;
     private javax.swing.JTextField campoPartidaAsignacion;
+    private javax.swing.JTextField campoPartidaAsignacion1;
     private javax.swing.JTextField campoPresentacionModificada;
     private javax.swing.JTextField campoPresentacionReserva;
     private javax.swing.JTextField campoReservaModificacion;
-    private javax.swing.JTextField campoTorneo;
-    private javax.swing.JTextField campoTorneoPartida;
-    private javax.swing.JTextField campoTorneoPremio;
     private javax.swing.JTextField campoTrabajadorAlquilerFin;
     private javax.swing.JTextField campoValoracion;
     private javax.swing.JTextField cantidadMesasPresentacion;
     private javax.swing.JButton confirmaReservaMesa;
-    private javax.swing.JButton confirmarAsignarMesas1;
     private javax.swing.JButton confirmarCrearAlquiler;
-    private javax.swing.JButton confirmarCrearPartida;
     private javax.swing.JButton confirmarCrearPresentacion;
     private javax.swing.JButton confirmarDisponerJuego;
-    private javax.swing.JButton confirmarEnviarCorreo;
     private javax.swing.JButton confirmarFinalizarAlquiler;
+    private javax.swing.JButton confirmarJuegoPartidaTorneo;
     private javax.swing.JButton confirmarMesasPartidaTorneo;
     private javax.swing.JButton confirmarModificar;
     private javax.swing.JButton confirmarModificarAlquiler;
     private javax.swing.JButton confirmarModificarPresentacion;
-    private javax.swing.JButton confirmarRegistro;
     private javax.swing.JButton confirmarReservaJuego;
     private javax.swing.JButton confirmarReservaPlazaPresentacion;
     private javax.swing.JButton confirmarValoracion;
@@ -3841,18 +3664,15 @@ public boolean verificarConexion() {
     private javax.swing.JButton crearPresentacion;
     private javax.swing.JCheckBox estadoJuego;
     private javax.swing.JButton finalizarAlquiler;
+    private javax.swing.JFrame formularioAsignarJuegoaPartida;
     private javax.swing.JFrame formularioAsignarMesasPartidas;
-    private javax.swing.JFrame formularioAsignarPremio;
     private javax.swing.JFrame formularioCrearAlquiler;
-    private javax.swing.JFrame formularioCrearPartida;
     private javax.swing.JFrame formularioCrearPresentacion;
     private javax.swing.JFrame formularioDisponerJuego;
-    private javax.swing.JFrame formularioEnviarCorreos;
     private javax.swing.JFrame formularioFinAlquiler;
     private javax.swing.JFrame formularioModificarAlquiler;
     private javax.swing.JFrame formularioModificarPresentacion;
     private javax.swing.JFrame formularioModificarReserva;
-    private javax.swing.JFrame formularioRegistroEquipo;
     private javax.swing.JFrame formularioReservarJuego;
     private javax.swing.JFrame formularioReservarMesa;
     private javax.swing.JFrame formularioReservarPlaza;
@@ -3875,29 +3695,12 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -3922,6 +3725,8 @@ public boolean verificarConexion() {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3935,16 +3740,11 @@ public boolean verificarConexion() {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable juegos;
     private javax.swing.JTable juegosDisponibles;
     private javax.swing.JTable juegosDisponibles1;
     private javax.swing.JButton mandarCorreo;
-    private javax.swing.JTextField miembro1;
-    private javax.swing.JTextField miembro2;
-    private javax.swing.JTextField miembro3;
-    private javax.swing.JTextField miembro4;
     private javax.swing.JButton modificarAlquiler;
     private javax.swing.JButton modificarPresentacion;
     private javax.swing.JButton modificarReserva;
