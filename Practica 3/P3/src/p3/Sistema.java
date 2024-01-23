@@ -3177,29 +3177,37 @@ private String obtenerEmailCliente(String idCliente) throws SQLException {
         String valoracion = campoValoracion.getText();
 
         try {
-
-            if (idCliente != null && valoracion != null && idJuego != null) {
-                PreparedStatement cn = con.prepareStatement("INSERT INTO VALORACIONJUEGO (IDCLIENTE, IDJUEGO, EMAIL) VALUES (?, ?, ?)");
+            if (idCliente != null && idJuego != null) {
+                PreparedStatement cn = con.prepareStatement("INSERT INTO VALORACIONJUEGO (IDCLIENTE, IDJUEGO) VALUES (?, ?)");
 
                 cn.setString(1, idCliente);
                 cn.setString(2, idJuego);
-                cn.setString(3, valoracion);
 
                 int filasAfectadas = cn.executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    System.out.println("Inserción exitosa");
+                    System.out.println("Inserción exitosa en VALORACIONJUEGO");
                 }
             } else {
-                System.out.println("No se encontró el IDCliente,IDJuego o la valoracion asociados al juego o cliente correspondiente");
+                System.out.println("No se encontró el IDCliente o IDJuego correspondientes al juego o cliente correspondiente");
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            manejarError("Error en la función confirmarValoracionActionPerformed", e);
-            formularioValoracionPresentacion.dispose();
-        }    
+            if (valoracion != null) {
+                PreparedStatement cn2 = con.prepareStatement("UPDATE PRESENTACIONJUEGO SET OPINIONES = ? WHERE IDJUEGO = ?");
+                cn2.setString(1, valoracion);
+                cn2.setString(2, idJuego);
 
+                int filasAfectadas2 = cn2.executeUpdate();
+
+                if (filasAfectadas2 > 0) {
+                    System.out.println("Actualización exitosa en PRESENTACIONJUEGO");
+                }
+            } else {
+                System.out.println("No se encontró la valoración correspondiente al juego presentado");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al insertar en VALORACIONJUEGO o actualizar en PRESENTACIONJUEGO: " + e.getMessage());
+        }
         formularioValoracionPresentacion.setVisible(false);
         campoIDJuegoValoracion.setText(""); 
         campoIDClienteValoracion.setText("");
